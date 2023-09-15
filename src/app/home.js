@@ -1,49 +1,60 @@
-import styles from "./login.module.css";
+import { useCallback } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import styles from "./home.module.css";
 
-const Login = () => {
+const Home = () => {
+  const router = useRouter();
+
+  const onContainer2Click = useCallback(() => {
+    router.push("/");
+  }, [router]);
+
   return (
-    <div className={styles.login}>
-      <img className={styles.logoIcon} alt="" src="/logo.svg" />
-      <div className={styles.logInBox}>
-        <button className={styles.forgetPasswordResetContainer}>
-          <span className={styles.forgetPasswordResetContainer1}>
-            <span className={styles.forgetPassword}>Forget Password?</span>
-            <b className={styles.b}>{`  `}</b>
-            <b className={styles.resetHere}>Reset Here.</b>
-          </span>
-        </button>
-        <button className={styles.logInButton}>
+    <div className={styles.home}>
+      <div className={styles.body}>
+        <button className={styles.exploreButton}>
           <div className={styles.container} />
-          <div className={styles.logIn}>Log in</div>
+          <div className={styles.explore}>Explore</div>
         </button>
-        <input
-          className={styles.enterPasswordButton}
-          name="password"
-          value="Enter Password"
-          type="text"
-        />
-        <input
-          className={styles.emailphoneusernameButton}
-          name="username"
-          placeholder="Email/Phone/Username"
-          type="text"
-        />
+        <div className={styles.textBox}>
+          <div className={styles.container1} />
+          <div className={styles.placeholder}>
+            <span className={styles.placeholderTxt}>
+              <p className={styles.p}>
+                _________________________________________________________
+              </p>
+              <p className={styles.p}>
+                __________________________________________________________________________________________
+              </p>
+            </span>
+          </div>
+        </div>
       </div>
       <div className={styles.header}>
-        <button className={styles.logInButton1}>
-          <div className={styles.container1} />
-          <div className={styles.logIn1}>Log in</div>
-        </button>
+        <a className={styles.logInButton}>
+          <Link
+            className={styles.container2}
+            href="/"
+            onClick={onContainer2Click}
+          />
+          <div className={styles.logIn}>Log in</div>
+        </a>
         <button className={styles.fr}>FR</button>
         <button className={styles.news}>News</button>
         <button className={styles.training}>Training</button>
         <button className={styles.about}>About</button>
-        <button className={styles.home}>{`Home `}</button>
-        <input className={styles.search} name="search" type="text" />
+        <button className={styles.home1}>{`Home `}</button>
+        <input
+          className={styles.search}
+          name="search"
+          placeholder="Search"
+          type="text"
+        />
         <div className={styles.velocified}>VELOCIFIED</div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Home;
