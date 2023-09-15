@@ -1,0 +1,245 @@
+.logoIcon {
+  position: absolute;
+  top: 144.5px;
+  left: 575.17px;
+  width: 731px;
+  height: 687.5px;
+}
+.forgetPassword {
+  font-weight: 500;
+}
+.b {
+  font-family: var(--font-sf-pro-display);
+}
+.forgetPasswordResetContainer1 {
+  line-break: anywhere;
+  width: 100%;
+}
+.forgetPasswordResetContainer {
+  position: absolute;
+  height: 5.09%;
+  width: 38.07%;
+  top: 73.65%;
+  left: 31.02%;
+  font-size: var(--font-size-sm);
+  line-height: 120%;
+  color: var(--color-darkgray-100);
+  display: flex;
+  align-items: center;
+}
+.container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-base);
+  background-color: var(--color-gray-100);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-gray-100);
+  box-sizing: border-box;
+}
+.logIn {
+  position: absolute;
+  height: 74%;
+  width: 17.89%;
+  top: 26%;
+  left: 42.37%;
+  font-weight: 500;
+  display: inline-block;
+}
+.logInButton {
+  position: absolute;
+  height: 7.28%;
+  width: 59.28%;
+  top: 58.66%;
+  right: 20.27%;
+  bottom: 34.06%;
+  left: 20.45%;
+  font-size: var(--font-size-xl);
+  color: var(--white);
+}
+.viewhideIcon {
+  position: absolute;
+  height: 48%;
+  width: 6.32%;
+  top: 24%;
+  right: 5%;
+  bottom: 28%;
+  left: 88.68%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.enterPassword {
+  position: absolute;
+  height: 70%;
+  width: 75.26%;
+  top: 12%;
+  left: 7.63%;
+  line-height: 120%;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.enterPasswordButton {
+  position: absolute;
+  height: 7.28%;
+  width: 59.28%;
+  top: 33.33%;
+  right: 20.27%;
+  bottom: 59.39%;
+  left: 20.45%;
+}
+.emailphoneusername {
+  position: absolute;
+  height: 70%;
+  width: 75.26%;
+  top: 14%;
+  left: 7.63%;
+  line-height: 120%;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.emailphoneusernameButton {
+  position: absolute;
+  height: 7.28%;
+  width: 59.28%;
+  top: 21.25%;
+  right: 20.27%;
+  bottom: 71.47%;
+  left: 20.45%;
+}
+.logInBox {
+  position: absolute;
+  top: 145px;
+  left: -1px;
+  background-color: var(--color-whitesmoke);
+  width: 577px;
+  height: 687px;
+  overflow: hidden;
+}
+.container1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-lg);
+  background-color: var(--color-gray-100);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  border: 2px solid var(--color-silver);
+  box-sizing: border-box;
+  width: 129px;
+  height: 46px;
+}
+.logIn1 {
+  position: absolute;
+  top: calc(50% - 11px);
+  left: calc(50% - 23.5px);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.logInButton1 {
+  position: absolute;
+  top: 1px;
+  left: 1047px;
+  width: 129px;
+  height: 46px;
+  color: var(--white);
+}
+.about,
+.fr,
+.home,
+.news,
+.training {
+  position: absolute;
+  top: calc(50% - 9.5px);
+  left: calc(50% + 391px);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.about,
+.home,
+.news,
+.training {
+  left: calc(50% + 318px);
+}
+.about,
+.home,
+.training {
+  left: calc(50% + 226px);
+}
+.about,
+.home {
+  left: calc(50% + 149px);
+}
+.home {
+  left: calc(50% + 74px);
+}
+.container2 {
+  position: absolute;
+  top: -0.5px;
+  left: -0.5px;
+  border-radius: var(--br-4xs);
+  background-color: var(--white);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-gray-100);
+  box-sizing: border-box;
+  width: 461px;
+  height: 50px;
+}
+.search1 {
+  position: absolute;
+  top: 15px;
+  left: 71px;
+  font-weight: 500;
+}
+.magnifyingGlassIcon {
+  position: absolute;
+  top: 12px;
+  left: 19px;
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+}
+.search {
+  position: absolute;
+  top: 0;
+  left: 154px;
+  width: 460px;
+  height: 49px;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-200);
+}
+.velocified {
+  position: absolute;
+  top: calc(50% - 9.5px);
+  left: calc(50% - 588px);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.header,
+.login {
+  position: absolute;
+  top: 49px;
+  left: 54px;
+  width: 1176px;
+  height: 49px;
+  text-align: center;
+  color: var(--color-gray-100);
+}
+.login {
+  top: 219px;
+  left: 1645px;
+  background-color: var(--white);
+  width: 1280px;
+  height: 832px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-dimgray-100);
+  font-family: var(--font-sf-pro);
+}
