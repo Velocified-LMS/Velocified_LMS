@@ -1,95 +1,49 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import styles from "./login.module.css";
 
-export default function Home() {
+const Login = () => {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <div className={styles.login}>
+      <img className={styles.logoIcon} alt="" src="/logo.svg" />
+      <div className={styles.logInBox}>
+        <button className={styles.forgetPasswordResetContainer}>
+          <span className={styles.forgetPasswordResetContainer1}>
+            <span className={styles.forgetPassword}>Forget Password?</span>
+            <b className={styles.b}>{`  `}</b>
+            <b className={styles.resetHere}>Reset Here.</b>
+          </span>
+        </button>
+        <button className={styles.logInButton}>
+          <div className={styles.container} />
+          <div className={styles.logIn}>Log in</div>
+        </button>
+        <input
+          className={styles.enterPasswordButton}
+          name="password"
+          value="Enter Password"
+          type="text"
+        />
+        <input
+          className={styles.emailphoneusernameButton}
+          name="username"
+          placeholder="Email/Phone/Username"
+          type="text"
         />
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className={styles.header}>
+        <button className={styles.logInButton1}>
+          <div className={styles.container1} />
+          <div className={styles.logIn1}>Log in</div>
+        </button>
+        <button className={styles.fr}>FR</button>
+        <button className={styles.news}>News</button>
+        <button className={styles.training}>Training</button>
+        <button className={styles.about}>About</button>
+        <button className={styles.home}>{`Home `}</button>
+        <input className={styles.search} name="search" type="text" />
+        <div className={styles.velocified}>VELOCIFIED</div>
       </div>
-    </main>
-  )
-}
+    </div>
+  );
+};
+
+export default Login;
