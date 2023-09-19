@@ -1,0 +1,18 @@
+.buttonAutoPrimary {
+  position: relative;
+  line-height: 120%;
+}
+.iosButtonAutoWidthBu {
+  border-radius: 7px;
+  background-color: var(--white);
+  border: 1px solid var(--grey-900);
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-2xs) var(--padding-mini);
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: var(--font-size-mini);
+  color: var(--grey-900);
+  font-family: var(--font-roboto);
+}
