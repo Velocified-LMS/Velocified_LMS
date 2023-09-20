@@ -1,9 +1,8 @@
-import styles from "./login.module.css";
-
+import Navbar from "@/app/components/navbar";
 const Learner = () => {
   return (
     <div>
-        <h>Template for Learner</h>
+        <Navbar />
     </div>
   );
 };

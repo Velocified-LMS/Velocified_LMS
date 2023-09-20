@@ -1,12 +1,11 @@
-import { useCallback } from "react";
-import Link from "next/link";
 import styles from "./home.module.css";
-
+import Navbar from "./navbar";
 const Homepage = () => {
 
 
   return (
-    <div className={styles.home}>
+    <div >
+      <Navbar />
       <div className={styles.body}>
         <button className={styles.exploreButton}>
           <div className={styles.container} />
@@ -26,25 +25,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <div className={styles.header}>
-        <div className={styles.logInButton}>
-        <Link href="/login" >
-          <div className={styles.logIn}>
-          Log in</div></Link>
-        </div>
-        <button className={styles.fr}>FR</button>
-        <button className={styles.news}>News</button>
-        <button className={styles.training}>Training</button>
-        <button className={styles.about}>About</button>
-        <button className={styles.home1}>{`Home `}</button>
-        <input
-          className={styles.search}
-          name="search"
-          placeholder="Search"
-          type="text"
-        />
-        <div className={styles.velocified}>VELOCIFIED</div>
-      </div>
+      
     </div>
   );
 };

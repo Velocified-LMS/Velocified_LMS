@@ -1,8 +1,11 @@
 import styles from "./login.module.css";
+import Navbar from "@/app/components/navbar";
 
 const Login = () => {
   return (
-    <div className={styles.login}>
+    <div >
+      <Navbar />
+      <div>
       <img className={styles.logoIcon} alt="" src="/logo.svg" />
       <div className={styles.logInBox}>
         <button className={styles.forgetPasswordResetContainer}>
@@ -29,19 +32,8 @@ const Login = () => {
           type="text"
         />
       </div>
-      <div className={styles.header}>
-        <button className={styles.logInButton1}>
-          <div className={styles.container1} />
-          <div className={styles.logIn1}>Log in</div>
-        </button>
-        <button className={styles.fr}>FR</button>
-        <button className={styles.news}>News</button>
-        <button className={styles.training}>Training</button>
-        <button className={styles.about}>About</button>
-        <button className={styles.home}>Home </button>
-        <input className={styles.search} name="search" type="text" />
-        <div className={styles.velocified}>VELOCIFIED</div>
       </div>
+      
     </div>
   );
 };
