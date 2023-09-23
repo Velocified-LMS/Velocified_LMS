@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div >
       <Navbar />
-      <div>
+      <div >
       <img className={styles.logoIcon} alt="" src="/logo.svg" />
       <div className={styles.logInBox}>
         <button className={styles.forgetPasswordResetContainer}>

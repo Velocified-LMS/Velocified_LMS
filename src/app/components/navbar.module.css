@@ -8,21 +8,25 @@
     font-family: var(--font-sf-pro);
 
   }
+  .titles {
+    position: fixed;
+    top: 2.2vw;
+    left: .8vw;
+    align-items: center;
+  }
   .velocifiedicon {
     position: absolute;
-    height: 70%;
-    left: calc(5%);
-    letter-spacing: -0.02em;
+    height: 3.2vw;
+    left: 4vw;
   }
   .velocifiedtext {
     position: absolute;
-    height: 70%;
-    left: calc(8%);
-    letter-spacing: -0.02em;
-    font-weight: 40;
+    left: 7vw;
+    height: 3.2vw;
+    
   }
   .search {
-    position: absolute;
+    position: fixed;
     left : calc(25%);
   }
   .home1,
@@ -34,15 +38,18 @@
     cursor: pointer;
     font-size: var(--font-size-base);
     font-family: var(--font-sf-pro);
-    font-weight: bold;
     color: black;
     flex: 1; 
-    padding-left: 4vw;
+    padding-left: 2.1vw;
+    padding-right: 2.1vw;
+    padding-top: 0.7vw;
+    padding-bottom: 0.7vw;
+
 
   }
   .navlinks {
     display: flex;
-    position: absolute;
+    position: fixed;
     top: 5%;
     left: 55%;
     font-size: var(--font-size-base);
@@ -54,4 +61,11 @@
   font-weight: 500;
   color: var(--color-dimgray);
   text-decoration: none; /* Remove underlines from links */
+}
+
+.activeLink {
+  /* Add your active link styling here */
+  background-color: #6E28EE; /* Change to the desired active link color */
+  border-radius: 20px;
+  color: white;
 }

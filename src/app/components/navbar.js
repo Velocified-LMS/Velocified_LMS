@@ -1,14 +1,20 @@
 
+"use client"
 import { TextField, InputAdornment } from "@mui/material";
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { Search } from "@mui/icons-material";
+import { usePathname } from "next/navigation";
+
+
 
 const Navbar = () => {
-  return (
+    const router = usePathname();
 
+  return (
+    
     <div className={styles.header}>
-        <div><img src="/velocified-symbol.svg" alt="Velocified Logo" className={styles.velocifiedicon}/><img src="/text-only-white-background.png" alt="Velocified Text Logo" className={styles.velocifiedtext} /></div>
+        <div className={styles.titles}><img src="/velocified-symbol.svg" alt="Velocified Logo" className={styles.velocifiedicon}/><img src="/text-only-white-background.png" alt="Velocified Text Logo" className={styles.velocifiedtext} /></div>
         <div className={styles.search}>
             <TextField
                 id="outlined-basic"
@@ -30,12 +36,12 @@ const Navbar = () => {
             />
         </div>
         <div className={styles.navlinks} >
-            <Link href="/login" ><div className={styles.home1}>Home </div> </Link>
-            <Link href="/login" ><div className={styles.about}>About</div></Link>
-            <Link href="/login" ><div className={styles.training}>Training</div></Link>
-            <Link href="/login" ><div className={styles.news}>News</div></Link>
-            <Link href="/login" ><div className={styles.fr}>FR</div></Link>
-            <Link href="/login" ><div className={styles.logIn}>Log in</div></Link>
+            <Link href="/" ><div className={`${styles.home1} ${router === "/" ? styles.activeLink : ""}`}>Home </div> </Link>
+            <Link href="/" ><div className={styles.about}>About</div></Link>
+            <Link href="/" ><div className={styles.training}>Training</div></Link>
+            <Link href="/" ><div className={styles.news}>News</div></Link>
+            <Link href="/" ><div className={styles.fr}>FR</div></Link>
+            <Link href="/login" ><div className={`${styles.logIn} ${router === "/login" ? styles.activeLink : ""}`}>Log in</div></Link>
         </div>
       </div>
 
