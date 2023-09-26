@@ -1,0 +1,6 @@
+.sidebarContainer{
+    display: flex;
+    width: 35%;
+    background-color: #F7F2FF;
+    height: 1200px;
+}
