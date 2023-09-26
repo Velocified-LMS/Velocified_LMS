@@ -84,7 +84,7 @@
 .enterPasswordButton {
   border: 10;
   font-weight: 500;
-  font-family: var(--font-sf-pro);
+  font-family: 'Roboto', sans-serif;
   font-size: var(--font-size-base);
   top: 33.33%;
   bottom: 59.39%;
