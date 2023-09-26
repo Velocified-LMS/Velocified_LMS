@@ -20,7 +20,7 @@ const Donut = ({ percentage }) => {
             height = chart.height,
             ctx = chart.ctx;
             ctx.restore();
-            var fontSize = '20px ';
+            var fontSize = '18px ';
             ctx.font = fontSize + "Roboto";
             ctx.textBaseline = "middle";
             var text = percentage+"%",
@@ -33,7 +33,7 @@ const Donut = ({ percentage }) => {
         } 
     };
     const doughnutChartOptions = {
-        cutout: 40,
+        cutout: 45,
         legend: {
           display: false,
         }
