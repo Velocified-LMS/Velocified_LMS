@@ -1,5 +1,4 @@
 # Ignore node_modules directory
 /node_modules/
 .next/
-/.DS_Store/
-src/.DS_Store
+.DS_Store
