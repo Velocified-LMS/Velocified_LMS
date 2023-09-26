@@ -25,4 +25,12 @@ html, body {
 
   /* Border radiuses */
   --br-lg: 18px;
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #5A20C3;
+  }
+  
+  ::-webkit-scrollbar-track {
+      background-color: #5A20C3;
+  }
 }
