@@ -9,25 +9,26 @@
 
   }
   .titles {
-    position: fixed;
+    position: relative;
     top: 2.2vw;
-    left: .8vw;
+    left: -40vw;
     align-items: center;
   }
   .velocifiedicon {
-    position: absolute;
+    position: relative;
     height: 3.2vw;
-    left: 4vw;
+    left: 3vw;
   }
   .velocifiedtext {
-    position: absolute;
-    left: 7vw;
+    position: relative;
+    left: 3.5vw;
     height: 3.2vw;
     
   }
   .search {
-    position: fixed;
-    left : calc(25%);
+    position: relative;
+    left : calc(-11%);
+    top: -0.8vw;
   }
   .home1,
   .about,

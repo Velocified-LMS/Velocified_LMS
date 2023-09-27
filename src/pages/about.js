@@ -1,5 +1,5 @@
 import Navbar from "@/app/components/navbar";
-import { Padding } from "@mui/icons-material";
+import '@/app/globals.css'
 const Learner = () => {
   return (
     <div>

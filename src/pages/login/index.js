@@ -1,5 +1,7 @@
 import styles from "./login.module.css";
 import Navbar from "@/app/components/navbar";
+import '@/app/globals.css'
+
 
 const Login = () => {
   return (
