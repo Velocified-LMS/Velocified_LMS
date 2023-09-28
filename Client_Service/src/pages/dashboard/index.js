@@ -1,19 +1,40 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styles from "./dashboard.module.css"
 import Navbar from "@/app/components/navbar";
+import axios from 'axios';
 import { Doughnut } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';
 import { Chart, ArcElement } from 'chart.js';
 Chart.register(ArcElement);
 
+const API_URL = 'http://localhost:3100';
+
+
+
 const Dashboard = () => {
+
+    const [ActivityDescription, setActivityDescription] = useState(null);
+    useEffect(() => {
+        async function fetchUsers() {
+            try {
+                const response = await axios.get(`${API_URL}/users`);
+                console.log(response.data);
+                setActivityDescription(response.data);
+                console.log("hello");
+                return response.data;
+            } catch (e) {
+                console.error("Error fetching data:", e);
+            }
+        }
+        fetchUsers();
+    }, []);
     const language = "English"
     const userName = "User Name"
     const path = "Path Name"
     const day = "Day "+ 4
     const currentDate = new Date()
     const Activity = "Activity 1"
-    const ActivityDescription = "This is a description of the activity"
+    // const ActivityDescription = "This is a description of the activity"
     const startDate = currentDate.toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
