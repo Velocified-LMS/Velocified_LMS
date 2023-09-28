@@ -1,0 +1,27 @@
+/* Style the message container */
+.message_list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Messages will start from the left side */
+}
+
+/* Style individual messages */
+.message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    max-width: 70%; /* Adjust this as needed */
+}
+
+/* Style messages from User1 (on the left) */
+.message_left {
+    background-color: #e6e6e6; /* Set the background color for User1's messages */
+    align-self: flex-start; /* Align User1's messages to the left */
+}
+
+/* Style messages from User2 (on the right) */
+.message_right {
+    background-color: #007bff; /* Set the background color for User2's messages */
+    color: white; /* Set text color for User2's messages */
+    align-self: flex-end; /* Align User2's messages to the right */
+}
