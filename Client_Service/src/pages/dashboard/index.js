@@ -83,6 +83,8 @@ const Dashboard = () => {
                         <div className={styles.activityBody} >
                             <Activity title={ActivityTitle} description={ActivityDescription} />
                             <Activity title={ActivityTitle} description={ActivityDescription} />
+                            <Activity title={ActivityTitle} description={ActivityDescription} />
+                            <Activity title={ActivityTitle} description={ActivityDescription} />
                         </div>
                     </div>
                 </div>
