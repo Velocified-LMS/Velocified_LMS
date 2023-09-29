@@ -1,0 +1,359 @@
+.activityWindowChild {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-white);
+    width: 738px;
+    height: 567px;
+  }
+  .activityWindowInner,
+  .activityWindowItem {
+    position: absolute;
+    box-sizing: border-box;
+    width: 665px;
+  }
+  .activityWindowItem {
+    top: 323px;
+    left: 37px;
+    background-color: var(--color-white);
+    border: 1px solid #dadada;
+    height: 121px;
+  }
+  .activityWindowInner {
+    top: 120px;
+    left: 30px;
+    background-color: var(--color-ghostwhite);
+    border: 1px solid var(--color-ghostwhite);
+    height: 81px;
+  }
+  .blankLine {
+    margin: 0;
+  }
+  .myNotesTxtContainer {
+    line-break: anywhere;
+    width: 100%;
+  }
+  .myNotes,
+  .pathFeedback {
+    position: absolute;
+    left: 53px;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  .myNotes {
+    top: 340px;
+    font-size: var(--font-size-sm);
+    color: var(--color-dimgray-100);
+    width: 201px;
+    height: 51px;
+  }
+  .pathFeedback {
+    top: 653px;
+    color: var(--color-blueviolet);
+    width: 141px;
+    height: 56px;
+  }
+  .addYourHoliday {
+    margin: 0;
+    padding-left: var(--padding-smi);
+  }
+  .addYourHolidayContainer {
+    position: relative;
+    letter-spacing: -0.02em;
+    display: inline-block;
+    width: 134px;
+  }
+  .div,
+  .notes,
+  .weatherIcons {
+    position: absolute;
+    display: none;
+  }
+  .notes {
+    top: 36px;
+    left: 8px;
+    width: 134px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-9xs);
+  }
+  .div,
+  .weatherIcons {
+    top: 15px;
+  }
+  .div {
+    left: 16px;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  .weatherIcons {
+    left: 124px;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+  }
+  .date1,
+  .div1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .date1 {
+    width: 150px;
+    height: 47px;
+    overflow: hidden;
+    font-size: var(--font-size-sm);
+    color: var(--color-dimgray-300);
+    font-family: var(--font-sf-pro);
+  }
+  .div1 {
+    letter-spacing: -0.02em;
+  }
+  .emojis,
+  .work {
+    position: relative;
+  }
+  .emojis {
+    width: 10px;
+    height: 10px;
+  }
+  .work {
+    font-size: var(--font-size-5xs);
+    letter-spacing: -0.02em;
+    font-family: var(--font-montserrat);
+    color: var(--color-darkolivegreen);
+  }
+  .emojisParent,
+  .tags1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .emojisParent {
+    gap: var(--gap-10xs);
+  }
+  .tags1 {
+    border-radius: var(--br-xs);
+    background-color: var(--color-antiquewhite);
+    overflow: hidden;
+    padding: var(--padding-9xs) var(--padding-5xs);
+  }
+  .life {
+    position: relative;
+    font-size: var(--font-size-5xs);
+    letter-spacing: -0.02em;
+    font-family: var(--font-montserrat);
+    color: var(--color-darkslateblue);
+  }
+  .tags,
+  .tags2 {
+    flex-direction: row;
+  }
+  .tags2 {
+    border-radius: var(--br-xs);
+    background-color: var(--color-lavender);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-9xs) var(--padding-5xs);
+  }
+  .tags {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    display: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-9xs);
+    font-size: var(--font-size-3xs);
+    color: var(--color-black);
+    font-family: var(--font-open-sans);
+  }
+  .date,
+  .date2 {
+    position: absolute;
+    top: 237px;
+    left: 408px;
+    border-radius: var(--br-7xs);
+    background-color: var(--color-gray-100);
+    border: 3px solid var(--color-blueviolet);
+    box-sizing: border-box;
+    width: 38px;
+    height: 38px;
+    overflow: hidden;
+    font-size: var(--font-inherit);
+    font-family: var(--font-inherit);
+  }
+  .date2 {
+    left: 657px;
+  }
+  .frameChild {
+    position: relative;
+    background-color: var(--color-blueviolet);
+    width: 738px;
+    height: 89px;
+    z-index: 0;
+  }
+  .date4 {
+    position: absolute;
+    margin: 0 !important;
+    top: 26px;
+    left: 657px;
+    border-radius: var(--br-7xs);
+    background-color: var(--color-white);
+    width: 38px;
+    height: 38px;
+    overflow: hidden;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .closeRingIcon {
+    top: 33px;
+    left: 664px;
+    width: 24px;
+    height: 24px;
+    z-index: 2;
+  }
+  .activityName,
+  .closeRingIcon,
+  .frameItem {
+    position: absolute;
+    margin: 0 !important;
+  }
+  .frameItem {
+    top: 26px;
+    left: 30px;
+    border-radius: 9px;
+    background-color: var(--color-white);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    width: 581px;
+    height: 39px;
+    z-index: 3;
+  }
+  .activityName {
+    top: 19px;
+    left: 50px;
+    font-size: var(--font-size-sm);
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    font-family: var(--font-roboto);
+    color: var(--color-blueviolet);
+    display: flex;
+    align-items: center;
+    width: 201px;
+    height: 51px;
+    flex-shrink: 0;
+    z-index: 4;
+  }
+  .rectangleParent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: var(--font-inherit);
+    font-family: var(--font-inherit);
+  }
+  .loremIpsumDolor {
+    position: absolute;
+    top: 376px;
+    left: 53px;
+    font-size: var(--font-size-xs);
+    line-height: 180.02%;
+    color: var(--color-black);
+    display: inline-block;
+    width: 568px;
+    height: 36px;
+  }
+  .markComplete {
+    top: 226px;
+    left: 197px;
+    color: var(--color-gray-200);
+    text-align: right;
+    width: 196px;
+  }
+  .div9,
+  .markComplete,
+  .signOff {
+    position: absolute;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 56px;
+  }
+  .signOff {
+    top: 228px;
+    left: 446px;
+    color: var(--color-gray-200);
+    text-align: right;
+    width: 196px;
+  }
+  .div9 {
+    top: 439px;
+    left: -8px;
+    font-family: var(--font-sf-pro);
+    color: #d1d1d1;
+    text-align: center;
+    justify-content: center;
+    width: 749px;
+  }
+  .container {
+    position: absolute;
+    top: 504px;
+    left: 37px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gainsboro-100);
+    box-sizing: border-box;
+    width: 665px;
+    height: 125px;
+  }
+  .loremIpsumDolor1 {
+    position: absolute;
+    top: 566px;
+    left: 53px;
+    font-size: var(--font-size-xs);
+    line-height: 180.02%;
+    color: var(--color-black);
+    display: inline-block;
+    width: 568px;
+    height: 36px;
+  }
+  .ametPorttitor,
+  .projectFeedbackNotes {
+    position: absolute;
+    left: 53px;
+    letter-spacing: -0.02em;
+  }
+  .projectFeedbackNotes {
+    top: 524px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-dimgray-100);
+  }
+  .ametPorttitor {
+    top: 151px;
+    font-weight: 500;
+    color: var(--color-black);
+  }
+  .activityWindow {
+    background-color: var(--color-white);
+    border: 1px solid #b5b5b5;
+    box-sizing: border-box;
+    width: 738px;
+    height: 724px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-base);
+    color: var(--color-dimgray-200);
+    font-family: var(--font-roboto);
+  }
+  
