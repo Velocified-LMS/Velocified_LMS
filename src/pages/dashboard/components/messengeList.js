@@ -20,10 +20,39 @@ function MessageList() {
             {sortedMessages.map(message => (
                 <div
                     key={message.id}
-                    className={`${styles.message} ${message.sender === 'User1' ? styles.message_left : styles.message_right}`}
+                    className={`${styles.message} ${
+                        message.sender === 'User1' ? styles.message_left : styles.message_right
+                    }`}
                 >
-                    <div className={styles.message_sender}>{message.sender}</div>
-                    <div className={styles.message_text}>{message.text}</div>
+                    
+                        {message.sender === 'User1' ? (
+                            <div style={{ display: 'flex' }}>
+                                <div className={styles.message_container}>
+                                <div className={styles.sender_icon}>
+                                    <img src="/Icon1.png" alt="User1 Icon" />
+                                    <div className={styles.sender_name}>{message.sender}</div>    
+                                </div>
+                                </div>
+                            <div className={styles.message_text_with_border}>
+                                {message.text}
+                            </div>
+                            </div>
+                        ) : (
+                            <div style={{ display: 'flex' }}>
+                                <div className={styles.message_text_with_border}>
+                                    {message.text}
+                                </div>
+                            <div className={styles.message_container}>
+                            <div className={styles.sender_icon}>
+                                <img src="/Icon2.png" alt="User2 Icon" />
+                                <div className={styles.sender_name}>{message.sender}</div>
+                            </div>
+                            </div>
+                            
+                            </div>
+                        )}
+                    
+                    
                 </div>
             ))}
         </div>
