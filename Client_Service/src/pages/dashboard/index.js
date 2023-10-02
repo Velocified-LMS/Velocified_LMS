@@ -22,7 +22,9 @@ const Dashboard = () => {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
-      });
+    });
+
+    
 
     return (
         <div className={styles.page}>
