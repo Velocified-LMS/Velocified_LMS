@@ -1,9 +1,12 @@
 import React from "react"
+import  { useState } from "react";
+
 import styles from "./dashboard.module.css"
 import Navbar from "@/app/components/navbar";
 import Activity from "./Activity";
 import Donut from "./Donut";
 import Modal from "./Modal";
+import Messenger from "./messenger";
 
 const Dashboard = () => {
     const language = "English"
@@ -24,6 +27,10 @@ const Dashboard = () => {
         year: 'numeric',
       });
 
+      const [showMessenger, setShowMessenger] = useState(false);
+      const toggleMessenger = () => {
+        setShowMessenger(!showMessenger);
+      };
     return (
         <div className={styles.page}>
             <Navbar />
@@ -64,7 +71,7 @@ const Dashboard = () => {
                             <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}}>
                                 Milestones
                             </div>
-                            <div className={styles.messages}>
+                            <div className={styles.messages} onClick={toggleMessenger}>
                                 <div className={styles.messageText}>
                                     Messages
                                 </div>
@@ -96,6 +103,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+            {showMessenger && <Messenger />}
         </div>
     );
 }
