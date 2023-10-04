@@ -1,28 +1,21 @@
 import React, { useState } from 'react';
 import "./Modal.css";
 
-const Modal = ({ trigger, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
+const InformationPopup = ({ isOpen, children }) => {
 
   const handleClose = () => {
-    setIsOpen(false);
+    isOpen(false);
   };
 
   return (
     <div className="modal">
-      <button onClick={handleOpen}>Open Modal</button>
-      {isOpen && (
         <div className="popup">
             <div className="modalContent">
             <div className="header">
-                <div className="pathTitle">
+                <div className="pathTitle left">
                     Path Name
                 </div>
-                <div onClick={handleClose}>
+                <div onClick={handleClose} className='right'>
                     <img src='/icons/close.svg' style={{height: '30%'}}/>
                 </div> 
             </div>
@@ -33,9 +26,8 @@ const Modal = ({ trigger, children }) => {
             </div>
             </div>
         </div>
-      )}
     </div>
   );
 };
 
-export default Modal;
+export default InformationPopup;

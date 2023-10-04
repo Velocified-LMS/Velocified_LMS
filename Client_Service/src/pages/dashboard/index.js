@@ -5,7 +5,7 @@ import styles from "./dashboard.module.css"
 import Navbar from "@/app/components/navbar";
 import Activity from "./Activity";
 import Donut from "./Donut";
-import Modal from "./Modal";
+import InformationPopup from "./informationPopup";
 import ListCalendar from "./Calendar";
 import Messenger from "./messenger";
 
@@ -32,12 +32,24 @@ const Dashboard = () => {
 
     };
 
+    const [pathViewVisible, setPathViewVisible] = useState(false);
+    const togglePathView = (visible) => {
+        setPathViewVisible(visible);
+    };
+
+    const [listViewVisible, setListViewVisible] = useState(false);
+    const toggleListView = (visible) => {
+        setListViewVisible(visible);
+    };
+
       const [showMessenger, setShowMessenger] = useState(false);
       const toggleMessenger = () => {
         setShowMessenger(!showMessenger);
       };
     return (
         <div className={styles.page}>
+            {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
+            {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
@@ -67,8 +79,7 @@ const Dashboard = () => {
                                         { path }
                                     </a>
                                 </div>
-                                {/* <Modal children={content}/> */}
-                                <ListCalendar children={content}/>
+                                {/* <ListCalendar children={content}/> */}
                                 <div style={{fontSize: 16}}>{ startDate }</div>
                             </div>
                         </div>
@@ -94,10 +105,14 @@ const Dashboard = () => {
                                 <img src="/icons/front.svg" />
                             </div>
                             <div className={styles.tabGroup}>
-                                <img src="/icons/vector.svg" />
+                                <div onClick={toggleListView}>
+                                    <img src="/icons/vector.svg" />
+                                </div>
                                 <div className={styles.space} />
                                 <div className={styles.space} />
-                                <img src="/icons/cal.svg" />
+                                <div onClick={toggleListView}>
+                                    <img src="/icons/cal.svg" />
+                                </div>
                             </div>
                         </div>
                         <div className={styles.activityBody} >

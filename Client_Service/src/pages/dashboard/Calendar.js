@@ -3,21 +3,14 @@ import './Calendar.css';
 import { Search } from '@mui/icons-material';
 import { TextField, InputAdornment, Checkbox } from "@mui/material";
 
-const ListCalendar = ({children}) => {
-    const [isOpen, setIsOpen] = useState(false);
+const ListCalendar = ({children, isOpen}) => {
 
-    const handleOpen = () => {
-      setIsOpen(true);
-    };
-  
     const handleClose = () => {
-      setIsOpen(false);
+      isOpen(false);
     };
     const completion = 30;
     return (
     <div className="modal">
-        <button onClick={handleOpen}>Open Modal</button>
-        {isOpen && (
         <div className="popup">
             <div className="modalContent">
             <div className="header">
@@ -67,7 +60,7 @@ const ListCalendar = ({children}) => {
                     <div style={{width: '100%'}}>
                         <div className='calendar-item activity'>    
                             <div className='left'>Activity 1</div>
-                            <Checkbox checked={true} className='right'/>
+                            <Checkbox checked={false} className='right'/>
                         </div>
                         <div className='space'/>
                         <div className='calendar-item activity'>
@@ -98,7 +91,6 @@ const ListCalendar = ({children}) => {
             </div>
             </div>
         </div>
-        )}
     </div>
     );
 };
