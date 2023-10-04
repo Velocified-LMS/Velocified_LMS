@@ -145,6 +145,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+            {showMessenger && <Messenger />}
         </div>
     );
 }
