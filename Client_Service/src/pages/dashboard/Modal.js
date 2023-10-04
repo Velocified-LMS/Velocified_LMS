@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from "./Modal.module.css";
+import "./Modal.css";
 
 const Modal = ({ trigger, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,18 +16,18 @@ const Modal = ({ trigger, children }) => {
     <div className="modal">
       <button onClick={handleOpen}>Open Modal</button>
       {isOpen && (
-        <div className={styles.popup}>
-            <div className={styles.modalContent}>
-            <div className={styles.header}>
-                <div className={styles.pathTitle}>
-                    Path Overview
+        <div className="popup">
+            <div className="modalContent">
+            <div className="header">
+                <div className="pathTitle">
+                    Path Name
                 </div>
                 <div onClick={handleClose}>
                     <img src='/icons/close.svg' style={{height: '30%'}}/>
                 </div> 
             </div>
-            <div className={styles.content}>
-                <div className={styles.scrollableContent}>
+            <div className="content">
+                <div className="scrollableContent">
                     {children}
                 </div>
             </div>

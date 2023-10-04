@@ -4,6 +4,7 @@ import Navbar from "@/app/components/navbar";
 import Activity from "./Activity";
 import Donut from "./Donut";
 import Modal from "./Modal";
+import ListCalendar from "./Calendar";
 
 const Dashboard = () => {
     const language = "English"
@@ -24,7 +25,9 @@ const Dashboard = () => {
         year: 'numeric',
     });
 
-    
+    const handleMessages = () => {
+
+    };
 
     return (
         <div className={styles.page}>
@@ -57,7 +60,8 @@ const Dashboard = () => {
                                         { path }
                                     </a>
                                 </div>
-                                <Modal children={content}/>
+                                {/* <Modal children={content}/> */}
+                                <ListCalendar children={content}/>
                                 <div style={{fontSize: 16}}>{ startDate }</div>
                             </div>
                         </div>
@@ -66,7 +70,8 @@ const Dashboard = () => {
                             <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}}>
                                 Milestones
                             </div>
-                            <div className={styles.messages}>
+                            <div className={styles.messages} onClick={handleMessages}>
+                                {/* <ListCalendar /> */}
                                 <div className={styles.messageText}>
                                     Messages
                                 </div>
