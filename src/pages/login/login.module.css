@@ -2,8 +2,8 @@
   position: absolute;
   top: 144.5px;
   left: 575.17px;
-  width: 731px;
-  height: 687.5px;
+  width: 1300px;
+  height: 800px;
 }
 .forgetPassword {
   font-weight: 500;
@@ -45,7 +45,7 @@
   bottom: 0;
   left: 0;
   border-radius: 16px;
-  background-color: var(--color-gray-100);
+  background-color: #6E28EE;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid var(--color-gray-100);
   box-sizing: border-box;
@@ -56,10 +56,10 @@
   width: 17.89%;
   top: 26%;
   left: 42.37%;
-  font-size: var(--font-size-xl);
+  font-size: 20px;
   font-weight: 500;
   font-family: var(--font-sf-pro);
-  color: var(--white);
+  color: #ffffff;
   text-align: left;
   display: inline-block;
 }
@@ -101,6 +101,7 @@
   width: 577px;
   height: 687px;
   overflow: hidden;
+  
 }
 .container1 {
   position: absolute;
@@ -121,8 +122,13 @@
   padding: 0;
   top: 1px;
   left: 1047px;
-  width: 129px;
-  height: 46px;
+  width: 221px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  border: 5px solid #6E28EE;
+  background: #6E28EE;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -145,3 +151,5 @@
     color: #b0b0b0;
     font-family: var(--font-sf-pro);
 }
+
+

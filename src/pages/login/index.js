@@ -5,8 +5,9 @@ const Login = () => {
   return (
     <div >
       <Navbar />
+      
       <div >
-      <img className={styles.logoIcon} alt="" src="/logo.svg" />
+      <img className={styles.logoIcon} alt="" src="./assets/img.png" />
       <div className={styles.logInBox}>
         <button className={styles.forgetPasswordResetContainer}>
           <span className={styles.forgetPasswordResetContainer1}>
@@ -19,12 +20,8 @@ const Login = () => {
           <div className={styles.container} />
           <div className={styles.logIn}>Log in</div>
         </button>
-        <input
-          className={styles.enterPasswordButton}
-          name="password"
-          value="Enter Password"
-          type="text"
-        />
+        <input className={styles.enterPasswordButton} name="password" placeholder="Enter Password" type="text" />
+
         <input
           className={styles.emailphoneusernameButton}
           name="username"
