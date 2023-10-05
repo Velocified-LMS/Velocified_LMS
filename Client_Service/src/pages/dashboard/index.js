@@ -8,6 +8,7 @@ import Donut from "./Donut";
 import InformationPopup from "./informationPopup";
 import ListCalendar from "./Calendar";
 import Messenger from "./messenger";
+import Calendar from "./FullCalender";
 
 const Dashboard = () => {
     const language = "English"
@@ -41,6 +42,10 @@ const Dashboard = () => {
     const toggleListView = (visible) => {
         setListViewVisible(visible);
     };
+    const [CalViewVisible, setCalViewVisible] = useState(false);
+    const toggleCalView = (visible) => {
+        setCalViewVisible(visible);
+    };
 
       const [showMessenger, setShowMessenger] = useState(false);
       const toggleMessenger = () => {
@@ -50,6 +55,7 @@ const Dashboard = () => {
         <div className={styles.page}>
             {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
             {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
+            {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
@@ -110,7 +116,7 @@ const Dashboard = () => {
                                 </div>
                                 <div className={styles.space} />
                                 <div className={styles.space} />
-                                <div onClick={toggleListView}>
+                                <div onClick={toggleCalView}>
                                     <img src="/icons/cal.svg" />
                                 </div>
                             </div>

@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+
+.modalContent {
+    color: #000;
+    font-weight: 100;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    z-index: inherit;
+    display: flex;
+    border-radius: 10px;
+    text-align: center;
+    height: 60%;
+    width: 45%;
+}
+
+.popup-container {
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 60%;
+    background: #FFF;
+    display: flex;
+    justify-content: center;
+    z-index: 1000; 
+}
+
+.fc-media-screen{
+    position: relative;
+    width: 45vw;
+    border-radius: 10px;
+
+
+}   
+.header {
+    border-radius: 10px 10px 0 0;
+}
+.fc {
+    color:#6E28EE;
+    background-color: white;
+    
+}
+
+.fc .fc-scrollgrid-section-liquid > td {
+    height: 100%;
+    border-radius: 10px;
+    border: 1px 0 0 0 solid #B5B5B5;
+
+}
+
+
+.fullcalendar-container {
+    width: 300px;
+    height: 350px;
+    border-radius: 20px;
+
+  }
+
+  .fc .fc-button-primary {
+    
+    background-color: #6E28EE;
+    border-color: var(--fc-button-border-color);
+    color: var(--fc-button-text-color);
+    border-radius: 5px;
+}
+
+.fc .fc-toolbar-title {
+    --font-family: 'Roboto', sans-serif;
+    font-size: 1.75em;
+    margin: 0px;
+    color: black;
+    font-family: var(--font-family);
+}
+
+.fc .fc-button-primary:disabled {
+    background-color: #6E28EE;
+    border-color: var(--fc-button-border-color);
+    color: var(--fc-button-text-color);
+    margin-right: 0.5vw;
+}
