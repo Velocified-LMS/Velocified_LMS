@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
-.modalContent {
+.modal-content2 {
     color: #000;
     font-weight: 100;
     background: #FFF;
@@ -10,7 +10,6 @@
     display: flex;
     border-radius: 10px;
     text-align: center;
-    height: 60%;
     width: 45%;
 }
 
@@ -37,10 +36,10 @@
 .right1 {
     position: absolute;
     right: 5%;
-    top: 22vh;
+    /* top: 22vh;
     left: 69vw;
-    z-index: 1002;
-    width:10px;
+    z-index: 1002; */
+    /* width:10px; */
 }
 
 
@@ -103,7 +102,12 @@
 
 
 
-
+.fc-customButton-button {
+    background-image: url('/icons/close.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 1vw !important;
+}
   
   /* Optionally, adjust the margin or padding between the buttons */
   .fc-header-toolbar .fc-prev-button,
