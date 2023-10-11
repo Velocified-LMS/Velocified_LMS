@@ -6,11 +6,11 @@ const axios = require('axios');
 
 const getUser = async (req, res) => {
     try {
-      console.log(req.session);
-      // const user = req.session.user.id;
-      // const users = await User.find({"email": user});
-      // res.json(users);
-      res.status(200).json({"message": "User successfull"});
+      console.log(req.session, "\n getuser");
+      const user = req.session.user.id;
+      const users = await User.find({"email": user});
+      res.json(users);
+      // res.status(200).json({"message": "User successfull"});
     } catch (error) {
       console.error('Error getting user:', error);
       res.status(500).json({ error: 'Error getting user' });
