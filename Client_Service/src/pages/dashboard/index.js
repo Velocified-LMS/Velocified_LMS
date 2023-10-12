@@ -1,5 +1,7 @@
 import React from "react"
 import  { useState } from "react";
+
+import '@/app/globals.css'
 import styles from "./dashboard.module.css"
 import Navbar from "@/app/components/navbar";
 import Activity from "./Activity";
@@ -9,7 +11,6 @@ import ListCalendar from "./Calendar";
 import Messenger from "./messenger";
 import Calendar from "./FullCalender";
 import Milestone from "./Milestone";
-import Profileeditor from "./Profileeditor";
 
 const Dashboard = () => {
     const language = "English"
@@ -34,6 +35,11 @@ const Dashboard = () => {
     const [pathViewVisible, setPathViewVisible] = useState(false);
     const togglePathView = (visible) => {
         setPathViewVisible(visible);
+    };
+
+    const [MilestoneViewVisible, setMilestoneViewVisible] = useState(false);
+    const toggleMilestoneView = (visible) => {
+        setMilestoneViewVisible(visible);
     };
 
     const [MilestoneViewVisible, setMilestoneViewVisible] = useState(false);
@@ -68,20 +74,17 @@ const Dashboard = () => {
             {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
             {showMessenger && <Messenger />}
             {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
-            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
-                <div className={styles.profileContainer} >
-                <div onClick={toggleProfileeditorView}>
-                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" />
-                </div>
-                <img className={styles.profile} src="/Icon1.svg" alt="Profile"  />
-                    
-                </div>
-                <div className={styles.text} style={{justifyContent: 'center'}}>
-                    powered by VELOCIFIED
-                </div>
+                    <img 
+                        className={styles.profile} 
+                        src="/Icon1.svg"
+                    />
+                    <img className={styles.editprofile} src="/settings.svg" />
+                    <div className={styles.text} style={{justifyContent: 'center'}}>
+                        powered by VELOCIFIED
+                    </div>
                 </div>
                 <div className={styles.dashboardBody}>
                     <div className={styles.sidebar}>
@@ -106,6 +109,7 @@ const Dashboard = () => {
                         </div>
                         <div className={styles.studentActivity}>
                             <Donut percentage={18.2}/>
+                            <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}} onClick={toggleMilestoneView}>
                             <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}} onClick={toggleMilestoneView}>
                                 Milestones
                             </div>
