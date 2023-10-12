@@ -1,5 +1,7 @@
 import React from "react"
 import  { useState } from "react";
+
+import '@/app/globals.css'
 import styles from "./dashboard.module.css"
 import Navbar from "@/app/components/navbar";
 import Activity from "./Activity";
@@ -145,7 +147,6 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            {showMessenger && <Messenger />}
         </div>
     );
 }
