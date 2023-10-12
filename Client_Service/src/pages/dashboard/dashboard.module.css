@@ -1,14 +1,20 @@
+
+
 .page {
     overflow: hidden;
 }
+
+
+
 
 .dashboardContainer {
     display: flex;
     width: 90%;
     background-color: #F7F2FF;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 70px);
     padding-left: 5%;
     padding-right: 5%;
+    margin-top: 5vh;
     flex-direction: column;
 }
 
@@ -139,4 +145,14 @@
     margin-top: 5%;
     overflow-y: auto;
     max-height: 700px;
+}
+
+.editprofile {
+    background-color: white;
+    border-radius: 100px;
+    right:10px;
+
+    width: 55px;
+    height: 55px;
+
 }

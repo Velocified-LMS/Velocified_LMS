@@ -29,7 +29,7 @@ function MessageList() {
                             <div style={{ display: 'flex' }}>
                                 <div className={styles.message_container}>
                                 <div className={styles.sender_icon}>
-                                    <img src="/Icon1.png" alt="User1 Icon" />
+                                    <img src="/Icon1.svg" alt="User1 Icon" />
                                     <div className={styles.sender_name}>{message.sender}</div>    
                                 </div>
                                 </div>
@@ -44,7 +44,7 @@ function MessageList() {
                                 </div>
                             <div className={styles.message_container}>
                             <div className={styles.sender_icon}>
-                                <img src="/Icon2.png" alt="User2 Icon" />
+                                <img src="/Icon2.svg" alt="User2 Icon" />
                                 <div className={styles.sender_name}>{message.sender}</div>
                             </div>
                             </div>
