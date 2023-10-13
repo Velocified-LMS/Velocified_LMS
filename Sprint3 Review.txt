@@ -1,0 +1,23 @@
+﻿Sprint 3 Review 
+
+
+Sprint Review Meeting Date: 10/13/2023 (12:00 PM to 1:00 PM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+
+Sprint Duration: Oct 2  to Oct 13
+
+
+What do you think is the value you created in this deliverable?
+In this deliverable, we have achieved significant value by successfully integrating the frontend and backend components, implementing robust security measures, and providing comprehensive management capabilities for administrators. This achievement enhances the overall user experience and ensures the safety of sensitive data. The value created lies in the seamless user experience, increased data security, and enhanced administrative control. This deliverable not only strengthens the foundation of our project but also sets the stage for future development and growth, ultimately contributing to the project's success and long-term sustainability.
+Do you think you worked enough and that you did what was expected of you?
+In this sprint, I believe we put in significant effort and achieved what was expected of us. The successful integration of the frontend and backend components demonstrates our commitment to meeting project objectives. Our thorough implementation of security measures ensures that we have met the essential requirement of safeguarding user data. Moreover, the provision of robust management capabilities for administrators aligns with project specifications and user needs. The effective database implementation is in line with our tasks and responsibilities. Overall, we have delivered what was anticipated, and our dedication and performance contribute positively to the sprint's success and project progression.
+Would you say you met the customer’s expectations? Why or why not?
+In this sprint review, we successfully integrated the frontend and backend, implemented robust security, and provided comprehensive administrative capabilities. We delivered an efficient database implementation. As these align with the customer's requirements, we believe we've met their expectations. 
+Next Meeting Date: Oct 27, 2023
