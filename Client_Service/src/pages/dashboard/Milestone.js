@@ -20,9 +20,7 @@ const Milestone = ({ isOpen, children }) => {
                 </div> 
             </div>
             <div className="content">
-                <div className="scrollableContent">
-                    {children}
-                </div>
+                
             </div>
             </div>
         </div>

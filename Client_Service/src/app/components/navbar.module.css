@@ -50,8 +50,8 @@
   }
   .navlinks {
     display: flex;
-    position: fixed;
-    top: 5%;
+    position: relative;
+    top: -90%;
     left: 55%;
     font-size: var(--font-size-base);
     }

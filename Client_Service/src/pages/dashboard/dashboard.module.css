@@ -39,15 +39,7 @@
     margin-top: 10px;
 }
 
-.profile {
-    display: flex;
-    align-items: center;
-    width: 55px;
-    height: 55px;
-    border-radius: 100px;
-    background: white;
-    align-self: center;
-}
+
 
 .text {
     color: #5A20C3;
@@ -147,12 +139,27 @@
     max-height: 700px;
 }
 
-.editprofile {
+/* dashboard.module.css */
+.profileContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile {
+    width: 50px;
+    height: 50px;
+    /* Add any other styling for the profile image */
+  }
+  
+  .editprofile {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    width: 20px;
+    height: 20px;
+    z-index: 1; /* Set a higher z-index to display "editprofile" over "profile" */
     background-color: white;
     border-radius: 100px;
-    right:10px;
+  }
 
-    width: 55px;
-    height: 55px;
-
-}
+  
