@@ -70,6 +70,7 @@
   position: absolute;
   height: 7.28%;
   width: 59.28%;
+  border-radius: 8px;
   right: 20.27%;
   left: 20.45%;
 }
@@ -83,6 +84,7 @@
 .emailphoneusernameButton,
 .enterPasswordButton {
   border: 10;
+  border-radius: 8px;
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
   font-size: var(--font-size-base);
