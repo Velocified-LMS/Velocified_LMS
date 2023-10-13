@@ -24,8 +24,8 @@ const Login = () => {
         <input
           className={styles.enterPasswordButton}
           name="password"
-          value="Enter Password"
-          type="text"
+          placeholder="Enter Password"
+          type="password"
         />
         <input
           className={styles.emailphoneusernameButton}
