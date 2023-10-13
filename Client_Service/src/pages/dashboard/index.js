@@ -11,6 +11,7 @@ import ListCalendar from "./Calendar";
 import Messenger from "./messenger";
 import Calendar from "./FullCalender";
 import Milestone from "./Milestone";
+import Profileeditor from "./Profileeditor";
 
 const Dashboard = () => {
     const language = "English"
@@ -51,6 +52,13 @@ const Dashboard = () => {
         setCalViewVisible(visible);
     };
 
+    const [ProfileeditorViewVisible, setProfileeditorViewVisible] = useState(false);
+    const toggleProfileeditorView = (visible) => {
+        setProfileeditorViewVisible(visible);
+    };
+    
+    
+
       const [showMessenger, setShowMessenger] = useState(false);
       const toggleMessenger = () => {
         setShowMessenger(!showMessenger);
@@ -62,17 +70,20 @@ const Dashboard = () => {
             {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
             {showMessenger && <Messenger />}
             {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
+            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
-                    <img 
-                        className={styles.profile} 
-                        src="/Icon1.svg"
-                    />
-                    <img className={styles.editprofile} src="/settings.svg" />
-                    <div className={styles.text} style={{justifyContent: 'center'}}>
-                        powered by VELOCIFIED
-                    </div>
+                <div className={styles.profileContainer} >
+                <div onClick={toggleProfileeditorView}>
+                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" />
+                </div>
+                <img className={styles.profile} src="/Icon1.svg" alt="Profile"  />
+                    
+                </div>
+                <div className={styles.text} style={{justifyContent: 'center'}}>
+                    powered by VELOCIFIED
+                </div>
                 </div>
                 <div className={styles.dashboardBody}>
                     <div className={styles.sidebar}>
