@@ -1,0 +1,26 @@
+﻿Sprint 3 Retrospective
+
+
+Sprint Retrospective Meeting Date: 10/13/2023 (10:00 AM to 11:00 AM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+What went right?
+* Successful integration of the frontend and backend demonstrates our technical competence and progress in delivering a functional product. 
+* Our approach to security ensured the protection of sensitive data, boosting user trust. The implementation of comprehensive administrative capabilities expanded the product's usability and appeal. 
+* Effective communication within the team facilitated cooperation and issue resolution. The combination of these factors led to a productive sprint, with milestones achieved, demonstrating our dedication to project success and improvement.
+What went wrong?
+* We encountered unexpected technical issues during the integration of the frontend and backend, causing delays. 
+* Security vulnerabilities emerged that required additional attention. The development of administrative capabilities took longer than anticipated, impacting the overall timeline. 
+How are we going to do better?
+* First, we'll pay close attention to any technical problems and fix them early. We'll also work harder to keep our system safe from online threats, regularly checking for weaknesses and making quick fixes.
+* Develop contingency plans for possible setbacks, so we're prepared to handle unexpected challenges.
+* We'll plan our tasks more carefully to avoid mistakes, communication will be made clearer with regular meetings and better notes. 
+
+
+Next Meeting Date: Oct 27 , 2023
