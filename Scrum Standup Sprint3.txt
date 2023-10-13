@@ -1,0 +1,230 @@
+﻿Team-1 Standup Meeting Report        
+    
+           
+   Date :- Oct 3
+
+
+Name
+	What did you do?
+	What will you do?
+	Are there any impediments ?
+	Sai Vardhan Reddy Ainavolu
+	Will study on dashboard to backend integration.
+	Will start implementing it.
+	None.
+	Sesha Sai Aneeswar Kalisapudi
+	Worked on User Login Functionality 
+	Back End Integration
+	None
+	Sidharth Koyipallil Sivaprasad
+	Work on correcting activity page element
+	Keep working on it
+	None
+	Srikruthi Vedantham
+	Will work on error handling and documentation
+	Work on those
+	None
+	Vashishtha Nareshbhai Patel
+	Worked on calendar page.
+	Will work on that task.
+	None.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Date :- Oct 5
+
+
+Name
+	What did you do?
+	What will you do?
+	Are there any impediments ?
+	Sai Vardhan Reddy Ainavolu
+	Implementing backend.
+	Will work on that task.
+	none.
+	Sesha Sai Aneeswar Kalisapudi
+	Working on user login 
+	Working on errors
+	None
+	Sidharth Koyipallil Sivaprasad
+	Worked mostly on refining and integrating calendar into activity page.
+	Continue with it and read up on session management
+	None
+	Srikruthi Vedantham
+	Started working on documentation
+	Will complete documentation till now and start on error handling
+	None
+	Vashishtha Nareshbhai Patel
+	Working on database implementation.
+	Will be working on that task.
+	None.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Date :-Oct 9
+Name
+	What did you do?
+	What will you do?
+	Are there any impediments ?
+	Sai Vardhan Reddy Ainavolu
+	
+
+	
+
+	
+
+	Sesha Sai Aneeswar Kalisapudi
+	
+
+	
+
+	
+
+	Sidharth Koyipallil Sivaprasad
+	Reading up on session management and finished calendar implementation
+	Will check up on security measures for season management testing 
+	None
+	Srikruthi Vedantham
+	Started working on documentation
+	Will complete documentation and start on error handling
+	None
+	Vashishtha Nareshbhai Patel
+	Working on database implementation.
+	Will be working on that task.
+	None
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Date :- Oct 11
+
+
+Name
+	What did you do?
+	What will you do?
+	Are there any impediments ?
+	Sai Vardhan Reddy Ainavolu
+	
+
+	
+
+	
+
+	Sesha Sai Aneeswar Kalisapudi
+	
+
+	
+
+	
+
+	Sidharth Koyipallil Sivaprasad
+	Session management security testing
+	Work on it
+	None
+	Srikruthi Vedantham
+	Started working on documentation and on error handling
+	Will complete documentation
+	None
+	Vashishtha Nareshbhai Patel
+	Worked on calendar page.
+	Will be working on database implementation
+	None
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date :- Oct 13
+
+
+Name
+	What did you do?
+	What will you do?
+	Are there any impediments ?
+	Sai Vardhan Reddy Ainavolu
+	
+
+	
+
+	
+
+	Sesha Sai Aneeswar Kalisapudi
+	
+
+	
+
+	
+
+	Sidharth Koyipallil Sivaprasad
+	Session management security testing
+	Work on it
+	None
+	Srikruthi Vedantham
+	Completed working on documentation and error handling
+	Make changes if any
+	None
+	Vashishtha Nareshbhai Patel
+	Worked on database implementation
+	Will work on it.
+	None
