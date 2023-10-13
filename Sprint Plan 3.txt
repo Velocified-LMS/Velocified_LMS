@@ -1,0 +1,67 @@
+﻿Sprint Plan 3
+
+
+Sprint Planning Meeting Date: 10/02/2023 (11:00 AM to 12:00 PM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+
+
+Sprint Taskboard: 
+https://tree.taiga.io/project/vardhanreddy-517_capstopne_team_1/taskboard/sprint-3-7855
+
+
+Sprint Goals:
+This sprint mainly focussed on implementing the backend, alongside integration with the frontend. While doing so, make the frontend compatible with the changes that might be needed for the integration. We will also work on the frontend more to make it more efficient. We would also focus on the user login authorisation and user creation module and session management module.
+
+
+User Stories and Tasks:
+User Story 39: As a website administrator, I want to be able to have a session management system in place to ensure the security and seamless user experience of the online platform.
+        Estimation: 10
+Estimation Criteria: For this user story, the user needs a session management system that provides them with utmost security during access of the system.
+Acceptance criteria: User should be able to successfully and securely login into the system and should logout from the system automatically when not in use for specified time.
+Task 48: System Security Verification
+                Assigned to: Vashishtha Nareshbhai Patel
+        Task 49: Error Handling
+                Assigned to: Srikruthi Vedantham
+Task 50: Security Testing
+                Assigned to: Sidharth Koyipallil Sivaprasad
+
+
+User Story 40: As a system administrator, I want to be able to have efficient user administration capabilities to manage user accounts and permissions effectively within our system.
+        Estimation: 13
+Estimation Criteria: For this user story, the user needs management capabilities so they can efficiently monitor, edit and maintain the user accounts securely.
+Acceptance criteria: User should be able to securely manage all the accounts of the system efficiently.
+Task 47: User Login Functionality
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+        Task 52: Database Implementation
+                Assigned to: Vashishtha Nareshbhai Patel
+Task 53: Password Management
+                Assigned to: Sai Vardhan Reddy Ainavolu
+
+
+User Story 41: As a product owner. I want to be able to have the frontend and backend of the application to be seamlessly integrated to ensure a cohesive and responsive user experience.
+        Estimation: 20
+Estimation Criteria: For this user story, the user needs smooth transmission from one page to another, effective connection between frontend, backend and databases to make sure the user's experience is great.
+Acceptance criteria: User should be able to access the system and have a successful transition from one page to another which will ensure great integration with the backend. 
+Task 42: Login Page to backend Integration
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+        Task 43: Dashboard to backend Integration
+                Assigned to: Sai Vardhan Reddy Ainavolu
+Task 44: Activity page to backend Integration
+                Assigned to: Sidharth Koyipallil Sivaprasad
+Task 45: Frontend for activity management
+                Assigned to: Sidharth Koyipallil Sivaprasad
+        Task 46: Documentation
+                Assigned to: Srikruthi Vedantham
+Task 51: Session cache system implementation
+                Assigned to: Sai Vardhan Reddy Ainavolu
+
+
+        
+Next Meeting Date: Oct 16, 2023
