@@ -33,4 +33,44 @@ describe('Authentication Tests', () => {
     expect(response.stat).to.equal(201);
     expect(response.data.message).to.equal('User created successfully');
   });
+
+  it('should get user', async () => {
+    const request = {
+      session: {
+        user: {
+          id: '',
+        },
+      },
+    };
+    const response = {
+      json: function (data) {
+        this.data = data;
+      },
+    };
+
+    await getUser(request, response);
+    expect(response.data).to.be.an('array');
+  });
+
+  it('should authorize login ', async () => {
+    const request = {
+      body: {
+        email: '',
+        pwd: '',
+      },
+    };
+    const response = {
+      status: function (stat) {
+        this.stat = stat;
+        return this;
+      },
+      json: function (data) {
+        this.data = data;
+      },
+    };
+
+    await authorizeLogin(request, response);
+    expect(response.stat).to.equal(100);
+    expect(response.data.message).to.equal('Login successfull');
+  });
 });
