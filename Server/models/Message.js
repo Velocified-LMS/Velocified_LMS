@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const User = require('./User'); 
 
 const messageSchema = new mongoose.Schema({
-  messageContent: String,
+  content: String,
+  sender: {
+    name: String,
+    id: String
+  },
   date: Date,
   path: String
-//   read: Boolean,
-//   delivered: Boolean
 });
 
 const Message = mongoose.model('Message', messageSchema);
