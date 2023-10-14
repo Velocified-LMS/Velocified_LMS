@@ -3,6 +3,7 @@ const Activity = require('./Activity');
 const Schema = mongoose.Schema;
 
 const pathSchema = new mongoose.Schema({
+    pathId: String,
     pathName: String,
     pathOverview: String,
     proficiencyDefinition: String,

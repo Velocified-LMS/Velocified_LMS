@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController.js');
-const messagesController = require('../controllers/messagesController.js');
+const messageController = require('../controllers/messageController.js');
 const isAuthenticated = require('../Utils/AuthenticationUtil.js');
 
-router.get('/get', isAuthenticated, messagesController.get);
+router.get('/get', isAuthenticated, messageController.getMessage);
 
-router.post('/send', isAuthenticated, messagesController.send);
+router.post('/send', isAuthenticated, messageController.sendMessage);
 
 module.exports = router;

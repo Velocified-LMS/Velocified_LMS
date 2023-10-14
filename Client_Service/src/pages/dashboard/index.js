@@ -1,6 +1,5 @@
 import React from "react"
 import  { useState } from "react";
-
 import styles from "./dashboard.module.css"
 import Navbar from "@/app/components/navbar";
 import Activity from "./Activity";
@@ -85,7 +84,6 @@ const Dashboard = () => {
                                         { path }
                                     </a>
                                 </div>
-                                {/* <ListCalendar children={content}/> */}
                                 <div style={{fontSize: 16}}>{ startDate }</div>
                             </div>
                         </div>
