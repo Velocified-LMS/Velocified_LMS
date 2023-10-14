@@ -49,3 +49,13 @@ form {
   gap: 10px; /* Spacing between form elements */
   width: 300px; /* Or any desired width */
 }
+.signup-section {
+  display: flex;
+  align-items: center; /* Vertically aligns the form and image */
+}
+
+.signup-background {
+  max-width: 50%; /* Adjust this value to your preference */
+  height: auto; 
+  margin-left: 20px; /* Gives some spacing between the form and image */
+}
