@@ -3,6 +3,10 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background-image: url('/img.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
 }
 
 /* This will make sure the form container acts as a flex container and takes up remaining height */
