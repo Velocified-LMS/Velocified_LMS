@@ -29,46 +29,44 @@ const SignUp = () => {
   return (
     <div>
       <Navbar />
-      <div className="form-container">
+      <div className="container">
         <form onSubmit={handleSubmit}>
-            <input 
-              type="text" 
-              placeholder="First Name" 
-              name="firstName" 
-              value={formData.firstName}
-              onChange={handleInputChange}
-            />
+        <input 
+          type="text" 
+          placeholder="First Name" 
+          name="firstName" 
+          value={formData.firstName}
+          onChange={handleInputChange}
+        />
+        <input 
+          type="text" 
+          placeholder="Last Name" 
+          name="lastName" 
+          value={formData.lastName}
+          onChange={handleInputChange}
+        />
+        <input 
+          type="email" 
+          placeholder="Email" 
+          name="email" 
+          value={formData.email}
+          onChange={handleInputChange}
+        />
+        <input 
+          type="password" 
+          placeholder="Password" 
+          name="password" 
+          value={formData.password}
+          onChange={handleInputChange}
+        />
+          <input 
+            type="password" 
+            placeholder="Confirm Password" 
+            name="confirmPassword" 
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+          />
 
-            <input 
-              type="text" 
-              placeholder="Last Name" 
-              name="lastName" 
-              value={formData.lastName}
-            />
-            <input 
-              type="email" 
-              placeholder="Email" 
-              name="email" 
-              value={formData.email}
-            />
-            <input 
-              type="path"
-              placeholder="Path"
-              name="path"
-              value={formData.path}
-            />
-            <input 
-              type="password" 
-              placeholder="Password" 
-              name="password" 
-              value={formData.password}
-            />
-            <input 
-              type="password" 
-              placeholder="Confirm Password" 
-              name="confirmPassword" 
-              value={formData.confirmPassword}
-            />
             <button type="submit">Signup</button>
         </form>
       </div>
