@@ -1,8 +1,9 @@
+import styles from "./signup.css";
 import Navbar from "@/app/components/navbar";
 import React, { useState } from 'react';
 
 const SignUp = () => {
-  const [formData] = useState({
+  const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
@@ -11,17 +12,33 @@ const SignUp = () => {
     confirmPassword: ''
   });
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+
   return (
     <div>
       <Navbar />
-      <div className="container">
-        <form>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
             <input 
               type="text" 
               placeholder="First Name" 
               name="firstName" 
               value={formData.firstName}
+              onChange={handleInputChange}
             />
+
             <input 
               type="text" 
               placeholder="Last Name" 
