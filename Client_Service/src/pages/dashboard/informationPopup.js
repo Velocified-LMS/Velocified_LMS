@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import "./Modal.css";
 
-const InformationPopup = ({ isOpen, children }) => {
+const InformationPopup = ({ isOpen, children, styleClass }) => {
 
   const handleClose = () => {
     isOpen(false);
   };
 
   return (
-    <div className="modal">
-        <div className="popup">
+    <div className="modal" >
+        <div className={"popup " + styleClass}>
             <div className="modalContent">
             <div className="header">
                 <div className="pathTitle left">
