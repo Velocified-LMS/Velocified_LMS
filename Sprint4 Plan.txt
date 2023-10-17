@@ -1,0 +1,71 @@
+﻿Sprint Plan 4
+
+
+Sprint Planning Meeting Date: 10/16/2023 (11:00 AM to 12:00 PM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+
+
+Sprint Taskboard: 
+https://tree.taiga.io/project/vardhanreddy-517_capstopne_team_1/taskboard/sprint-4-5332
+
+
+Sprint Goals:
+The sprint goal is to focus on the creation, testing, and refinement of key components within our application, primarily centered around enhancing user engagement and communication. This sprint is dedicated to developing and fine-tuning the "activity window," which provides users with a consolidated view of their activities and tasks. We will also be working on the implementation of "path feedback" to deliver timely and informative feedback messages during users' journeys within the application. Additionally, we aim to create a responsive "path pop-up" feature that enables users to receive notifications upon task or activity completion. Through this sprint, we intend to optimize user experiences and encourage meaningful interactions within our platform.
+
+
+User Stories and Tasks:
+User Story 54: As a User, I want to be able to have an activity window so that I can view my activities and related components and access the tasks.
+        Estimation: 15
+Estimation Criteria: Estimation criteria for this user story allocate more points to front-end work, covering UI design, implementation, and user interaction. The remaining points address back-end tasks, encompassing logic, database integration, and API interaction.
+Acceptance criteria: The Activity pages should enable smoother access to various other components and should properly align the dashboard and profile editor component with ability to accept any user data.
+Task 67: Test the designed activity window to ensure if the functionality works as per requirement or not. 
+                Assigned to: Sidharth Koyipallil Sivaprasad
+        Task 68: Add error handling and validations for the activity window.
+                Assigned to: Srikruthi Vedantham
+        Task 69: Implement the backend functionality of the activity window.
+                Assigned to: Vashishtha Nareshbhai Patel
+        Task 70: Design the front end user interface of the activity window considering user experience.
+                Assigned to: Sai Vardhan Reddy Ainavolu
+        Task 71: Integrate the frontend and backend to ensure seamless interactions of the activity window.
+                Assigned to: Sai Vardhan Reddy Ainavolu
+
+
+User Story 55: As a User, I want to be able to have a pop up window so that I can be notified whenever I complete a task or an activity.
+        Estimation: 11
+Estimation Criteria: The estimation involves front-end tasks, including UI design, implementation, and user interaction, back-end work concerning pop-up logic and data integration, and comprehensive testing.
+Acceptance criteria: Pop ups are available for all cases from normal activity completion to milestone completion. Should notify deadlines if necessary.
+Task 58: Conduct tests to make sure the pop-up is responsive and functions on different screen sizes.
+                Assigned to: Srikruthi Vedantham
+        Task 63: Design the pop-up window demo that will be displayed when a user completes a specific path or task.
+                Assigned to: Srikruthi Vedantham
+        Task 64: Create a pop-up window that indicates the completion of a task or an activity.
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+        Task 65: Create a responsive pop sharable up which enables users to share.
+                Assigned to: Vashishtha Nareshbhai Patel
+        Task 66: Develop the backend logic that triggers the pop up when a task or activity is completed.
+                Assigned to: Sidharth Koyipallil Sivaprasad
+
+
+User Story 56: As a user, I want to have path feedback so that I can receive feedback at various stages of my activity, including success messages, warnings, and notifications, to stay informed and make informed decisions throughout my journey within the application.
+        Estimation: 19
+Estimation Criteria: The estimation signifies moderate complexity. It contains front-end work (UI design, implementation, interactions), back-end tasks (logic, database/API integration), and testing and documentation.
+Acceptance criteria: The Feedback system should be designed to be easily understandable by the user and should show accurate data to the user in terms  of completed and to be completed tasks. and show if tasks are missed.
+Task 57: Perform tests in cross-browser to ensure that feedback messages are displayed correctly and timely.
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+Task 59: Implement feedback that is informative, user friendly and consistent throughout the application.
+                Assigned to: Sai Vardhan Reddy Ainavolu
+        Task 60: Develop the success feedback messages to be provided to the user.
+                Assigned to: Sidharth Koyipallil Sivaprasad
+Task 61: Define and develop the notification feedback messages to remind users about their tasks and activity.
+                Assigned to: Vashishtha Nareshbhai Patel
+        Task 62: Provide a design of different feedback messages to be implemented.
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+        
+Next Meeting Date: Oct 30, 2023
