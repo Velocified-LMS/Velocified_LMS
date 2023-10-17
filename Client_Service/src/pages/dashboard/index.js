@@ -1,9 +1,15 @@
 import React from "react"
+import  { useState } from "react";
 import styles from "./dashboard.module.css"
 import Navbar from "@/app/components/navbar";
 import Activity from "./Activity";
 import Donut from "./Donut";
-import Modal from "./Modal";
+import InformationPopup from "./informationPopup";
+import ListCalendar from "./Calendar";
+import Messenger from "./messenger";
+import Calendar from "./FullCalender";
+import Milestone from "./Milestone";
+import Profileeditor from "./Profileeditor";
 
 const Dashboard = () => {
     const language = "English"
@@ -22,20 +28,60 @@ const Dashboard = () => {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
-      });
+    });
 
+
+    const [pathViewVisible, setPathViewVisible] = useState(false);
+    const togglePathView = (visible) => {
+        setPathViewVisible(visible);
+    };
+
+    const [MilestoneViewVisible, setMilestoneViewVisible] = useState(false);
+    const toggleMilestoneView = (visible) => {
+        setMilestoneViewVisible(visible);
+    };
+
+    const [listViewVisible, setListViewVisible] = useState(false);
+    const toggleListView = (visible) => {
+        setListViewVisible(visible);
+    };
+    const [CalViewVisible, setCalViewVisible] = useState(false);
+    const toggleCalView = (visible) => {
+        setCalViewVisible(visible);
+    };
+
+    const [ProfileeditorViewVisible, setProfileeditorViewVisible] = useState(false);
+    const toggleProfileeditorView = (visible) => {
+        setProfileeditorViewVisible(visible);
+    };
+    
+    
+
+      const [showMessenger, setShowMessenger] = useState(false);
+      const toggleMessenger = () => {
+        setShowMessenger(!showMessenger);
+      };
     return (
         <div className={styles.page}>
+            {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
+            {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
+            {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
+            {showMessenger && <Messenger />}
+            {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
+            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
-                    <img 
-                        className={styles.profile} 
-                        src=""
-                    />
-                    <div className={styles.text} style={{justifyContent: 'center'}}>
-                        powered by VELOCIFIED
-                    </div>
+                <div className={styles.profileContainer} >
+                <div onClick={toggleProfileeditorView}>
+                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" />
+                </div>
+                <img className={styles.profile} src="/Icon1.svg" alt="Profile"  />
+                    
+                </div>
+                <div className={styles.text} style={{justifyContent: 'center'}}>
+                    powered by VELOCIFIED
+                </div>
                 </div>
                 <div className={styles.dashboardBody}>
                     <div className={styles.sidebar}>
@@ -55,16 +101,15 @@ const Dashboard = () => {
                                         { path }
                                     </a>
                                 </div>
-                                <Modal children={content}/>
                                 <div style={{fontSize: 16}}>{ startDate }</div>
                             </div>
                         </div>
                         <div className={styles.studentActivity}>
                             <Donut percentage={18.2}/>
-                            <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}}>
+                            <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}} onClick={toggleMilestoneView}>
                                 Milestones
                             </div>
-                            <div className={styles.messages}>
+                            <div className={styles.messages} onClick={toggleMessenger}>
                                 <div className={styles.messageText}>
                                     Messages
                                 </div>
@@ -81,10 +126,14 @@ const Dashboard = () => {
                                 <img src="/icons/front.svg" />
                             </div>
                             <div className={styles.tabGroup}>
-                                <img src="/icons/vector.svg" />
+                                <div onClick={toggleListView}>
+                                    <img src="/icons/vector.svg" />
+                                </div>
                                 <div className={styles.space} />
                                 <div className={styles.space} />
-                                <img src="/icons/cal.svg" />
+                                <div onClick={toggleCalView}>
+                                    <img src="/icons/cal.svg" />
+                                </div>
                             </div>
                         </div>
                         <div className={styles.activityBody} >

@@ -37,13 +37,17 @@ const Navbar = () => {
         </div>
         
         <div className={styles.navlinks} >
-            <Link href="/" ><div className={`${styles.home1} ${router === "/" ? styles.activeLink : ""}`}>Home </div> </Link>
-            <Link href="/about" ><div className={`${styles.about} ${router === "/about" ? styles.activeLink : ""}`}>About</div></Link>
-            <Link href="/training" ><div className={`${styles.training} ${router === "/training" ? styles.activeLink : ""}`}>Training</div></Link>
-            <Link href="/news" ><div className={`${styles.news} ${router === "/news" ? styles.activeLink : ""}`}>News</div></Link>
-            <Link href="/fr" ><div className={`${styles.fr} ${router === "/fr" ? styles.activeLink : ""}`}>FR</div></Link>
-            <Link href="/login" ><div className={`${styles.logIn} ${router === "/login" ? styles.activeLink : ""}`}>Log in</div></Link>
+    <Link href="/"><div className={`${styles.home1} ${router === "/" ? styles.activeLink : ""}`}>Home </div></Link>
+    <Link href="/about"><div className={`${styles.about} ${router === "/about" ? styles.activeLink : ""}`}>About</div></Link>
+    <Link href="/training"><div className={`${styles.training} ${router === "/training" ? styles.activeLink : ""}`}>Training</div></Link>
+    <Link href="/news"><div className={`${styles.news} ${router === "/news" ? styles.activeLink : ""}`}>News</div></Link>
+    <Link href="/fr"><div className={`${styles.fr} ${router === "/fr" ? styles.activeLink : ""}`}>FR</div></Link>
+    <Link href={router === "/dashboard" ? "/login" : "/login"}>
+        <div className={`${styles.logIn} ${router === "/login" ? styles.activeLink : ""} ${router === "/dashboard" ? styles.activeLink : ""}`}>
+            {router === "/dashboard" ? "Logout" : "Log in"}
         </div>
+    </Link>
+</div>
       </div>
 
   );

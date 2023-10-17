@@ -1,14 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController.js');
+const isAuthenticated = require('../Utils/AuthenticationUtil.js');
 
-// Route to create a new user
-router.post('/user', userController.createUser);
+router.get('/info', isAuthenticated, userController.getUser);
 
-// Route to get all users
-router.get('/user', userController.getAllUsers);
-
-router.get('/login', userController.authorizeLogin);
-
+router.post('/register', userController.register);
+router.post('/login', userController.authorizeLogin);
 
 module.exports = router;
