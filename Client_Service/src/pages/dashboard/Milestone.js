@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./Modal.css";
+import "./Milestone.css";
 
 const Milestone = ({ isOpen, children }) => {
 
@@ -9,9 +9,9 @@ const Milestone = ({ isOpen, children }) => {
 
   return (
     <div className="modal">
-        <div className="popup">
-            <div className="modalContent">
-            <div className="header">
+        <div className="popupMilestone">
+            <div className="modalContentM">
+            <div className="headerMilestone">
                 <div className="pathTitle left">
                     Congratulations !
                 </div>
@@ -19,8 +19,10 @@ const Milestone = ({ isOpen, children }) => {
                     <img src='/icons/close.svg' style={{height: '30%'}}/>
                 </div> 
             </div>
-            <div className="content">
-                <div className="scrollableContent">
+            <div className="contentMilestone">
+              <img src="/emoji_events.svg" />
+            <div className="scrollableContent">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est sit amet facilisis magna etiam tempor orci eu lobortis.</p>
                     {children}
                 </div>
             </div>
