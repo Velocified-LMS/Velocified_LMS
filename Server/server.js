@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const db = require('./mongoDB')
-const userRoutes = require('./routes/userRoutes'); 
-const messageRoutes = require('./routes/messageRoutes');
+const userRoutes = require('./routes/UserRoutes'); 
+const messageRoutes = require('./routes/MessageRoutes');
 
 const app = express();
 const whitelist = ['http://localhost:3000/dashboard', 'http://localhost:3000/login'];
