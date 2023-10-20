@@ -11,6 +11,7 @@ import Calendar from "./FullCalender";
 import Milestone from "./Milestone";
 import Profileeditor from "./Profileeditor";
 
+
 const Dashboard = () => {
     const language = "English"
     const userName = "User Name"
@@ -54,6 +55,7 @@ const Dashboard = () => {
     const toggleProfileeditorView = (visible) => {
         setProfileeditorViewVisible(visible);
     };
+
     
     
 
@@ -69,6 +71,7 @@ const Dashboard = () => {
             {showMessenger && <Messenger />}
             {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
+            
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
@@ -137,7 +140,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className={styles.activityBody} >
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
+                            <Activity title={ActivityTitle} description={ActivityDescription}  />
                             <Activity title={ActivityTitle} description={ActivityDescription} />
                             <Activity title={ActivityTitle} description={ActivityDescription} />
                             <Activity title={ActivityTitle} description={ActivityDescription} />

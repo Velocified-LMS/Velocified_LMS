@@ -2,94 +2,87 @@ import React, { useEffect, useState } from 'react';
 import './Calendar.css';
 import { Search } from '@mui/icons-material';
 import { TextField, InputAdornment, Checkbox } from "@mui/material";
-import InformationPopup from './informationPopup';
+import PathOverview from './PathOverview';
+import PathDefinition from './PathDefinition';
 
 const ListCalendar = ({children, isOpen}) => {
 
-    const [pathViewVisible, setPathViewVisible] = useState(false);
-    const [pathOverview, setPathOverview] = useState(null);
-    const togglePathView = (visible) => {
-        setPathViewVisible(visible);
-    };
-    const [pathDefinitionVisible, setPathDefintionVisible] = useState(false);
-    const [pathDefinition, setPathDefintion] = useState(null); 
-    const togglePathDefinition = (visible) => {
-        setPathDefintionVisible(visible);
-    };
-    useEffect(() => {
-        setPathOverview("this is a path overview");
-        setPathDefintion("this is a path definition");
-    });
     const handleClose = () => {
       isOpen(false);
     };
-    console.log("here");
+    const [PathViewVisible, setPathVisible] = useState(false);
+    const togglePathView = (visible) => {
+        setPathVisible(visible);
+    };
+    const [PathDefinitionViewVisible, setPathDefinitionVisible] = useState(false);
+    const togglePathDefinitionView = (visible) => {
+        setPathDefinitionVisible(visible);
+    };
     const completion = 30;
     return (
-        <div>
-            {pathViewVisible && <InformationPopup isOpen={togglePathView} children={pathOverview} styleClass={"higher"}/>}
-            {pathDefinitionVisible && <InformationPopup isOpen={togglePathDefinition} children={pathDefinition} styleClass={"higher"}/>}
-            <div className="modal">
-                <div className="popup">
-                    <div className="modalContent">
-                    <div className="header">
-                        <div className="pathTitle left">
-                            Path Name
+    <div className="modal">
+        {PathViewVisible && <PathOverview isOpen={togglePathView}/> }
+        {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView}/> }
+        <div className="popup">
+            <div className="modalContent">
+            <div className="header">
+                <div className="pathTitle left">
+                    Path Name
+                </div>
+                <div className='pathTitle center'>
+                    {completion + '% completed'}
+                </div>
+                <div onClick={handleClose} className='right'>
+                    <img src='/icons/close.svg' style={{height: '30%'}}/>
+                </div> 
+            </div>
+            <div className="search-container">
+                <TextField
+                    id="search"
+                    className='search'
+                    label=""
+                    InputProps={{
+                        style: {
+                            borderRadius: "10px",
+                            height: "80%",
+                            width: "90%",
+                            backgroundColor: "#FFF"
+                        }
+                        ,
+                        startAdornment: (
+                        <InputAdornment position="start">
+                            <Search />
+                        </InputAdornment>
+                        ),
+                    }}
+                    variant="outlined"
+                />
+            </div>
+            <div className="path" onClick={togglePathView}>
+                Path Overview
+            </div>
+            <div className="path" onClick={togglePathDefinitionView}>
+                Path Definition
+            </div>
+            <div className="scrollableContent">
+                <div className='activities' style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                    <div className='calendar-item day'>
+                        Day 1
+                    </div>
+                    <div style={{width: '100%'}}>
+                        <div className='calendar-item activity'>    
+                            <div className='left'>Activity 1</div>
+                            <Checkbox checked={false} className='right'/>
                         </div>
-                        <div className='pathTitle center'>
-                            {completion + '% completed'}
+                        <div className='space'/>
+                        <div className='calendar-item activity'>
+                            Activity 1
                         </div>
-                        <div onClick={handleClose} className='right'>
-                            <img src='/icons/close.svg' style={{height: '30%'}}/>
-                        </div> 
+                        <div className='space'/>
+                        <div className='calendar-item activity'>
+                            Activity 1
+                        </div>
                     </div>
-                    <div className="search-container">
-                        <TextField
-                            id="search"
-                            className='search'
-                            label=""
-                            InputProps={{
-                                style: {
-                                    borderRadius: "10px",
-                                    height: "80%",
-                                    width: "90%",
-                                    backgroundColor: "#FFF"
-                                }
-                                ,
-                                startAdornment: (
-                                <InputAdornment position="start">
-                                    <Search />
-                                </InputAdornment>
-                                ),
-                            }}
-                            variant="outlined"
-                        />
-                    </div>
-                    <div className="path" onClick={togglePathView}>
-                        Path Overview
-                    </div>
-                    <div className="path" onClick={togglePathDefinition}>
-                        Path Definition
-                    </div>
-                    <div className="scrollableContent">
-                        <div className='activities' style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
-                            <div className='calendar-item day'>
-                                Day 1
-                            </div>
-                            <div style={{width: '100%'}}>
-                                <div className='calendar-item activity'>    
-                                    <div className='left'>Activity 1</div>
-                                    <Checkbox checked={false} className='right'/>
-                                </div>
-                                <div className='space'/>
-                                <div className='calendar-item activity'>
-                                    Activity 1
-                                </div>
-                                <div className='space'/>
-                                <div className='calendar-item activity'>
-                                    Activity 1
-                                </div>
-                            </div>
 
                         </div>
                         <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
