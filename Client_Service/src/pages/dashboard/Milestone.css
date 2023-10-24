@@ -60,3 +60,20 @@
  
 }
 
+.Msgsubmit{
+    padding: 10px 50px;
+    background-color: #6E28EE; /* Customize the button background color */
+    color: #fff; /* Customize the button text color */
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin:10px;
+    margin-left: 10px; /* Add margin to separate the input field from the button */
+    outline: none;
+}
+
+/* Style the button on hover */
+.Msgsubmit button:hover {
+    background-color: #6E28EE; /* Customize the button background color on hover */
+}
+

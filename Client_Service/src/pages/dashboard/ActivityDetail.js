@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import "./ActivityDetail.css";
-import { Margin } from '@mui/icons-material';
+import PathFeedback from './Pathfeedback';
 
 const ActivityDetail = ({ isOpen, children }) => {
 
-  const handleClose = () => {
-    isOpen(false);
-  };
+    const handleClose = () => {
+        isOpen(false);
+    };
+    const [PathFeedbackVisible, setPathFeedbackVisible] = useState(false);
+    const togglePathFeedback = (visible) => {
+        setPathFeedbackVisible(visible);
+    };
 
   return (
     <div className="modal">
+        {PathFeedbackVisible && <PathFeedback isOpen={togglePathFeedback}/> }
         <div className="popup">
             <div className="modalContent">
             <div className="header">
@@ -40,7 +45,7 @@ const ActivityDetail = ({ isOpen, children }) => {
                         Feedback Notes
                         <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}}></textarea>
                     </div>
-                    <div class="path-feedback" style={{fontSize: '17px', fontWeight: 600}} >
+                    <div class="path-feedback" style={{fontSize: '17px', fontWeight: 600}} onClick={togglePathFeedback} >
                                 Path feedback
                     </div>
                     </div>
