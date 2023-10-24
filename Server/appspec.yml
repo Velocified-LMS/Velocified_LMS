@@ -1,37 +1,9 @@
 version: 0.0
-os: amazonlinux
-
-files:
-  - source: /
-    destination: /var/www/html
-
-hooks:
-  - location: DeploymentGroup
-    timeout: 3
-    runas: root
-    script:
-      - echo "Executing a script during the deployment to BackendDeployment group."
-
-  - location: AfterInstall
-    timeout: 3
-    runas: root
-    script:
-      - echo "Executing a script after installing the new version."
-
-  - location: ApplicationStop
-    timeout: 6
-    runas: root
-    script:
-      - echo "Executing a script to stop the application before deployment."
-
-  - location: ValidateService
-    timeout: 3
-    runas: root
-    script:
-      - echo "Executing a script to validate the service after deployment."
-
-  - location: ApplicationStart
-    timeout: 6
-    runas: root
-    script:
-      - echo "Executing a script to start the application after deployment."
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:ca-central-1:909464590092:task-definition/server:13"
+        LoadBalancerInfo: 
+          ContainerName: "server" 
+          ContainerPort: 3100
