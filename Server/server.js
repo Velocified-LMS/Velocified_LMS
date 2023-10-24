@@ -26,7 +26,9 @@ app.use(session({
     // secure: true for HTTPS in prod only
   },
 }));
-
+app.get('/ping', (req, res) => {
+  res.status(200).json({ message: 'Healthy!' });
+});
 app.use('/user', userRoutes);
 app.use('/message', messageRoutes);
 
