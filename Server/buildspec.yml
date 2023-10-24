@@ -26,7 +26,7 @@ phases:
 
 artifacts:
   files:
-    - /Server/appspec.yml
+    - Server/appspec.yml
     - imagedefinitions.json
   name: build-aritifact
   discard-paths: no
