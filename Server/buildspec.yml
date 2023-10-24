@@ -21,13 +21,12 @@ phases:
   post_build:
     commands:
       - docker push 909464590092.dkr.ecr.ca-central-1.amazonaws.com/server:latest
-      - docker run -p 3100:3100 909464590092.dkr.ecr.ca-central-1.amazonaws.com/server:latest
       - cd ..
       - printf '[{"name":"server", "imageUri":"%s"}]' "909464590092.dkr.ecr.ca-central-1.amazonaws.com/server:latest" > imagedefinitions.json
 
 artifacts:
   files:
-    - '**/*'
+    - /Server/appspec.yml
     - imagedefinitions.json
   name: build-aritifact
   discard-paths: no
