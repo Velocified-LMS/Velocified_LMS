@@ -84,7 +84,10 @@
     background-color: #6E28EE; /* Customize the button background color on hover */
 }
 
-
+.messageListWindow{
+    height: 40vh;
+    overflow: scroll;
+}
 
 
 

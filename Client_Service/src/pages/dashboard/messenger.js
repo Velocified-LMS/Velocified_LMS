@@ -64,7 +64,7 @@ const Messenger = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className={styles.messageListWindow}>
           <MessageList messages={messages} />
         </div>
         <div className={styles.message_input}>

@@ -1,5 +1,7 @@
 import React from "react"
 import  { useState } from "react";
+
+import '@/app/globals.css'
 import styles from "./dashboard.module.css"
 import Navbar from "@/app/components/navbar";
 import Activity from "./Activity";
@@ -10,6 +12,7 @@ import Messenger from "./messenger";
 import Calendar from "./FullCalender";
 import Milestone from "./Milestone";
 import Profileeditor from "./Profileeditor";
+
 
 const Dashboard = () => {
     const language = "English"
@@ -54,6 +57,7 @@ const Dashboard = () => {
     const toggleProfileeditorView = (visible) => {
         setProfileeditorViewVisible(visible);
     };
+
     
     
 
@@ -69,6 +73,7 @@ const Dashboard = () => {
             {showMessenger && <Messenger />}
             {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
+            
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
@@ -137,7 +142,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className={styles.activityBody} >
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
+                            <Activity title={ActivityTitle} description={ActivityDescription}  />
                             <Activity title={ActivityTitle} description={ActivityDescription} />
                             <Activity title={ActivityTitle} description={ActivityDescription} />
                             <Activity title={ActivityTitle} description={ActivityDescription} />
