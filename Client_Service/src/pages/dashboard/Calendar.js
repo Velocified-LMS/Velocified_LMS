@@ -7,20 +7,6 @@ import PathDefinition from './PathDefinition';
 
 const ListCalendar = ({children, isOpen}) => {
 
-    const [pathViewVisible, setPathViewVisible] = useState(false);
-    const [pathOverview, setPathOverview] = useState(null);
-    const togglePathView = (visible) => {
-        setPathViewVisible(visible);
-    };
-    const [pathDefinitionVisible, setPathDefintionVisible] = useState(false);
-    const [pathDefinition, setPathDefintion] = useState(null); 
-    const togglePathDefinition = (visible) => {
-        setPathDefintionVisible(visible);
-    };
-    useEffect(() => {
-        setPathOverview("this is a path overview");
-        setPathDefintion("this is a path definition");
-    });
     const handleClose = () => {
       isOpen(false);
     };
@@ -117,7 +103,6 @@ const ListCalendar = ({children, isOpen}) => {
                     </div>
                     </div>
                 </div>
-            </div>
         </div>
     );
 };
