@@ -11,7 +11,7 @@ const Login = () => {
   };
   const handleLogin = (e) => {
     const data = {
-      "email": "sai@123.com",
+      "email": "sai1@123.com",
       "pwd": "password1"
     };
     authorizeLogin(data).then((res) => {
