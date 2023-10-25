@@ -122,7 +122,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className={styles.activities}>
-                        <div className={styles.activityHeader}>
+                        {/* <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
                                 <img src="/icons/back.svg" />
                                 <div className={styles.space} />
@@ -146,7 +146,7 @@ const Dashboard = () => {
                             <Activity title={ActivityTitle} description={ActivityDescription} />
                             <Activity title={ActivityTitle} description={ActivityDescription} />
                             <Activity title={ActivityTitle} description={ActivityDescription} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -10,14 +10,10 @@
     justify-content: center;
     z-index: 1000; 
 }
+.calendar-container {
 
+}
 .fc-media-screen{
     height: 400px;
     width: 800px;
 }    
-
-.scrollableContentListCalendar {
-    overflow-y: scroll;
-    margin: 5%;
-    height: 100%;
-}

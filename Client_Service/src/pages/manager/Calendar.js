@@ -64,7 +64,7 @@ const ListCalendar = ({children, isOpen}) => {
             <div className="path" onClick={togglePathDefinitionView}>
                 Path Definition
             </div>
-            <div className="scrollableContentListCalendar">
+            <div className="scrollableContent">
                 <div className='activities' style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
                     <div className='calendar-item day'>
                         Day 1

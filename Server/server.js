@@ -13,9 +13,9 @@ const corsOptions = {
   credentials: true
 };
 app.use(express.json());
-app.use(cors())
+// app.use(cors()) // Don't use it for testing 
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(session({
   name: 'sid',
   secret: '123',
