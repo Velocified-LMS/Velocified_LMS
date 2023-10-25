@@ -13,15 +13,14 @@ const Activity = ({ title, description }) => {
     return (
         <div>
             {ActivityDetailViewVisible && <ActivityDetail  isOpen={toggleActivityDetailView}/>}
-        <div className={styles.activity} onClick={toggleActivityDetailView} >
-            
-            <div className={styles.activityTitle} >
-                { title }
-                <div style={{width: '3%'}} />
-                <div className={styles.star} />
+            <div className={styles.activity} onClick={toggleActivityDetailView} >
+                <div className={styles.activityTitle} >
+                    { title }
+                    <div style={{width: '3%'}} />
+                    <div className={styles.star} />
+                </div>
+                <div style={{fontSize: '16px'}}>{ description }</div>
             </div>
-            <div style={{fontSize: '16px'}}>{ description }</div>
-        </div>
         </div>
     );
 }
