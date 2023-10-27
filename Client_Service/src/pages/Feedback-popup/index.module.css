@@ -1,0 +1,226 @@
+.feedbackPopupChild {
+    position: absolute;
+    top: 149px;
+    left: 39px;
+    background-color: var(--color-ghostwhite);
+    border: 1px solid var(--color-ghostwhite);
+    box-sizing: border-box;
+    width: 664px;
+    height: 324px;
+  }
+  .feedbackField {
+    position: absolute;
+    top: 194px;
+    left: 73px;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: var(--color-blueviolet);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 128px;
+    height: 56px;
+  }
+  .feedbackPopupItem,
+  .submit {
+    position: absolute;
+    top: 521px;
+    left: 253px;
+  }
+  .submit {
+    left: 309px;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 128px;
+    height: 56px;
+  }
+  .feedbackPopupInner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-blueviolet);
+    border: 1px solid var(--color-gainsboro);
+    box-sizing: border-box;
+    width: 738px;
+    height: 89px;
+  }
+  .pathFeedback {
+    position: absolute;
+    top: 20px;
+    left: 34px;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    width: 196px;
+    height: 56px;
+  }
+  .addYourHoliday {
+    margin: 0;
+    padding-left: var(--padding-smi);
+  }
+  .addYourHolidayContainer {
+    position: relative;
+    letter-spacing: -0.02em;
+    display: inline-block;
+    width: 134px;
+  }
+  .div,
+  .notes,
+  .weatherIcons {
+    position: absolute;
+    display: none;
+  }
+  .notes {
+    top: 36px;
+    left: 8px;
+    width: 134px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-9xs);
+  }
+  .div,
+  .weatherIcons {
+    top: 15px;
+  }
+  .div {
+    left: 16px;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  .weatherIcons {
+    left: 124px;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+  }
+  .date1,
+  .div1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .date1 {
+    width: 150px;
+    height: 47px;
+    overflow: hidden;
+    font-size: var(--font-size-sm);
+    color: rgba(102, 102, 102, 0.5);
+    font-family: var(--font-sf-pro);
+  }
+  .div1 {
+    letter-spacing: -0.02em;
+  }
+  .emojis,
+  .work {
+    position: relative;
+  }
+  .emojis {
+    width: 10px;
+    height: 10px;
+  }
+  .work {
+    font-size: var(--font-size-5xs);
+    letter-spacing: -0.02em;
+    font-family: var(--font-montserrat);
+    color: var(--color-darkolivegreen);
+  }
+  .emojisParent,
+  .tags1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .emojisParent {
+    gap: var(--gap-10xs);
+  }
+  .tags1 {
+    border-radius: var(--br-xs);
+    background-color: var(--color-antiquewhite);
+    overflow: hidden;
+    padding: var(--padding-9xs) var(--padding-5xs);
+  }
+  .life {
+    position: relative;
+    font-size: var(--font-size-5xs);
+    letter-spacing: -0.02em;
+    font-family: var(--font-montserrat);
+    color: var(--color-darkslateblue);
+  }
+  .tags2 {
+    border-radius: var(--br-xs);
+    background-color: var(--color-lavender);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-9xs) var(--padding-5xs);
+  }
+  .date,
+  .tags {
+    position: absolute;
+  }
+  .tags {
+    top: 10px;
+    left: 16px;
+    display: none;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-9xs);
+    font-size: var(--font-size-3xs);
+    color: var(--color-black);
+    font-family: var(--font-open-sans);
+  }
+  .date {
+    top: 25px;
+    left: 665px;
+    border-radius: 6px;
+    background-color: var(--color-white);
+    width: 38px;
+    height: 38px;
+    overflow: hidden;
+    font-size: var(--font-inherit);
+    color: var(--color-dimgray-100);
+    font-family: var(--font-inherit);
+  }
+  .closeRingIcon,
+  .loremIpsumDolor {
+    position: absolute;
+    top: 32px;
+    left: 672px;
+    width: 24px;
+    height: 24px;
+  }
+  .loremIpsumDolor {
+    top: 294px;
+    left: 85px;
+    font-size: var(--font-size-sm);
+    line-height: 180.02%;
+    color: var(--color-black);
+    display: inline-block;
+    width: 568px;
+    height: 36px;
+  }
+  .feedbackPopup {
+    position: relative;
+    background-color: var(--color-white);
+    border: 1px solid #b5b5b5;
+    box-sizing: border-box;
+    width: 100%;
+    height: 633px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-base);
+    color: var(--color-white);
+    font-family: var(--font-roboto);
+  }
+  
