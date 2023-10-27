@@ -85,7 +85,7 @@ const Dashboard = () => {
                     
                 </div>
                 <div className={styles.text} style={{justifyContent: 'center'}}>
-                    powered by VELOCIFIED
+                    Powered by VELOCIFIED
                 </div>
                 </div>
                 <div className={styles.dashboardBody}>

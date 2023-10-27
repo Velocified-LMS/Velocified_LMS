@@ -1,20 +1,22 @@
 import React from "react"
 import  { useState } from "react";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { Search } from "@mui/icons-material";
+import { TextField, InputAdornment } from "@mui/material";
+import Checkbox from '@mui/material/Checkbox';
 
 import '@/app/globals.css'
-import styles from "./dashboard.module.css"
+import styles from "./coach.module.css"
 import Navbar from "@/app/components/navbar";
-import Activity from "./Activity";
-import Donut from "./Donut";
+
 import InformationPopup from "./informationPopup";
 import ListCalendar from "./Calendar";
 import Messenger from "./messenger";
-import Calendar from "./FullCalender";
-import Milestone from "./Milestone";
 import Profileeditor from "./Profileeditor";
 
 
-const Dashboard = () => {
+const CoachDashboard = () => {
     const language = "English"
     const userName = "User Name"
     const path = "Path Name"
@@ -33,33 +35,67 @@ const Dashboard = () => {
         year: 'numeric',
     });
 
+    const users = [
+        {
+          "name": "User 1",
+          "progress": "75%",
+          "currentActivity": "Activity A"
+        },
+        {
+          "name": "User 2",
+          "progress": "50%",
+          "currentActivity": "Activity B"
+        },
+        {
+          "name": "User 3",
+          "progress": "90%",
+          "currentActivity": "Activity C"
+        }
+        ,
+        {
+          "name": "User 4",
+          "progress": "50%",
+          "currentActivity": "Activity B"
+        },
+        {
+          "name": "User 5",
+          "progress": "90%",
+          "currentActivity": "Activity C"
+        }
+        
+      ];
+
+    
+    const [selectedOption, setSelectedOption] = React.useState('');
+      
+    const handleChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+
+    const [checkedStates, setCheckedStates] = useState(users.map(() => false));
+
+    const handleCheckboxChange = (index) => {
+        const newCheckedStates = [...checkedStates];
+        newCheckedStates[index] = !newCheckedStates[index];
+        setCheckedStates(newCheckedStates);
+    };
 
     const [pathViewVisible, setPathViewVisible] = useState(false);
     const togglePathView = (visible) => {
         setPathViewVisible(visible);
     };
 
-    const [MilestoneViewVisible, setMilestoneViewVisible] = useState(false);
-    const toggleMilestoneView = (visible) => {
-        setMilestoneViewVisible(visible);
-    };
-
     const [listViewVisible, setListViewVisible] = useState(false);
     const toggleListView = (visible) => {
         setListViewVisible(visible);
     };
-    const [CalViewVisible, setCalViewVisible] = useState(false);
-    const toggleCalView = (visible) => {
-        setCalViewVisible(visible);
-    };
+  
 
     const [ProfileeditorViewVisible, setProfileeditorViewVisible] = useState(false);
     const toggleProfileeditorView = (visible) => {
         setProfileeditorViewVisible(visible);
     };
 
-    
-    
 
       const [showMessenger, setShowMessenger] = useState(false);
       const toggleMessenger = () => {
@@ -69,9 +105,7 @@ const Dashboard = () => {
         <div className={styles.page}>
             {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
             {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
-            {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
             {showMessenger && <Messenger />}
-            {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             
             <Navbar />
@@ -85,7 +119,7 @@ const Dashboard = () => {
                     
                 </div>
                 <div className={styles.text} style={{justifyContent: 'center'}}>
-                    powered by VELOCIFIED
+                    Powered by VELOCIFIED
                 </div>
                 </div>
                 <div className={styles.dashboardBody}>
@@ -102,51 +136,111 @@ const Dashboard = () => {
                             </div>
                             <div className={styles.path}>
                                 <div style={{fontSize: 20}}>
-                                    <a href="./login">
                                         { path }
-                                    </a>
                                 </div>
-                                <div style={{fontSize: 16}}>{ startDate }</div>
+                                
                             </div>
                         </div>
                         <div className={styles.studentActivity}>
-                            <Donut percentage={18.2}/>
-                            <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}} onClick={toggleMilestoneView}>
-                                Milestones
-                            </div>
                             <div className={styles.messages} onClick={toggleMessenger}>
                                 <div className={styles.messageText}>
                                     Messages
                                 </div>
                             </div>
+                            <Select
+                                value={selectedOption}
+                                onChange={handleChange}
+                                displayEmpty
+                                fullWidth
+                                variant="outlined"
+                                sx={{
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#6E28EE', 
+                                      },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#6E28EE', 
+                                    },
+                                    '&:focus .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#6E28EE', 
+                                    },
+                                    width:'15vw',
+                                    backgroundColor:'white',
+                                }}
+                            >
+                                <MenuItem value="" disabled>
+                                Change Path
+                                </MenuItem>
+                                <MenuItem value="option1">Path 1</MenuItem>
+                                <MenuItem value="option2">Path2</MenuItem>
+                                <MenuItem value="option3">Path 3</MenuItem>
+                            </Select>
                         </div>
                     </div>
                     <div className={styles.activities}>
-                        {/* <div className={styles.activityHeader}>
+                         <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                                <img src="/icons/back.svg" />
-                                <div className={styles.space} />
-                                <div className={styles.text}>{day}</div>
-                                <div className={styles.space} />
-                                <img src="/icons/front.svg" />
+                            <TextField
+                                id="outlined-basic"
+                                label="Search User"
+                                color="secondary"
+                                InputProps={{
+                                    style: {
+                                        borderRadius: "10px",
+                                        height: "40px",
+                                        width: "400px",
+                                    }
+                                    ,
+                                    startAdornment: (
+                                    <InputAdornment position="start">
+                                    <Search />
+                                    </InputAdornment>
+                                        ),
+                                    }}
+                                    variant="outlined"
+                                />
                             </div>
                             <div className={styles.tabGroup}>
                                 <div onClick={toggleListView}>
                                     <img src="/icons/vector.svg" />
                                 </div>
                                 <div className={styles.space} />
-                                <div className={styles.space} />
-                                <div onClick={toggleCalView}>
-                                    <img src="/icons/cal.svg" />
-                                </div>
+                                <div className={styles.space} />  
                             </div>
                         </div>
-                        <div className={styles.activityBody} >
-                            <Activity title={ActivityTitle} description={ActivityDescription}  />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
-                        </div> */}
+                        <div className={styles.user_list_container}>
+                        {users.map((user, index) => (
+                            <div key={index} className={styles.user_list}>
+                            <span className={styles.user_name}>{user.name}</span>
+                            <span className={styles.user_progress}>{user.progress}</span>
+                            <span className={styles.user_activity}>{user.currentActivity}</span>
+                            </div>
+                        ))}
+                        </div>
+                        <div className={styles.signoffheader}>Sign-Offs</div>
+                        <div className={styles.user_signoff_container}>
+                        {users.map((user, index) => (
+                            <div key={index} className={styles.user_list}>
+                            <span className={styles.user_signoff_name}>UserName</span>
+                            <span className={styles.user_signoff_activity}>Activity</span>
+                            <span className={styles.user_signoffcheckbox}>
+                            <Checkbox
+                                checked={checkedStates[index]}
+                                onChange={() => handleCheckboxChange(index)}
+                                color="primary"
+                            />
+                            </span>
+                            </div>
+                        ))}
+                        </div>
+                        <div className={styles.signoff_container}>
+                        <button className={styles.signoff_button}>Sign-off</button>
+                            <Checkbox
+                                    color="primary"
+                                    sx={{
+                                        paddingRight: '10vw',
+                                      }}
+                                />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -154,4 +248,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard;
+export default CoachDashboard;

@@ -84,9 +84,13 @@ const Login = () => {
         className={styles.logInButton}
       >
         Log In
-      </Button>
-          
-          
+      </Button>  
+        <br></br>
+      <span className={styles.forgetPasswordResetContainer1}>
+            <span className={styles.forgetPassword}>Forgot Password?</span>
+            <b className={styles.b}>{`  `}</b>
+            <b className={styles.resetHere} onClick={handleReset}>Reset Here.</b>
+      </span> 
       </div>
      
       </div>

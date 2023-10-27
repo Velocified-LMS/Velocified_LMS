@@ -42,9 +42,9 @@ const Navbar = () => {
     <Link href="/training"><div className={`${styles.training} ${router === "/training" ? styles.activeLink : ""}`}>Training</div></Link>
     <Link href="/news"><div className={`${styles.news} ${router === "/news" ? styles.activeLink : ""}`}>News</div></Link>
     <Link href="/fr"><div className={`${styles.fr} ${router === "/fr" ? styles.activeLink : ""}`}>FR</div></Link>
-    <Link href={router === "/dashboard" ? "/login" : "/login"}>
-        <div className={`${styles.logIn} ${router === "/login" ? styles.activeLink : ""} ${router === "/dashboard" ? styles.activeLink : ""}`}>
-            {router === "/dashboard" ? "Logout" : "Log in"}
+    <Link href={router === "/dashboard" || router === "/coach"? "/login" : "/login"}>
+        <div className={`${styles.logIn} ${router === "/login" ? styles.activeLink : ""} ${router === "/dashboard" || router === "/coach"? styles.activeLink : ""}`}>
+            {router === "/dashboard" || router === "/coach" ? "Logout" : "Log in"}
         </div>
     </Link>
 </div>
