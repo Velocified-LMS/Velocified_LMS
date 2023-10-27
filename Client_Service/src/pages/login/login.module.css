@@ -1,4 +1,4 @@
-.logoIcon {
+/* .logoIcon {
   position: absolute;
   top: 144.5px;
   left: 575.17px;
@@ -73,13 +73,7 @@
   right: 20.27%;
   left: 20.45%;
 }
-.logInButton {
-  cursor: pointer;
-  border: 0;
-  padding: 0;
-  top: 58.66%;
-  bottom: 34.06%;
-}
+
 .emailphoneusernameButton,
 .enterPasswordButton {
   border: 10;
@@ -97,7 +91,7 @@
   position: absolute;
   top: 145px;
   left: -1px;
-  background-color: var(--color-whitesmoke);
+  background-color: ;
   width: 577px;
   height: 687px;
   overflow: hidden;
@@ -144,4 +138,46 @@
     font-size: var(--font-size-xl);
     color: #b0b0b0;
     font-family: var(--font-sf-pro);
+} */
+
+.login_container {
+  background-image: url('/login_background.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100vw;
+  height: 85vh;
 }
+
+.login_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e8ddfa5e;
+  width:35%;
+  height: 85vh;
+ 
+}
+
+.passwordField{
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: block;
+  cursor: pointer;
+  
+
+}
+
+.logInButton {
+  margin-top: 15vh;
+  display: block;
+  cursor: pointer;
+  border: 0;
+  width:15vw;
+  height: 8vh;
+  background-color: #6E28EE;
+  border-radius: 20px;
+}
+
+
+
