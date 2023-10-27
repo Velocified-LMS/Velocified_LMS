@@ -42,5 +42,17 @@ describe("Manager Tests", () => {
   
 
     });
+
+    it("Toggles Milestones View", () => {
+        cy.contains("Milestones").should("exist");
+        cy.contains("Milestones").click();
+    });
+      
+  
+    it("Toggles Messenger", () => {
+        cy.contains("Messages").should("exist");
+        cy.contains("Messages").click();
+    });
+    
   });
   

@@ -66,7 +66,7 @@ const Dashboard = () => {
         setShowMessenger(!showMessenger);
       };
     return (
-        <div className={styles.page}>
+        <div className={styles.page} data-cy="dashboard-page">
             {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
             {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
             {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
@@ -75,7 +75,7 @@ const Dashboard = () => {
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             
             <Navbar />
-            <div className={styles.dashboardContainer}>
+            <div className={styles.dashboardContainer} data-cy="dashboard-container">
                 <div className={styles.dashboardHeader}>
                 <div className={styles.profileContainer} >
                 <div onClick={toggleProfileeditorView}>
