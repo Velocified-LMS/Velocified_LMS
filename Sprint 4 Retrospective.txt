@@ -1,0 +1,21 @@
+﻿Sprint 4 Retrospective
+
+
+Sprint Retrospective Meeting Date: 10/27/2023 (10:00 AM to 11:00 AM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+What went right?
+The clear and well-defined focus on enhancing user engagement and communication within the application. We as a team successfully prioritized and executed tasks related to the "activity window," "pop-up window," and "path feedback." We not only addressed user needs and preferences but also ensured the functionality was thoroughly tested, with attention to responsiveness and cross-browser compatibility. The division of tasks into frontend and backend development, along with the integration of both, contributed to a seamless user experience. Additionally, the inclusion of error handling and documentation shows a commitment to quality and knowledge sharing. Overall, this sprint exemplified a structured and user-centered approach to development.
+What went wrong?
+The main issue in this sprint was testing. Comprehensive testing is critical to ensure that the developed components function correctly, and it's essential for identifying and addressing any potential bugs or problems. To improve future sprints, a greater emphasis on testing is to be considered, alongside clear documentation of testing outcomes and issue resolution.
+How are we going to do better?
+To enhance our sprint execution, we will implement several critical steps. First, we'll prioritize comprehensive testing and ensure issues are documented and promptly resolved. We'll actively involve users throughout development, seeking their feedback to align our features with their needs. Regular team communication, such as daily stand-ups, will be conducted to enhance collaboration and knowledge sharing. These steps will collectively lead to more successful and efficient sprint outcomes.
+
+
+Next Meeting Date: Nov 10, 2023
