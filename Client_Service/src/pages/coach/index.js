@@ -179,25 +179,25 @@ const CoachDashboard = () => {
                     <div className={styles.activities}>
                          <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                            <TextField
-                                id="outlined-basic"
-                                label="Search User"
-                                color="secondary"
-                                InputProps={{
-                                    style: {
-                                        borderRadius: "10px",
-                                        height: "40px",
-                                        width: "400px",
-                                    }
-                                    ,
-                                    startAdornment: (
-                                    <InputAdornment position="start">
-                                    <Search />
-                                    </InputAdornment>
-                                        ),
-                                    }}
-                                    variant="outlined"
-                                />
+                                <TextField
+                                    id="outlined-basic"
+                                    label="Search User"
+                                    color="secondary"
+                                    InputProps={{
+                                        style: {
+                                            borderRadius: "10px",
+                                            height: "40px",
+                                            width: "400px",
+                                        }
+                                        ,
+                                        startAdornment: (
+                                        <InputAdornment position="start">
+                                        <Search />
+                                        </InputAdornment>
+                                            ),
+                                        }}
+                                        variant="outlined"
+                                    />
                             </div>
                             <div className={styles.tabGroup}>
                                 <div onClick={toggleListView}>
@@ -208,40 +208,41 @@ const CoachDashboard = () => {
                             </div>
                         </div>
                         <div className={styles.user_list_container}>
-                        {users.map((user, index) => (
-                            <div key={index} className={styles.user_list}>
-                            <span className={styles.user_name}>{user.name}</span>
-                            <span className={styles.user_progress}>{user.progress}</span>
-                            <span className={styles.user_activity}>{user.currentActivity}</span>
-                            </div>
-                        ))}
+                            {users.map((user, index) => (
+                                <div key={index} className={styles.user_list}>
+                                <span className={styles.user_name}>{user.name}</span>
+                                <span className={styles.user_progress}>{user.progress}</span>
+                                <span className={styles.user_activity}>{user.currentActivity}</span>
+                                </div>
+                            ))}
                         </div>
-                        <div className={styles.signoffheader}>Sign-Offs</div>
-                        <div className={styles.user_signoff_container}>
-                        {users.map((user, index) => (
-                            <div key={index} className={styles.user_list}>
-                            <span className={styles.user_signoff_name}>UserName</span>
-                            <span className={styles.user_signoff_activity}>Activity</span>
-                            <span className={styles.user_signoffcheckbox}>
-                            <Checkbox
-                                checked={checkedStates[index]}
-                                onChange={() => handleCheckboxChange(index)}
-                                color="primary"
-                            />
-                            </span>
+                        <div className={styles.signoff}>
+                            <div className={styles.activityHeader}>
+                                Sign-Offs
                             </div>
-                        ))}
-                        </div>
-                        <div className={styles.signoff_container}>
-                        <button className={styles.signoff_button}>Sign-off</button>
-                            <Checkbox
+                            <div className={styles.user_signoff_container}>
+                                {users.map((user, index) => (
+                                    <div key={index} className={styles.user_list}>
+                                    <span className={styles.user_signoff_name}>UserName</span>
+                                    <span className={styles.user_signoff_activity}>Activity</span>
+                                    <span className={styles.user_signoffcheckbox}>
+                                    <Checkbox
+                                        checked={checkedStates[index]}
+                                        onChange={() => handleCheckboxChange(index)}
+                                        color="primary"
+                                    />
+                                    </span>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className={styles.signoff_container}>
+                                <button className={styles.signoff_button}>Sign-off</button>
+                                <Checkbox
                                     color="primary"
-                                    sx={{
-                                        paddingRight: '10vw',
-                                      }}
                                 />
+                            </div>
                         </div>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>

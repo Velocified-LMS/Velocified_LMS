@@ -11,7 +11,7 @@
     display: flex;
     width: 90%;
     background-color: #F7F2FF;
-    height: calc(100vh - 70px);
+    height: 90vh;
     padding-left: 5%;
     padding-right: 5%;
     flex-direction: column;
@@ -206,7 +206,7 @@
   }
 
   .user_list_container{
-    height:30vh;
+    height:30%;
     overflow: auto;
     border: rgba(156, 151, 151, 0.72) 1px solid;
     border-top: #F7F2FF;
@@ -226,18 +226,12 @@
     background-color: #f0f0f0; /* Set the color of the scrollbar track */
   }
 
-  .signoffheader{
-    background: #FAFAFA;
-    height: 4vh;
-    font-weight: 500;
-    padding-left: 5vw;
-    padding-top: 1vw;
-    text-align: left;
-    color: rgb(120, 120, 120);
+  .signoff{
+    height: inherit;
   }
 
   .user_signoff_container{
-    height:30vh;
+    height:30%;
     overflow: auto;
     border: rgba(156, 151, 151, 0.72) 1px solid;
     border-top: #F7F2FF;
@@ -290,21 +284,23 @@
   }
 
   .signoff_button{
-    align-items: right;
+    align-items: center;
     background-color: #6E28EE;
-    height:5vh;
-    width: 7vw;
-    margin-top: 1vh;
+    height:50%;
+    width: 10%;
     border-radius: 20px;
     color: white;
     border: 0px;
-    margin-right: 4vw;
-    margin-bottom: 2vh;
-    
+    margin-right: 5%;
   }
   .signoff_container {
-    display: flex-end;
+    height: 10%;
+    display: flex;
     text-align: right;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 5%;
+    align-items: center;
   }
 
 
