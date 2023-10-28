@@ -299,8 +299,9 @@
     text-align: right;
     flex-direction: row;
     justify-content: flex-end;
-    margin-right: 5%;
     align-items: center;
+    background-color: #FAFAFA;
+    padding-right: 5%;
   }
 
 
