@@ -1,0 +1,23 @@
+﻿Sprint 4 Review 
+
+
+Sprint Review Meeting Date: 10/27/2023 (12:00 PM to 1:00 PM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+
+Sprint Duration: Oct 16  to Oct 27
+
+
+What do you think is the value you created in this deliverable?
+In this deliverable, the value created lies in the systematic approach to addressing user needs and enhancing the application's functionality. The development of features such as the activity window, pop-up notifications, and path feedback directly improves the user experience, fostering engagement and effective communication. Involving users in the development process enhances user satisfaction and adoption. Realistic sprint timelines and long-term planning contribute to project success and sustainability. Effective communication further supports project efficiency. Collectively, these efforts create value by aligning development with user needs, ensuring quality, and promoting efficient project management.
+Do you think you worked enough and that you did what was expected of you?
+Yes, we believe our efforts were sufficient, and we met all expectations. We systematically addressed user needs, enhanced features, and ensured reliability through testing. User involvement improved workflow, while realistic timelines and long-term planning contributed to success. Effective communication further supported project efficiency.
+Would you say you met the customer’s expectations? Why or why not?
+In this sprint, we have successfully met and satisfied the customer's expectations, delivering all project requirements. While we diligently worked to address user needs and enhance features. Our diligent work, clear communication, and user-centric approach ensured the project's success, fostering a positive partnership with the customer. 
+Next Meeting Date: Nov 10, 2023
