@@ -77,9 +77,9 @@ const Dashboard = () => {
             <Navbar />
             <div className={styles.dashboardContainer} data-cy="dashboard-container">
                 <div className={styles.dashboardHeader}>
-                <div className={styles.profileContainer} >
-                <div onClick={toggleProfileeditorView}>
-                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" />
+                <div className={styles.profileContainer} data-cy="profile-container"  >
+                <div onClick={toggleProfileeditorView} data-cy="edit-profile-button">
+                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" data-cy="profile-image" />
                 </div>
                 <img className={styles.profile} src="/Icon1.svg" alt="Profile"  />
                     
@@ -130,14 +130,14 @@ const Dashboard = () => {
                                 <div className={styles.space} />
                                 <img src="/icons/front.svg" />
                             </div>
-                            <div className={styles.tabGroup}>
-                                <div onClick={toggleListView}>
-                                    <img src="/icons/vector.svg" />
+                            <div className={styles.tabGroup} data-cy="vector-container">
+                                <div onClick={toggleListView} data-cy="vector-button">
+                                    <img src="/icons/vector.svg" data-cy="vector-image" />
                                 </div>
-                                <div className={styles.space} />
-                                <div className={styles.space} />
-                                <div onClick={toggleCalView}>
-                                    <img src="/icons/cal.svg" />
+                                <div className={styles.space} data-cy="calendar-container"/>
+                                <div className={styles.space} data-cy="calendar-container"/>
+                                <div onClick={toggleCalView} data-cy="calendar-button">
+                                    <img src="/icons/cal.svg" data-cy="calendar-image"/>
                                 </div>
                             </div>
                         </div>

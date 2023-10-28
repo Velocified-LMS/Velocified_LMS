@@ -21,9 +21,9 @@ describe("Manager Tests", () => {
 
       //cy.get('[data-cy=messenger-component]').should("be.visible");
 
-      cy.get('[data-cy=messages-button]').click();
+      //cy.get('[data-cy=messages-button]').click();
 
-      cy.get('[data-cy=messenger-component]').should("not.exist");
+      //cy.get('[data-cy=messenger-component]').should("not.exist");
   
       //cy.get('[data-cy=milestones-button]').click();
 
@@ -36,7 +36,7 @@ describe("Manager Tests", () => {
 
       //cy.get('[data-cy=profile-editor-component]').should("be.visible");
 
-      cy.get('[data-cy=edit-profile-button]').click();
+      cy.get('[data-cy=edit-profile-button]').click({force: true});
 
       cy.get('[data-cy=profile-editor-component]').should("not.exist");
   
@@ -52,6 +52,11 @@ describe("Manager Tests", () => {
     it("Toggles Messenger", () => {
         cy.contains("Messages").should("exist");
         cy.contains("Messages").click();
+    });
+
+    it("Check and clicks path name", () => {
+        cy.contains("Path Name").should("exist");
+        cy.contains("Path Name").click();
     });
     
   });

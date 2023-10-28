@@ -75,16 +75,16 @@ const Dashboard = () => {
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             
             <Navbar />
-            <div className={styles.dashboardContainer}>
+            <div className={styles.dashboardContainer} data-cy="dashboard-container">
                 <div className={styles.dashboardHeader}>
-                <div className={styles.profileContainer} >
-                <div onClick={toggleProfileeditorView}>
-                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" />
+                <div className={styles.profileContainer} data-cy="profile-container" >
+                <div onClick={toggleProfileeditorView} data-cy="edit-profile-button">
+                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" data-cy="profile-image"/>
                 </div>
                 <img className={styles.profile} src="/Icon1.svg" alt="Profile"  />
                     
                 </div>
-                <div className={styles.text} style={{justifyContent: 'center'}}>
+                <div className={styles.text} style={{justifyContent: 'center'}} data-cy="text-powered-by">
                     powered by VELOCIFIED
                 </div>
                 </div>
