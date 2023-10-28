@@ -1,0 +1,309 @@
+
+
+.page {
+    overflow: hidden;
+}
+
+
+
+
+.dashboardContainer {
+    display: flex;
+    width: 90%;
+    background-color: #F7F2FF;
+    height: 90vh;
+    padding-left: 5%;
+    padding-right: 5%;
+    flex-direction: column;
+}
+
+.dashboardHeader {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    flex-direction: row;
+    padding-top: 1%;
+    justify-content: space-between;
+}
+
+.dashboardBody {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar {
+    width: 30%;
+    margin-top: 10px;
+}
+
+
+
+.text {
+    color: #5A20C3;
+    font-family: Roboto;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+}
+
+.language {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.path {
+    font-weight: 600;
+}
+
+.studentActivity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%
+}
+
+.messages {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    width: 50%;
+    height: 6%;
+    background: #6E28EE;
+    border-radius: 16px;
+    border: 1px solid #6E28EE;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.messageText {
+    color: #FFF;
+    align-items: center;
+    justify-content: center;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    height: 100%;
+    display: flex;
+}
+
+.progress {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    stroke-width: 16px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 40%;
+    height: 20%;
+}
+
+.activities {
+    background: #FFF;
+    height: 100%;
+    width: 100%;
+}
+
+.activityHeader {
+    background: #FAFAFA;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.tabGroup {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.space {
+    flex: 1; 
+    min-width: 20px;
+}
+
+.activityBody {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    margin-top: 5%;
+    overflow-y: auto;
+    max-height: 700px;
+}
+
+/* dashboard.module.css */
+.profileContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile {
+    width: 50px;
+    height: 50px;
+    /* Add any other styling for the profile image */
+  }
+  
+  .editprofile {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    width: 20px;
+    height: 20px;
+    z-index: 1; /* Set a higher z-index to display "editprofile" over "profile" */
+    background-color: white;
+    border-radius: 100px;
+  }
+
+  .user_list {
+    display: flex;
+    height: 10vh;
+    width:100%;
+  }
+
+  .user_name {
+    display: flex;
+    height: 5vh;
+    width:40%;
+    margin: 2%;
+    border: 1px solid rgb(180, 172, 172);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: gray;
+
+  }
+
+  .user_progress {
+    display: flex;
+    height: 5vh;
+    width:20%;
+    margin: 2%;
+    border: 1px solid rgb(180, 172, 172);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: gray;
+
+  }
+
+  .user_activity {
+    display: flex;
+    height: 5vh;
+    width:40%;
+    margin: 2%;
+    border: 1px solid rgb(180, 172, 172);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: gray;
+  }
+
+  .user_list_container{
+    height:30%;
+    overflow: auto;
+    border: rgba(156, 151, 151, 0.72) 1px solid;
+    border-top: #F7F2FF;
+    margin-bottom: 1vh;
+  }
+
+  .user_list_container::-webkit-scrollbar {
+    width: 12px; /* Set the width of the scrollbar */
+  }
+  
+  .user_list_container::-webkit-scrollbar-thumb {
+    background-color: #6E28EE; /* Set the color of the scrollbar thumb */
+    border-radius: 10px; /* Add rounded corners to the thumb */
+  }
+  
+  .user_list_container::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Set the color of the scrollbar track */
+  }
+
+  .signoff{
+    height: inherit;
+  }
+
+  .user_signoff_container{
+    height:30%;
+    overflow: auto;
+    border: rgba(156, 151, 151, 0.72) 1px solid;
+    border-top: #F7F2FF;
+  }
+
+  .user_signoff_container::-webkit-scrollbar {
+    width: 12px; /* Set the width of the scrollbar */
+  }
+  
+  .user_signoff_container::-webkit-scrollbar-thumb {
+    background-color: #6E28EE; /* Set the color of the scrollbar thumb */
+    border-radius: 10px; /* Add rounded corners to the thumb */
+  }
+  
+  .user_signoff_container::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Set the color of the scrollbar track */
+  }
+  .user_signoff_name{
+    display: flex;
+    height: 5vh;
+    width:30%;
+    margin: 2%;
+    border: 1px solid rgb(180, 172, 172);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: gray;
+  }
+  .user_signoff_activity{
+    display: flex;
+    height: 5vh;
+    width:60%;
+    margin: 2%;
+    border: 1px solid rgb(180, 172, 172);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: gray;
+  }
+
+  .user_signoffcheckbox{
+    display: flex;
+    height: 5vh;
+    width:20%;
+    margin: 2%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: gray;
+  }
+
+  .signoff_button{
+    align-items: center;
+    background-color: #6E28EE;
+    height:50%;
+    width: 10%;
+    border-radius: 20px;
+    color: white;
+    border: 0px;
+    margin-right: 5%;
+  }
+  .signoff_container {
+    height: 10%;
+    display: flex;
+    text-align: right;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 5%;
+    align-items: center;
+  }
+
+
+ 
+
+  
