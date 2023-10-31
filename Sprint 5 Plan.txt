@@ -1,0 +1,71 @@
+﻿Sprint Plan 5
+
+
+Sprint Planning Meeting Date: 10/30/2023 (11:00 AM to 12:00 PM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+
+
+Sprint Taskboard: 
+https://tree.taiga.io/project/vardhanreddy-517_capstopne_team_1/taskboard/sprint-5-2097
+
+
+Sprint Goals:
+The sprint goal for this documentation sprint is to establish a streamlined development and testing pipeline, enabling continuous integration and delivery for our application. We will automate deployments to the staging environment upon 'develop' branch pushes and set up, execute automated UI tests to swiftly detect UI issues. Additionally, users will gain access to a dedicated dashboard for session management and interaction with trainees. By accomplishing these objectives, we aim to enhance development efficiency, maintain UI quality, and provide a user-friendly experience for our customers.
+
+
+User Stories and Tasks:
+User Story 73: As a front-end developer, I want the application to be automatically deployed to staging every time I push to the 'develop' branch so that we can continuously test and integrate new changes.
+        Estimation: 22
+Estimation Criteria: The solution involves setting up a CI/CD pipeline that integrates with our version control, configuring the staging environment to mirror production, establishing deployment notifications, managing potential errors with clear messaging and rollback mechanisms, and maintaining a log of deployed versions.
+Acceptance criteria: Successful deployment is marked by the automatic reflection of the 'develop' branch's latest code in the staging environment, timely and accurate notifications to the team regarding deployment status, clear error messages in case of failures, and the ability to easily track and rollback versions when necessary.
+Task 76: Configure AWS CodeDeploy to automate the deployment process to the desired environment.
+                Assigned to: Sai Vardhan Reddy Ainavolu
+        Task 77: Design the architecture, deciding on the necessary AWS services.
+                Assigned to: Sai Vardhan Reddy Ainavolu
+Task 78: Test the automatic deployment process to ensure it triggers on every push to the 'main' branch.
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+        Task 79: Configure a continuous integration tool to detect changes in the 'main' branch.
+                Assigned to: Sidharth Koyipallil Sivaprasad
+        Task 80: Set up AWS Budgets to monitor and control AWS costs.
+                Assigned to: Sai Vardhan Reddy Ainavolu
+
+
+User Story 74: As a QA engineer, I want to set up and run automated UI tests so that I can quickly identify issues in the user interface.
+        Estimation: 11
+Estimation Criteria: The effort to set up and run automated UI tests will depend on the scope and complexity of tests, the tooling in place, the environments required, and the potential frequency of UI changes.
+Acceptance criteria: For the user story to be considered complete, an appropriate testing tool must be integrated and tests should cover key UI components and workflows. Tests should execute seamlessly, providing clear outcomes of pass or fail.
+Task 85: Write automated test scripts for the identified scenarios.
+                Assigned to: Srikruthi Vedantham
+Task 86: Write automated test scripts for key UI functionalities and user flows.
+                Assigned to: Vashishtha Nareshbhai Patel
+        Task 87: Choose an automated UI Testing tool.
+                Assigned to: Vashishtha Nareshbhai Patel
+        Task 89: Generate and review test execution reports for insights and patterns.
+                Assigned to: Srikruthi Vedantham
+
+
+User Story 75: As a user, I want to log into a dedicated dashboard so that I can manage my sessions and interact with my trainees.
+        Estimation: 11
+Estimation Criteria:  Implementing a dashboard feature involves designing the user interface, creating a secure authentication mechanism, and integrating with session and trainee management systems.
+Acceptance criteria: Users should be able to input their credentials and be directed to their personal dashboard upon successful authentication. This dashboard should display session details and trainee interactions.
+Task 81: Document the login and dashboard functionalities, including flowcharts and user guidance.
+                Assigned to: Srikruthi Vedantham
+Task 82: Create a user interaction module on the dashboard for messaging and viewing user details.
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+        Task 83: Implement security measures like encryption for password storage.
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+Task 84: Develop a session management module on the dashboard to view and manage sessions.
+                Assigned to: Sidharth Koyipallil Sivaprasad
+        Task 88: Create a deployment script to transfer the build to the staging server.
+                Assigned to: Sidharth Koyipallil Sivaprasad
+
+
+        
+Next Meeting Date: Nov 13, 2023
