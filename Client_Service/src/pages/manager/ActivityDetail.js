@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./ActivityDetail.css";
-import PathFeedback from './Pathfeedback';
+import PathFeedback from './PathFeedback';
 
 const ActivityDetail = ({ isOpen, children }) => {
 

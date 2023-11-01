@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MessageList from './messengeList'; 
-import styles from './Messenger.module.css';
+import styles from './messenger.module.css';
 import { sendMessage, getMessage, getUserData } from '../../services/ApiService';
 
 const Messenger = () => {

@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 19
+    commands:
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock &
+      - timeout 5 sh -c "until docker info; do echo .; sleep 1; done"
+
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region ca-central-1 | docker login --username AWS --password-stdin 909464590092.dkr.ecr.ca-central-1.amazonaws.com
+
+  build:
+    commands:
+      - cd Server
+      - docker build -t server .
+      - docker tag server:latest 909464590092.dkr.ecr.ca-central-1.amazonaws.com/frontend:latest
+
+  post_build:
+    commands:
+      - docker push 909464590092.dkr.ecr.ca-central-1.amazonaws.com/frontend:latest
+      - cd ..
+      - printf '[{"name":"server", "imageUri":"%s"}]' "909464590092.dkr.ecr.ca-central-1.amazonaws.com/frontend:latest" > imagedefinitions.json
+
+artifacts:
+  files:
+    - Client_Service/appspec.yml
+    - imagedefinitions.json
+  name: build-aritifact
+  discard-paths: yes
