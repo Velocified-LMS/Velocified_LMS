@@ -6,9 +6,8 @@ const userRoutes = require('./routes/UserRoutes');
 const messageRoutes = require('./routes/MessageRoutes');
 
 const app = express();
-const whitelist = ['http://localhost:3000/dashboard', 'http://localhost:3000/login'];
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'http://velocified.net:80',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   credentials: true
 };
