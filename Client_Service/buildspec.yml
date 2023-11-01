@@ -6,7 +6,7 @@ phases:
       docker: 19
     commands:
       - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock &
-      - timeout 5 sh -c "until docker info; do echo .; sleep 1; done"
+      #- timeout 5 sh -c "until docker info; do echo .; sleep 1; done"
 
   pre_build:
     commands:
