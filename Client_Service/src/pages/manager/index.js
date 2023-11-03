@@ -232,27 +232,24 @@ const LearnerAdminDashboard = () => {
                                 <table className={styles.ActivityCreator}>
                                     <tbody>
                                     {data.map((item, index) => (
-                                    <React.Fragment key={index}>
+                                        <React.Fragment key={index}>
                                         {item.activities.map((activity, activityIndex) => (
-                                        <tr key={activityIndex} className={styles.PathMargin}>
-                                            {activityIndex === 0 ? (
-                                            <td rowSpan={item.activities.length} className={styles.PathDay}>
-                                                Day {item.day}
-                                            </td>
-                                            ) : null}
-                                            <td className={styles.PathActivity}>
-                                            <div className={styles.PathActivityDetail}>
-                                                <span style={{ flex: '1', paddingTop: '1.5vh' }} onClick={() => handleActivityClick(activity)}>
-                                                {activity}
-                                                </span>
-                                                <span style={{ flex: '1' }}> Require Signoff <Checkbox style={{ flex: '0' }} /></span>
-                                                <span style={{ flex: '1' }}> Attach Milestone <Checkbox style={{ flex: '0' }} /></span>
-                                                <DeleteIcon style={{ flex: '1', paddingTop: '1.5vh' }} />
-                                            </div>
-                                            </td>
-                                        </tr>
+                                            <tr key={activityIndex} className={styles.PathMargin}>
+                                                {activityIndex === 0 ? (
+                                                    <td rowSpan={item.activities.length} className={styles.PathDay}>Day {item.day}</td>
+                                                ) : null}
+                                                <td className={styles.PathActivity}>
+                                                    <div className={styles.PathActivityDetail}>
+                                                        <span style={{flex:'1', paddingTop:'1.5vh'}} >{activity}  </span>
+                                                        <span style={{flex:'1', }}> Require Signoff
+                                                        <Checkbox style={{flex:'0'}}/></span>
+                                                        <span style={{flex:'1'}}> Attach Milestone
+                                                        <Checkbox style={{flex:'0'}}/></span>
+                                                        <DeleteIcon style={{flex:'1', paddingTop:'1.5vh'}} />
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         ))}
-                      
                                         </React.Fragment>
                                     ))}
                                     </tbody>
