@@ -29,7 +29,7 @@ const authorizeUser = async (req, res) => {
       const domain = email.split('@')[1];
       const company = await Company.findOne({"domain": domain});
       if(company) {
-        console.log(otp);
+        // console.log(otp);
         /**
          * Implement OTP verification here.
          */
@@ -59,7 +59,7 @@ const authorizeLogin = async (req, res) => {
       const domain = email.split('@')[1];
       const company = await Company.findOne({"domain": domain});
       if(company) {
-        console.log(otp);
+        // console.log(otp);
         /**
          * Implement OTP verification here.
          */
@@ -122,7 +122,7 @@ const generateOTP = () => {
 const postRequest = (apiUrl, postData) => {
   axios.post(apiUrl, postData)
   .then(response => {
-    console.log(response);
+    // console.log(response);
   })
   .catch(error => {
     console.error(error);
