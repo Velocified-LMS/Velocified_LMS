@@ -2,6 +2,7 @@ import React from "react"
 import  { useState } from "react";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { Search } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
 import PathOverview from './PathOverview';
