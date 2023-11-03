@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./Milestone.css";
+import { TextareaAutosize } from '@mui/material';
 
 const PathFeedback = ({ isOpen, children }) => {
 
@@ -19,11 +20,16 @@ const PathFeedback = ({ isOpen, children }) => {
                     <img src='/icons/close.svg' style={{height: '30%'}}/>
                 </div> 
             </div>
-            <div className="contentMilestone">
+            
             <div className="scrollableContent">
-              <p>Hiii</p>
+            <TextareaAutosize 
+                    minRows={5} 
+                    placeholder="Write Feedback"
+                    
+                    className="descriptionArea"
+                  />
             </div>
-            </div>
+            
             <button className="Msgsubmit" >
               Submit
             </button>
