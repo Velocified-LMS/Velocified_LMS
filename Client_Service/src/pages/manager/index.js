@@ -3,8 +3,11 @@ import  { useState } from "react";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Search } from "@mui/icons-material";
-import { TextField, InputAdornment } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
+import PathOverview from './PathOverview';
+import PathDefinition from './PathDefinition';
+import NewActivity from "./NewActivity";
 
 import '@/app/globals.css'
 import styles from "./learneradmindashboard.module.css"
@@ -31,45 +34,21 @@ const LearnerAdminDashboard = () => {
         day: 'numeric',
         year: 'numeric',
     });
-
-    const users = [
-        {
-          "name": "User 1",
-          "progress": "75%",
-          "currentActivity": "Activity A"
-        },
-        {
-          "name": "User 2",
-          "progress": "50%",
-          "currentActivity": "Activity B"
-        },
-        {
-          "name": "User 3",
-          "progress": "90%",
-          "currentActivity": "Activity C"
-        }
-        ,
-        {
-          "name": "User 4",
-          "progress": "50%",
-          "currentActivity": "Activity B"
-        },
-        {
-          "name": "User 5",
-          "progress": "90%",
-          "currentActivity": "Activity C"
-        }
-        
+    const data = [
+        { day: '1', activities: ['Activity1', 'Activity2'] },
+        { day: '2', activities: ['Activity3', 'Activity4'] },
+        { day: '3', activities: ['Activity5'] },
       ];
 
+
     
+
     const [selectedOption, setSelectedOption] = React.useState('');
       
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
     };
 
-    const [checkedStates, setCheckedStates] = useState(users.map(() => false));
 
     const handleCheckboxChange = (index) => {
         const newCheckedStates = [...checkedStates];
@@ -84,12 +63,29 @@ const LearnerAdminDashboard = () => {
         setProfileeditorViewVisible(visible);
     };
 
+    
+    const [PathViewVisible, setPathVisible] = useState(false);
+    const togglePathView = (visible) => {
+        setPathVisible(visible);
+    };
+
+    const [PathDefinitionViewVisible, setPathDefinitionVisible] = useState(false);
+    const togglePathDefinitionView = (visible) => {
+        setPathDefinitionVisible(visible);
+    };
+
+    const [NewActivityVisible, setNewActivityVisible] = useState(false);
+    const toggleNewActivityView = (visible) => {
+        setNewActivityVisible(visible);
+    };
 
 
     return (
         <div className={styles.page}>
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
-            
+            {PathViewVisible && <PathOverview isOpen={togglePathView}/> }
+            {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView}/> }
+            {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView}/> }
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
@@ -182,12 +178,44 @@ const LearnerAdminDashboard = () => {
                                     </div>
                                 </div>
                                 <div className={styles.PathManagerTab}>
-                                    <div className={styles.PathDetailText}>
-                                        Path Overview
+                                    <div className={styles.PathDetailText} onClick={togglePathView}>
+                                        Path Overview                      
+                                        <DeleteIcon />
                                     </div>
-                                    <div className={styles.PathDetailText}>
+                                    <div className={styles.PathDetailText} onClick={togglePathDefinitionView}>
                                         Proficiency Definition
+                                        <DeleteIcon />
                                     </div>
+                                </div>
+                                <div className={styles.NewActivityButton} onClick={toggleNewActivityView}>
+                                        Add New Activity
+                                </div>
+                                <div className={styles.ActivityCreatorContainer}>
+                                <table className={styles.ActivityCreator}>
+                                    <tbody>
+                                    {data.map((item, index) => (
+                                        <React.Fragment key={index}>
+                                        {item.activities.map((activity, activityIndex) => (
+                                            <tr key={activityIndex} className={styles.PathMargin}>
+                                                {activityIndex === 0 ? (
+                                                    <td rowSpan={item.activities.length} className={styles.PathDay}>Day {item.day}</td>
+                                                ) : null}
+                                                <td className={styles.PathActivity}>
+                                                    <div className={styles.PathActivityDetail}>
+                                                        <span style={{flex:'1', paddingTop:'1.5vh'}} >{activity}  </span>
+                                                        <span style={{flex:'1', }}> Require Signoff
+                                                        <Checkbox style={{flex:'0'}}/></span>
+                                                        <span style={{flex:'1'}}> Attach Milestone
+                                                        <Checkbox style={{flex:'0'}}/></span>
+                                                        <DeleteIcon style={{flex:'1', paddingTop:'1.5vh'}} />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        </React.Fragment>
+                                    ))}
+                                    </tbody>
+                                </table>
                                 </div>
                             </div>
                         </div>

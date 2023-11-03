@@ -218,7 +218,7 @@
   }
   
   .user_list_container::-webkit-scrollbar-thumb {
-    background-color: #6E28EE; /* Set the color of the scrollbar thumb */
+    background-color: #9d7cda9b; /* Set the color of the scrollbar thumb */
     border-radius: 10px; /* Add rounded corners to the thumb */
   }
   
@@ -242,7 +242,7 @@
   }
   
   .user_signoff_container::-webkit-scrollbar-thumb {
-    background-color: #6E28EE; /* Set the color of the scrollbar thumb */
+    background-color: #9d7cda9b; /* Set the color of the scrollbar thumb */
     border-radius: 10px; /* Add rounded corners to the thumb */
   }
   
