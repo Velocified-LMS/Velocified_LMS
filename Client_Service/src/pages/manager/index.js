@@ -2,12 +2,15 @@ import React from "react"
 import  { useState } from "react";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { Search } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
 import PathOverview from './PathOverview';
 import PathDefinition from './PathDefinition';
 import NewActivity from "./NewActivity";
+import ActivityEdit from "./ActivityEdit";
+import CreatePath from "./CreatePath";
+import AddCoach from "./AddCoach";
+import BlockUser from "./BlockUser";
 
 import '@/app/globals.css'
 import styles from "./learneradmindashboard.module.css"
@@ -79,6 +82,35 @@ const LearnerAdminDashboard = () => {
         setNewActivityVisible(visible);
     };
 
+    const [ActivityEditVisible, setActivityEditVisible] = useState(false);
+    const toggleActivityEditView = (visible) => {
+        setActivityEditVisible(visible);
+    };
+
+    const [CreatePathVisible, setCreatePathVisible] = useState(false);
+    const toggleCreatePathView = (visible) => {
+        setCreatePathVisible(visible);
+    };
+
+    const [AddCoachVisible, setAddCoachVisible] = useState(false);
+    const toggleAddCoachView = (visible) => {
+        setAddCoachVisible(visible);
+    };
+
+    const [BlockUserVisible, setBlockUserVisible] = useState(false);
+    const toggleBlockUserView = (visible) => {
+        setBlockUserVisible(visible);
+    };
+
+
+
+    const [selectedActivity, setSelectedActivity] = useState(null);
+    const handleActivityClick = (activity) => {
+        toggleActivityEditView(true);
+        setSelectedActivity(activity);
+        
+      };
+   
 
     return (
         <div className={styles.page}>
@@ -86,6 +118,11 @@ const LearnerAdminDashboard = () => {
             {PathViewVisible && <PathOverview isOpen={togglePathView}/> }
             {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView}/> }
             {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView}/> }
+            {CreatePathVisible && <CreatePath isOpen={toggleCreatePathView}/> }
+            {AddCoachVisible && <AddCoach isOpen={toggleAddCoachView}/> }
+            {BlockUserVisible && <BlockUser isOpen={toggleBlockUserView}/> }
+
+            {ActivityEditVisible && <ActivityEdit activity={selectedActivity} isOpen={toggleActivityEditView} /> }
             <Navbar />
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
@@ -115,7 +152,7 @@ const LearnerAdminDashboard = () => {
                         </div>
                         <div className={styles.studentActivity}>
                             <div className={styles.dashboardOption} >
-                                <div className={styles.dashboardText}>
+                                <div className={styles.dashboardText} onClick={toggleCreatePathView} >
                                     Create Path
                                 </div>
                             </div>
@@ -147,12 +184,12 @@ const LearnerAdminDashboard = () => {
                                 <MenuItem value="option3">Path 3</MenuItem>
                             </Select>
                             <div className={styles.dashboardOption} >
-                                <div className={styles.dashboardText}>
+                                <div className={styles.dashboardText} onClick={toggleAddCoachView} >
                                     Add Coach
                                 </div>
                             </div>
                             <div className={styles.dashboardOptionBlock} >
-                                <div className={styles.dashboardText}>
+                                <div className={styles.dashboardText} onClick={toggleBlockUserView}>
                                     Blocklist User
                                 </div>
                             </div>
@@ -194,24 +231,27 @@ const LearnerAdminDashboard = () => {
                                 <table className={styles.ActivityCreator}>
                                     <tbody>
                                     {data.map((item, index) => (
-                                        <React.Fragment key={index}>
+                                    <React.Fragment key={index}>
                                         {item.activities.map((activity, activityIndex) => (
-                                            <tr key={activityIndex} className={styles.PathMargin}>
-                                                {activityIndex === 0 ? (
-                                                    <td rowSpan={item.activities.length} className={styles.PathDay}>Day {item.day}</td>
-                                                ) : null}
-                                                <td className={styles.PathActivity}>
-                                                    <div className={styles.PathActivityDetail}>
-                                                        <span style={{flex:'1', paddingTop:'1.5vh'}} >{activity}  </span>
-                                                        <span style={{flex:'1', }}> Require Signoff
-                                                        <Checkbox style={{flex:'0'}}/></span>
-                                                        <span style={{flex:'1'}}> Attach Milestone
-                                                        <Checkbox style={{flex:'0'}}/></span>
-                                                        <DeleteIcon style={{flex:'1', paddingTop:'1.5vh'}} />
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tr key={activityIndex} className={styles.PathMargin}>
+                                            {activityIndex === 0 ? (
+                                            <td rowSpan={item.activities.length} className={styles.PathDay}>
+                                                Day {item.day}
+                                            </td>
+                                            ) : null}
+                                            <td className={styles.PathActivity}>
+                                            <div className={styles.PathActivityDetail}>
+                                                <span style={{ flex: '1', paddingTop: '1.5vh' }} onClick={() => handleActivityClick(activity)}>
+                                                {activity}
+                                                </span>
+                                                <span style={{ flex: '1' }}> Require Signoff <Checkbox style={{ flex: '0' }} /></span>
+                                                <span style={{ flex: '1' }}> Attach Milestone <Checkbox style={{ flex: '0' }} /></span>
+                                                <DeleteIcon style={{ flex: '1', paddingTop: '1.5vh' }} />
+                                            </div>
+                                            </td>
+                                        </tr>
                                         ))}
+                      
                                         </React.Fragment>
                                     ))}
                                     </tbody>
