@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './messageList.module.css';
 
-function MessageList({ messages, user }) {
+function MessageList({ messages = [], user }) {
     const Messages = messages.map((message, i) => {
         let align = styles.message_left
         let icon = "/Icon2.svg"

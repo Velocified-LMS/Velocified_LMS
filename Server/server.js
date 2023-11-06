@@ -7,7 +7,7 @@ const messageRoutes = require('./routes/MessageRoutes');
 
 const app = express();
 const corsOptions = {
-  origin: 'http://velocified.net',
+  origin: ['http://velocified.net', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   credentials: true
 };
