@@ -129,7 +129,7 @@ const CoachDashboard = () => {
                                 { userName }
                             </div>
                             <div style={{fontSize: 16}}>
-                                Learner
+                                Coach
                             </div>
                             <div className={styles.language} style={{fontSize: 16}}>
                                 { language }

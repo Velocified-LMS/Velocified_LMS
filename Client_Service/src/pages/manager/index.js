@@ -1,20 +1,26 @@
 import React from "react"
 import  { useState } from "react";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { Search } from "@mui/icons-material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import Checkbox from '@mui/material/Checkbox';
+import PathOverview from './PathOverview';
+import PathDefinition from './PathDefinition';
+import NewActivity from "./NewActivity";
+import ActivityEdit from "./ActivityEdit";
+import CreatePath from "./CreatePath";
+import AddCoach from "./AddCoach";
+import BlockUser from "./BlockUser";
 
 import '@/app/globals.css'
-import styles from "./dashboard.module.css"
+import styles from "./learneradmindashboard.module.css"
 import Navbar from "@/app/components/navbar";
-import Activity from "./Activity";
-import Donut from "./Donut";
-import InformationPopup from "./informationPopup";
-import ListCalendar from "./Calendar";
-import Messenger from "./messenger";
-import Calendar from "./FullCalender";
-import Milestone from "./Milestone";
+
 import Profileeditor from "./Profileeditor";
 
 
-const Dashboard = () => {
+const LearnerAdminDashboard = () => {
     const language = "English"
     const userName = "User Name"
     const path = "Path Name"
@@ -32,26 +38,29 @@ const Dashboard = () => {
         day: 'numeric',
         year: 'numeric',
     });
+    const data = [
+        { day: '1', activities: ['Activity1', 'Activity2'] },
+        { day: '2', activities: ['Activity3', 'Activity4'] },
+        { day: '3', activities: ['Activity5'] },
+      ];
 
 
-    const [pathViewVisible, setPathViewVisible] = useState(false);
-    const togglePathView = (visible) => {
-        setPathViewVisible(visible);
+    
+
+    const [selectedOption, setSelectedOption] = React.useState('');
+      
+    const handleChange = (event) => {
+        setSelectedOption(event.target.value);
     };
 
-    const [MilestoneViewVisible, setMilestoneViewVisible] = useState(false);
-    const toggleMilestoneView = (visible) => {
-        setMilestoneViewVisible(visible);
+
+    const handleCheckboxChange = (index) => {
+        const newCheckedStates = [...checkedStates];
+        newCheckedStates[index] = !newCheckedStates[index];
+        setCheckedStates(newCheckedStates);
     };
 
-    const [listViewVisible, setListViewVisible] = useState(false);
-    const toggleListView = (visible) => {
-        setListViewVisible(visible);
-    };
-    const [CalViewVisible, setCalViewVisible] = useState(false);
-    const toggleCalView = (visible) => {
-        setCalViewVisible(visible);
-    };
+
 
     const [ProfileeditorViewVisible, setProfileeditorViewVisible] = useState(false);
     const toggleProfileeditorView = (visible) => {
@@ -59,33 +68,74 @@ const Dashboard = () => {
     };
 
     
-    
+    const [PathViewVisible, setPathVisible] = useState(false);
+    const togglePathView = (visible) => {
+        setPathVisible(visible);
+    };
 
-      const [showMessenger, setShowMessenger] = useState(false);
-      const toggleMessenger = () => {
-        setShowMessenger(!showMessenger);
+    const [PathDefinitionViewVisible, setPathDefinitionVisible] = useState(false);
+    const togglePathDefinitionView = (visible) => {
+        setPathDefinitionVisible(visible);
+    };
+
+    const [NewActivityVisible, setNewActivityVisible] = useState(false);
+    const toggleNewActivityView = (visible) => {
+        setNewActivityVisible(visible);
+    };
+
+    const [ActivityEditVisible, setActivityEditVisible] = useState(false);
+    const toggleActivityEditView = (visible) => {
+        setActivityEditVisible(visible);
+    };
+
+    const [CreatePathVisible, setCreatePathVisible] = useState(false);
+    const toggleCreatePathView = (visible) => {
+        setCreatePathVisible(visible);
+    };
+
+    const [AddCoachVisible, setAddCoachVisible] = useState(false);
+    const toggleAddCoachView = (visible) => {
+        setAddCoachVisible(visible);
+    };
+
+    const [BlockUserVisible, setBlockUserVisible] = useState(false);
+    const toggleBlockUserView = (visible) => {
+        setBlockUserVisible(visible);
+    };
+
+
+
+    const [selectedActivity, setSelectedActivity] = useState(null);
+    const handleActivityClick = (activity) => {
+        toggleActivityEditView(true);
+        setSelectedActivity(activity);
+        
       };
+   
+
     return (
         <div className={styles.page}>
-            {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
-            {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
-            {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
-            {showMessenger && <Messenger />}
-            {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
-            
+            {PathViewVisible && <PathOverview isOpen={togglePathView}/> }
+            {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView}/> }
+            {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView}/> }
+            {CreatePathVisible && <CreatePath isOpen={toggleCreatePathView}/> }
+            {AddCoachVisible && <AddCoach isOpen={toggleAddCoachView}/> }
+            {BlockUserVisible && <BlockUser isOpen={toggleBlockUserView}/> }
+
+            {ActivityEditVisible && <ActivityEdit activity={selectedActivity} isOpen={toggleActivityEditView} /> }
             <Navbar />
-            <div className={styles.dashboardContainer} data-cy="dashboard-container">
+            <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
-                <div className={styles.profileContainer} data-cy="profile-container" >
-                <div onClick={toggleProfileeditorView} data-cy="edit-profile-button">
-                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" data-cy="profile-image"/>
+                <div className={styles.profileContainer} >
+                <div onClick={toggleProfileeditorView}>
+                    <img className={styles.editprofile} src="/settings.svg" alt="Edit Profile" />
                 </div>
                 <img className={styles.profile} src="/Icon1.svg" alt="Profile"  />
                     
                 </div>
-                <div className={styles.text} style={{justifyContent: 'center'}} data-cy="text-powered-by">
-                    powered by VELOCIFIED
+                <div className={styles.text} style={{justifyContent: 'center'}}>
+                    Powered by VELOCIFIED
                 </div>
                 </div>
                 <div className={styles.dashboardBody}>
@@ -95,63 +145,127 @@ const Dashboard = () => {
                                 { userName }
                             </div>
                             <div style={{fontSize: 16}}>
-                                Learner
+                                Administrator 
                             </div>
                             <div className={styles.language} style={{fontSize: 16}}>
                                 { language }
                             </div>
-                            <div className={styles.path}>
-                                <div style={{fontSize: 20}}>
-                                    <a href="./login">
-                                        { path }
-                                    </a>
-                                </div>
-                                <div style={{fontSize: 16}}>{ startDate }</div>
-                            </div>
                         </div>
                         <div className={styles.studentActivity}>
-                            <Donut percentage={18.2}/>
-                            <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}} onClick={toggleMilestoneView}>
-                                Milestones
+                            <div className={styles.dashboardOption} >
+                                <div className={styles.dashboardText} onClick={toggleCreatePathView} >
+                                    Create Path
+                                </div>
                             </div>
-                            <div className={styles.messages} onClick={toggleMessenger}>
-                                <div className={styles.messageText}>
-                                    Messages
+                            <Select
+                                value={selectedOption}
+                                onChange={handleChange}
+                                displayEmpty
+                                fullWidth
+                                variant="outlined"
+                                sx={{
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#6E28EE', 
+                                      },
+                                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#6E28EE', 
+                                    },
+                                    '&:focus .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#6E28EE', 
+                                    },
+                                    width:'15vw',
+                                    backgroundColor:'white',
+                                }}
+                            >
+                                <MenuItem value="" disabled>
+                                Manage Path
+                                </MenuItem>
+                                <MenuItem value="option1">Path 1</MenuItem>
+                                <MenuItem value="option2">Path2</MenuItem>
+                                <MenuItem value="option3">Path 3</MenuItem>
+                            </Select>
+                            <div className={styles.dashboardOption} >
+                                <div className={styles.dashboardText} onClick={toggleAddCoachView} >
+                                    Add Coach
+                                </div>
+                            </div>
+                            <div className={styles.dashboardOptionBlock} >
+                                <div className={styles.dashboardText} onClick={toggleBlockUserView}>
+                                    Blocklist User
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={styles.activities}>
-                        {/* <div className={styles.activityHeader}>
+                         <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                                <img src="/icons/back.svg" />
-                                <div className={styles.space} />
-                                <div className={styles.text}>{day}</div>
-                                <div className={styles.space} />
-                                <img src="/icons/front.svg" />
+                            <div  style={{fontSize:'20px', fontFamily:'Roboto' }}>
+                                Manage Path
                             </div>
-                            <div className={styles.tabGroup}>
-                                <div onClick={toggleListView}>
-                                    <img src="/icons/vector.svg" />
+                            </div>
+                            
+                        </div>
+                        <div className={styles.user_list_container}>
+                            <div className={styles.PathManagerConatainer} >
+                                <div className={styles.PathManagerTab}>
+                                    <div className={styles.PathDetailText}>
+                                        Path Name
+                                    </div>
+                                    <div className={styles.PathDetailText}>
+                                        #users/#seats
+                                    </div>
                                 </div>
-                                <div className={styles.space} />
-                                <div className={styles.space} />
-                                <div onClick={toggleCalView}>
-                                    <img src="/icons/cal.svg" />
+                                <div className={styles.PathManagerTab}>
+                                    <div className={styles.PathDetailText} onClick={togglePathView}>
+                                        Path Overview                      
+                                        <DeleteIcon />
+                                    </div>
+                                    <div className={styles.PathDetailText} onClick={togglePathDefinitionView}>
+                                        Proficiency Definition
+                                        <DeleteIcon />
+                                    </div>
+                                </div>
+                                <div className={styles.NewActivityButton} onClick={toggleNewActivityView}>
+                                        Add New Activity
+                                </div>
+                                <div className={styles.ActivityCreatorContainer}>
+                                <table className={styles.ActivityCreator}>
+                                    <tbody>
+                                    {data.map((item, index) => (
+                                        <React.Fragment key={index}>
+                                        {item.activities.map((activity, activityIndex) => (
+                                            <tr key={activityIndex} className={styles.PathMargin}>
+                                                {activityIndex === 0 ? (
+                                                    <td rowSpan={item.activities.length} className={styles.PathDay}>Day {item.day}</td>
+                                                ) : null}
+                                                <td className={styles.PathActivity}>
+                                                    <div className={styles.PathActivityDetail}>
+                                                        <span style={{flex:'1', paddingTop:'1.5vh'}} >{activity}  </span>
+                                                        <span style={{flex:'1', }}> Require Signoff
+                                                        <Checkbox style={{flex:'0'}}/></span>
+                                                        <span style={{flex:'1'}}> Attach Milestone
+                                                        <Checkbox style={{flex:'0'}}/></span>
+                                                        <DeleteIcon style={{flex:'1', paddingTop:'1.5vh'}} />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        </React.Fragment>
+                                    ))}
+                                    </tbody>
+                                </table>
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.activityBody} >
-                            <Activity title={ActivityTitle} description={ActivityDescription}  />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
-                        </div> */}
-                    </div>
+                        <div className={styles.signoff}>
+                           
+                            
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Dashboard;
+export default LearnerAdminDashboard;
