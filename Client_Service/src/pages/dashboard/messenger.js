@@ -3,40 +3,30 @@ import MessageList from './messengeList';
 import styles from './messenger.module.css';
 import { sendMessage, getMessage, getUserData } from '../../services/ApiService';
 
-const Messenger = () => {
+const Messenger = (user) => {
   const [newMessage, setNewMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
-  const [user, setUser] = useState({});
 
   const fetchMessages = async () => {
     getMessage().then((res) => {
+      console.log(res.data);
       setMessages(res.data);
     }).catch(error => {
       console.error(error);
     });
   };
 
-  const fetchUser = async () => {
-    getUserData().then((res) => {
-      setUser(res.data[0]);
-    }).catch(error => console.error(error));
-  }
-
   useEffect(() => {
     if (isOpen) {
       fetchMessages();
+      console.log(messages);
       const intervalId = setInterval(fetchMessages, 1000);
       return () => {
         clearInterval(intervalId);
       };
     }
   }, [isOpen]);
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
 
   const handleSubmit = async () => {
     if (newMessage.trim() !== '') {
@@ -57,7 +47,7 @@ const Messenger = () => {
     setIsOpen(false);
   };
 
-  if (!isOpen) {
+  if(!isOpen) {
     return null;
   }
 

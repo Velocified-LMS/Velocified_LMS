@@ -163,7 +163,7 @@ const Dashboard = () => {
             {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
             {listViewVisible && <ListCalendar path={path} isOpen={toggleListView}/>}
             {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
-            {showMessenger && <Messenger />}
+            {showMessenger && <Messenger user={user}/>}
             {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             

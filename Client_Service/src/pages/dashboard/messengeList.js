@@ -5,7 +5,7 @@ function MessageList({ messages = [], user }) {
     const Messages = messages.map((message, i) => {
         let align = styles.message_left
         let icon = "/Icon2.svg"
-        if(user.username === message.sender.name) {
+        if(user.user.username === message.sender.name) {
             align = styles.message_right;
             icon = "/Icon1.svg"
         }
@@ -25,7 +25,6 @@ function MessageList({ messages = [], user }) {
             </div>
         );
     })
-    console.log(Messages);
 
     return (
         <div className={styles.message_list}>
