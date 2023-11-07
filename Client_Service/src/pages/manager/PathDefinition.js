@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import "./Pathview.css";
+import { updatePath } from '@/services/ApiService';
 
-const PathDefinition = ({ isOpen, children }) => {
+const PathDefinition = ({ isOpen, path }) => {
 
+  const [text, setText] = useState(path.proficiencyDefinition);
   const handleClose = () => {
     isOpen(false);
+  };
+
+  const handleSave = () => {
+    path.proficiencyDefinition = text;
+    updatePath(path);
+    handleClose();
   };
 
   return (
@@ -20,10 +28,11 @@ const PathDefinition = ({ isOpen, children }) => {
                 </div> 
             </div>
             <div className="scrollableContent">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est sit amet facilisis magna etiam tempor orci eu lobortis.</p>
-                    {children}
-                </div>
-    
+              <input value={text} onChange={e => setText(e.target.value)} style={{ height: '100%', width: '100%' }}/>
+            </div>
+              <div className="AddCoachBttn" onClick={handleSave}>
+                Save
+              </div>
             </div>
         </div>
     </div>

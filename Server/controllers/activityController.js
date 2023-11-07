@@ -1,6 +1,7 @@
 const Path = require('../models/Path');
 const User = require('../models/User');
 const Activity = require('../models/Activity');
+const mongoose = require('mongoose');
 
 const getActivity = async (req, res) => {
     try {
@@ -36,9 +37,11 @@ const createActivity = async (req, res) => {
 
 const updateActivity = async (req, res) => {
     try {
-        const resposne = await Activity.finByIdAndUpdate(
-            req.body.activity._id,
-            { $set: req.body.activity },
+        let activity = req.body;
+        activity._id = new mongoose.Types.ObjectId(activity._id);
+        const resposne = await Activity.findByIdAndUpdate(
+            activity._id,
+            { $set: activity },
             { new: true }
           );
         res.status(200).json(resposne);

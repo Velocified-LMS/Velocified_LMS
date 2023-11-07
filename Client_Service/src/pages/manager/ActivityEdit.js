@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import "./ActivityEdit.css";
 import { TextField,TextareaAutosize } from '@mui/material';
+import { Description } from '@mui/icons-material';
+import { updateActivity } from '@/services/ApiService';
 const ActivityEdit = ({ activity, isOpen }) => {
 
-  const [inputActivity, setInputActivity] = useState(activity);
+  const [inputActivity, setInputActivity] = useState(activity.activityName);
+  const [description, setDescription] = useState(activity.activityDescription);
 
-  const handleActivityChange = (e) => {
+  const handleActivityNameChange = (e) => {
     setInputActivity(e.target.value);
+  };
+
+  const handleActivityDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleSaveActivity = () => {
+    activity.activityDescription = description;
+    activity.activityName = inputActivity;
+    updateActivity(activity);
+    handleClose();
   };
 
   const handleClose = () => {
@@ -27,29 +41,28 @@ const ActivityEdit = ({ activity, isOpen }) => {
             </div>
             <div className="contentAE"  >
               <div style={{textAlign: 'left' , marginLeft:"2%"}}> 
-              <TextField
-              
-              inputProps={{
-                style: {
-                  height: "5px",
-                },
-              }}
-              placeholder={activity}
-              value={inputActivity}
-              onChange={handleActivityChange}
-              ></TextField>
+              <TextField 
+                inputProps={{
+                  style: {
+                    height: "5px",
+                  },
+                }}
+                placeholder="activity name"
+                value={inputActivity}
+                onChange={handleActivityNameChange}
+              />
               </div>
             <div className="scrollableContent" >
               <TextareaAutosize 
                style={{ width: '100%', height: '100%', resize: 'none', border: 'none' }}
                placeholder='Activity Description'
-               >
-
-               </TextareaAutosize>
+               value={description}
+               onChange={handleActivityDescriptionChange}
+              />
               </div>
-              <button className="Msgsubmit"  style={{textAlign: 'center'}}>
-              Apply changes
-            </button>
+              <button className="Msgsubmit"  style={{textAlign: 'center'}} onClick={handleSaveActivity}>
+                Apply changes
+              </button>
             </div>
             </div>
         </div>

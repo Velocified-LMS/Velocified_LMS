@@ -1,6 +1,7 @@
 const Path = require('../models/Path');
 const User = require('../models/User');
 const Company = require('../models/Company');
+const mongoose = require('mongoose');
 
 const getPath = async (req, res) => {
     try {
@@ -36,9 +37,11 @@ const createPath = async (req, res) => {
 
 const updatePath = async (req, res) => {
     try {
-        const resposne = await Path.findOneAndUpdate(
-            { pathId: req.body.path.pathId },
-            { $set: req.body.path },
+        let path = req.body;
+        path._id = new mongoose.Types.ObjectId(path._id);
+        const resposne = await Path.findByIdAndUpdate(
+            path._id,
+            { $set: path },
             { new: true }
           );
         res.status(200).json(resposne);

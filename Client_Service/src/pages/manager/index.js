@@ -11,7 +11,7 @@ import ActivityEdit from "./ActivityEdit";
 import CreatePath from "./CreatePath";
 import AddCoach from "./AddCoach";
 import BlockUser from "./BlockUser";
-import { getUserData, getPathsByCompany, getActivity, getActivities } from "@/services/ApiService";
+import { getUserData, getPathsByCompany, getActivity, updateUser, getActivities } from "@/services/ApiService";
 
 import '@/app/globals.css'
 import styles from "./learneradmindashboard.module.css"
@@ -61,7 +61,6 @@ const LearnerAdminDashboard = () => {
     useEffect (() => {
         if(user.company)
             getPathsByCompany(user.company).then((paths) => {
-                console.log(paths.data);
                 setPaths(paths.data);
             });
     }, [user]);
@@ -83,7 +82,6 @@ const LearnerAdminDashboard = () => {
                     }
                 });
                 setDays(activityList);
-                console.log("Activiities:",activityList);
             });
         }
     }, [NewActivityVisible, path]);
@@ -145,8 +143,8 @@ const LearnerAdminDashboard = () => {
     return (
         <div className={styles.page}>
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
-            {PathViewVisible && <PathOverview isOpen={togglePathView}/> }
-            {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView}/> }
+            {PathViewVisible && <PathOverview isOpen={togglePathView} path={path} /> }
+            {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView} path={path} /> }
             {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView} path={path._id}/> }
             {CreatePathVisible && <CreatePath isOpen={toggleCreatePathView}/> }
             {AddCoachVisible && <AddCoach isOpen={toggleAddCoachView}/> }
@@ -267,7 +265,7 @@ const LearnerAdminDashboard = () => {
                                                 {activityIndex === 0 ? (
                                                     <td rowSpan={item.length} className={styles.PathDay}>Day {day}</td>
                                                 ) : null}
-                                                <td className={styles.PathActivity}>
+                                                <td className={styles.PathActivity} onClick={() => handleActivityClick(activity)}>
                                                     <div className={styles.PathActivityDetail}>
                                                         <span style={{flex:'1', alignItems: 'center', display: 'flex', justifyContent: 'center'}} >
                                                             {activity.activityName}  

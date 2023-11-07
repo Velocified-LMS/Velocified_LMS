@@ -17,8 +17,8 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const user = req.session.user.id;
-    const response = await User.findOneAndUpdate({ email: user}, req.body);
+    const id = req.session.user.id;
+    const response = await User.findOneAndUpdate({ email: id}, req.body);
     res.json(response);
   } catch (error) {
     console.error('Error updating user:', error);
