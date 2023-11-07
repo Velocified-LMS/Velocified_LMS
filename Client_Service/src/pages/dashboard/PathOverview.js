@@ -6,7 +6,8 @@ const PathOverview = ({ isOpen, path }) => {
   const handleClose = () => {
     isOpen(false);
   };
-
+  if (path === undefined)
+    return "Loading..."
   return (
     <div className="modal">
         <div className="popupMilestone">

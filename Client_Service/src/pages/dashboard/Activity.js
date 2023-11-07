@@ -11,6 +11,8 @@ const Activity = ({ activity, user, change }) => {
         change(visible);
         setActivityDetailViewVisible(visible);
     };
+    if (activity === undefined)
+        return "Loading...";
     return (
         <div>
             {ActivityDetailViewVisible && <ActivityDetail user={user} activity = {activity} isOpen={toggleActivityDetailView}/>}

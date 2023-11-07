@@ -34,6 +34,8 @@ const ListCalendar = ({path, isOpen}) => {
         });
     }, []);
     const completion = 30;
+    if (path === undefined)
+        return "Loading...";
     return (
     <div className="modal">
         {PathViewVisible && <PathOverview isOpen={togglePathView} path={path} /> }

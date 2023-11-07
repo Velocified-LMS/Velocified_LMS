@@ -116,34 +116,4 @@ const Login = () => {
 };
 
 export default Login;
-
-{/* <div className={styles.logInBox}>
-        
-        <button className={styles.logInButton} onClick={handleLogin}>
-          <div className={styles.container} />
-          <div className={styles.logIn}>Log in</div>
-        </button>
-        <input
-          className={styles.enterPasswordButton}
-          name="password"
-          value="Enter Password"
-          type="text"
-        />
-        <input
-          className={styles.emailphoneusernameButton}
-          name="username"
-          placeholder="Email/Phone/Username"
-          type="text"
-        />
-      </div>
-      </div>
-      <button className={styles.forgetPasswordResetContainer}>
-          <span className={styles.forgetPasswordResetContainer1}>
-            <span className={styles.forgetPassword}>Forgot Password?</span>
-            <b className={styles.b}>{`  `}</b>
-            <b className={styles.resetHere} onClick={handleReset}>Reset Here.</b>
-          </span>
-        </button> 
-        </div>
-        */}
       
