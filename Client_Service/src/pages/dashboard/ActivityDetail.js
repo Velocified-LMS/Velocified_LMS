@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import "./ActivityDetail.css";
 import PathFeedback from './PathFeedback';
+import { updateUser } from '@/services/ApiService';
 
-const ActivityDetail = ({ isOpen, children }) => {
+const ActivityDetail = ({ isOpen, activity, user }) => {
 
     const handleClose = () => {
         isOpen(false);
@@ -12,6 +13,22 @@ const ActivityDetail = ({ isOpen, children }) => {
         setPathFeedbackVisible(visible);
     };
 
+    const [notes, setNotes] = useState(user.activities[activity._id].notes);
+    const [completed, setCompleted] = useState(user.activities[activity._id].completed);
+    const [signoff, setSignoff] = useState(user.activities[activity._id].signoff);
+
+    const handleNotes = (event) => {
+        setNotes(event.target.value)
+    };
+
+    const saveNotes = () => {
+        user.activities[activity._id].notes = notes
+        user.activities[activity._id].completed = completed;
+        user.activities[activity._id].signoff = signoff;
+        updateUser(user);
+        isOpen(false);
+    };
+
   return (
     <div className="modal">
         {PathFeedbackVisible && <PathFeedback isOpen={togglePathFeedback}/> }
@@ -19,7 +36,7 @@ const ActivityDetail = ({ isOpen, children }) => {
             <div className="modalContent">
             <div className="header">
                 <div className="pathTitle left">
-                    Activity Name
+                    {activity.activityName}
                 </div>
                 <div onClick={handleClose} className='right'>
                     <img src='/icons/close.svg' style={{height: '30%'}}/>
@@ -29,24 +46,30 @@ const ActivityDetail = ({ isOpen, children }) => {
                 <div className='scrollableContentAD ' style={{margin:'5%'}} >
                     <div style={{display:'flex', flexDirection:'column'}} >
                     <div className='description' >
-                        Description about the Activity
+                        {activity.activityDescription}
                     </div>
                     <div className='activityState'>
-                    <input type='checkbox' />
+                        <input type='checkbox' checked={signoff} onChange={() => setSignoff(!signoff)}/>
                         <label>Sign-Off</label> 
-                        <input type='checkbox' />
+                        <input type='checkbox' onChange={() => setCompleted(!completed)} checked={completed}/>
                         <label>Complete</label>     
                     </div>
-                    <div class="notes-container">
+                    <div className="notes-container">
                         My Notes
-                        <textarea id="myNotes" name="myNotes" rows="6" cols="30" style={{border:'1px solid #DADADA'}}></textarea>
+                        <textarea 
+                            id="myNotes" value={notes} onChange={handleNotes} 
+                            name="myNotes" rows="6" cols="30" 
+                            style={{border:'1px solid #DADADA'}}/>
                     </div>
-                    <div class="feedback-container">
+                    <div className="feedback-container">
                         Feedback Notes
                         <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}}></textarea>
                     </div>
-                    <div class="path-feedback" style={{fontSize: '17px', fontWeight: 600}} onClick={togglePathFeedback} >
-                                Path feedback
+                    <div className="path-feedback" style={{fontSize: '17px', fontWeight: 600}} onClick={saveNotes} >
+                        Save Notes
+                    </div>
+                    <div className="path-feedback" style={{fontSize: '17px', fontWeight: 600}} onClick={togglePathFeedback} >
+                        Path feedback
                     </div>
                     </div>
                 </div>

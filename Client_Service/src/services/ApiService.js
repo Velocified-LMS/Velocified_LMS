@@ -16,9 +16,12 @@ const instance = axios.create({
 
 
 export const getUserData = async () => {
-    return instance.get(`/user/info`);
+    return await instance.get(`/user/info`);
 };
 
+export const updateUser = async (user) => {
+  return await instance.post(`/user/update`, user);
+};
 
 export const authorizeLogin = async (data) => {
   const response = await instance.post('/user/login', data);
@@ -27,12 +30,50 @@ export const authorizeLogin = async (data) => {
 
 export const sendMessage = async (data) => {
   const response = await instance.post('/message/send', data);
-  console.log(response);
   return response;
 };
 
 export const getMessage = async () => {
   const response = await instance.get('/message/get');
-  console.log(response);
+  return response;
+};
+
+export const getPath = async (pathId) => {
+  const response = await instance.get(`/path?pathId=${pathId}`);
+  return response;
+};
+
+export const getPathsByCompany = async (companyId) => {
+  const response = await instance.get(`/path/company?companyId=${companyId}`);
+  return response;
+};
+
+export const createPath = async (path) => {
+  const response = await instance.post('/path/create', path)
+  return response;
+};
+
+export const updatePath = async (path) => {
+  const response = await instance.post('/path/update', path)
+  return response;
+};
+
+export const getActivity = async (activityId) => {
+  const response = await instance.get(`/activity?activity=${activityId}`);
+  return response;
+};
+
+export const getActivities = async (pathId) => {
+  const response = await instance.get(`/activity/path?pathId=${pathId}`);
+  return response;
+};
+
+export const createActivity = async (activity) => {
+  const response = await instance.post('/activity/create', {"activity": activity})
+  return response;
+};
+
+export const updateActivity = async (activity) => {
+  const response = await instance.post('/activity/update', activity)
   return response;
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./Pathview.css";
 
-const PathOverview = ({ isOpen, children }) => {
+const PathOverview = ({ isOpen, path }) => {
 
   const handleClose = () => {
     isOpen(false);
@@ -20,13 +20,12 @@ const PathOverview = ({ isOpen, children }) => {
                 </div> 
             </div>
             <div className="scrollableContent">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est sit amet facilisis magna etiam tempor orci eu lobortis.</p>
-                    {children}
-                </div>
-    
+              <p>{ path.pathOverview }</p>
             </div>
-        </div>
-    </div>
+    
+          </div>
+      </div>
+  </div>
   );
 };
 

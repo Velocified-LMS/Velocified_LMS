@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
-const Activity = require('./Activity'); 
+const Activity = require('./Activity');
+const Company = require('./Company');
 const Schema = mongoose.Schema;
 
 const pathSchema = new mongoose.Schema({
-    pathId: String,
+    pathId: {
+        type: String,
+        immutable: true
+    },
     pathName: String,
     pathOverview: String,
     proficiencyDefinition: String,
@@ -11,8 +15,13 @@ const pathSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Activity'
     }],
+    company: {
+        type: Schema.Types.ObjectId,
+        ref: Company
+    },
     completed: Number,
-    total: Number
+    total: Number,
+    seats: Number
 });
 
 const Path = mongoose.model('Path',pathSchema);

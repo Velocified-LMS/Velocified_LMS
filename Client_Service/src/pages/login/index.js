@@ -5,22 +5,34 @@ import '@/app/globals.css'
 import { authorizeLogin, getUserData } from "../../services/ApiService";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import React, { useState } from 'react';
 
-
+const redirectToNewPage = (page, router) => {
+  router.push('/' + page);
+};
 
 const Login = () => {
   const router = useRouter();
-  const redirectToNewPage = (page) => {
-    router.push('/' + page);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
   };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+
   const handleLogin = (e) => {
     const data = {
-      "email": "sai1@123.com",
-      "pwd": "password1"
+      "email": username,
+      "pwd": password
     };
     authorizeLogin(data).then((res) => {
       console.log(res);
-      redirectToNewPage('dashboard');
+      redirectToNewPage('dashboard', router);
     }).catch(error => {
       console.error(error);
     });;
@@ -47,6 +59,8 @@ const Login = () => {
         margin="normal"
         className={styles.usernameField}
         required
+        value={username}
+        onChange={handleUsernameChange}
         sx={{ width:'25vw',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
@@ -62,6 +76,8 @@ const Login = () => {
         label="Password"
         type="password"
         variant="outlined"
+        value={password}
+        onChange={handlePasswordChange}
         margin="normal"
         sx={{ width:'25vw',
           '& .MuiOutlinedInput-root': {

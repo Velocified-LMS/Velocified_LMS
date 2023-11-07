@@ -12,10 +12,8 @@ const userSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: Company
   },
-  path: {
-    type: Schema.Types.ObjectId,
-    ref: 'Path'
-  }
+  path: String,
+  activities: Object
 });
 
 const User = mongoose.model('User', userSchema);

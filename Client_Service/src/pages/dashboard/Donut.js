@@ -14,7 +14,8 @@ const Donut = ({ percentage }) => {
             borderWidth: 2,
         }],
     };
-    const DonutChartTextPlugin = {
+
+    const getDonutChartTextPlugin = (currentPercentage) => ({
         beforeDraw: function(chart) {
             var width = chart.width,
             height = chart.height,
@@ -23,7 +24,7 @@ const Donut = ({ percentage }) => {
             var fontSize = '18px ';
             ctx.font = fontSize + "Roboto";
             ctx.textBaseline = "middle";
-            var text = percentage+"%",
+            var text = currentPercentage + "%",
             textX = Math.round((width - ctx.measureText(text).width) / 2),
             textY = height / 2;
             ctx.fillStyle = '#5A20C3';
@@ -31,7 +32,8 @@ const Donut = ({ percentage }) => {
             ctx.fillText(text, textX, textY);
             ctx.save();
         } 
-    };
+    });
+
     const doughnutChartOptions = {
         cutout: 45,
         legend: {
@@ -40,7 +42,7 @@ const Donut = ({ percentage }) => {
     };
     return (
         <div className={styles.progress}>
-            <Doughnut data={doughnutChartData} options={doughnutChartOptions} plugins={[DonutChartTextPlugin]}/>
+            <Doughnut key={percentage} data={doughnutChartData} options={doughnutChartOptions} plugins={[getDonutChartTextPlugin(percentage)]}/>
         </div>
     );
 }

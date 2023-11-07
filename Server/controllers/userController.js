@@ -1,19 +1,29 @@
 const User = require('../models/User');
 const Company = require('../models/Company');
-const Path = require('../models/Path');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 
 const getUser = async (req, res) => {
     try {
       const user = req.session.user.id;
-      const users = await User.find({ email: user });
+      const users = await User.findOne({ email: user });
       res.json(users);
       // res.status(200).json({"message": "User successfull"});
     } catch (error) {
       console.error('Error getting user:', error);
       res.status(500).json({ error: 'Error getting user' });
     }
+};
+
+const updateUser = async (req, res) => {
+  try {
+    const user = req.session.user.id;
+    const response = await User.findOneAndUpdate({ email: user}, req.body);
+    res.json(response);
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json({ error: 'Error updating user' });
+  }
 };
 
 const authorizeUser = async (req, res) => {
@@ -105,6 +115,7 @@ const register = async (req, res) => {
       });
       await user.company.save();
     }
+    user.path = req.body.path;
     const newUser = new User(user);
     await newUser.save();
     res.status(201).json({"message": "User created successfully"});
@@ -133,5 +144,6 @@ const postRequest = (apiUrl, postData) => {
 module.exports = {
   register,
   getUser,
-  authorizeLogin
+  authorizeLogin,
+  updateUser
 };

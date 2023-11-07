@@ -4,6 +4,8 @@ const session = require('express-session');
 const db = require('./mongoDB')
 const userRoutes = require('./routes/UserRoutes'); 
 const messageRoutes = require('./routes/MessageRoutes');
+const pathRoutes = require('./routes/PathRoutes');
+const activityRoutes = require('./routes/ActivityRoutes');
 
 const app = express();
 const corsOptions = {
@@ -31,6 +33,8 @@ app.get('/ping', (req, res) => {
 });
 app.use('/user', userRoutes);
 app.use('/message', messageRoutes);
+app.use('/path', pathRoutes);
+app.use('/activity', activityRoutes)
 
 app.listen(3100, () => {
   console.log('Server listening on port 3100');

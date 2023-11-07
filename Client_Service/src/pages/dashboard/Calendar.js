@@ -4,8 +4,9 @@ import { Search } from '@mui/icons-material';
 import { TextField, InputAdornment, Checkbox } from "@mui/material";
 import PathOverview from './PathOverview';
 import PathDefinition from './PathDefinition';
+import { getActivities } from '@/services/ApiService';
 
-const ListCalendar = ({children, isOpen}) => {
+const ListCalendar = ({path, isOpen}) => {
 
     const handleClose = () => {
       isOpen(false);
@@ -18,16 +19,30 @@ const ListCalendar = ({children, isOpen}) => {
     const togglePathDefinitionView = (visible) => {
         setPathDefinitionVisible(visible);
     };
+    const [days, setDays] = useState({});
+    useEffect(() => {
+        getActivities(path._id).then((activities) => {
+            let activityList = {}
+            activities.data.map(element => {
+                if (element.day in activityList) {
+                    activityList[element.day].push(element)
+                } else {
+                    activityList[element.day] = [element]
+                }
+            });
+            setDays(activityList);
+        });
+    }, []);
     const completion = 30;
     return (
     <div className="modal">
-        {PathViewVisible && <PathOverview isOpen={togglePathView}/> }
-        {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView}/> }
+        {PathViewVisible && <PathOverview isOpen={togglePathView} path={path} /> }
+        {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView} path={path} /> }
         <div className="popup">
             <div className="modalContent">
             <div className="header">
                 <div className="pathTitle left">
-                    Path Name
+                    {path.pathName}
                 </div>
                 <div className='pathTitle center'>
                     {completion + '% completed'}
@@ -62,47 +77,33 @@ const ListCalendar = ({children, isOpen}) => {
                 Path Overview
             </div>
             <div className="path" onClick={togglePathDefinitionView}>
-                Path Definition
+                Proficiency Definition
             </div>
             <div className="scrollableContentListCalendar">
-                <div className='activities' style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
-                    <div className='calendar-item day'>
-                        Day 1
-                    </div>
-                    <div style={{width: '100%'}}>
-                        <div className='calendar-item activity'>    
-                            <div className='left'>Activity 1</div>
-                            <Checkbox checked={false} className='right'/>
-                        </div>
-                        <div className='space'/>
-                        <div className='calendar-item activity'>
-                            Activity 1
-                        </div>
-                        <div className='space'/>
-                        <div className='calendar-item activity'>
-                            Activity 1
-                        </div>
-                    </div>
-
-                        </div>
-                        <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                    {Object.entries(days).map(([day, activities], i) => {
+                        return (
+                        <div className='activities' style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
                             <div className='calendar-item day'>
-                                Day 2
+                                Day {day}
                             </div>
                             <div style={{width: '100%'}}>
-                                <div className='calendar-item activity'>
-                                    Activity 1
-                                </div>
-                                <div className='space'/>
-                                <div className='calendar-item activity'>
-                                    Activity 1
-                                </div>
+                                {
+                                    activities.map((activity, index) => {
+                                        return(
+                                        <div key={index + i * 999}>
+                                            <div className='calendar-item activity'>    
+                                                <div className='left' >{activity.activityName}</div>
+                                            </div>
+                                            {index + 1 !== activities.length && <div className='space'/>}
+                                        </div>);
+                                    })
+                                }
                             </div>
-
-                        </div>
-                    </div>
+                        </div>);
+                    })}
                     </div>
                 </div>
+            </div>
         </div>
     );
 };

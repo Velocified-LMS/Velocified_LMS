@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import "./NewActivity.css";
 import { TextField,TextareaAutosize } from '@mui/material';
+import { createActivity } from '@/services/ApiService';
 
-const NewActivity = ({ isOpen, children }) => {
+const NewActivity = ({ isOpen, path }) => {
 
   const handleClose = () => {
     isOpen(false);
@@ -29,7 +30,7 @@ const NewActivity = ({ isOpen, children }) => {
     return dateRegex.test(date);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -54,7 +55,9 @@ const NewActivity = ({ isOpen, children }) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      console.log('Form submitted:', formData);
+      formData.path = path
+      const response = await createActivity(formData);
+      handleClose();
     }
   };
 

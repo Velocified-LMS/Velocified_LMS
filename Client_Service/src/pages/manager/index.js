@@ -1,9 +1,8 @@
 import React from "react"
-import  { useState } from "react";
+import  { useState, useEffect } from "react";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { Search } from "@mui/icons-material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Edit, Delete, Update } from "@mui/icons-material";
 import Checkbox from '@mui/material/Checkbox';
 import PathOverview from './PathOverview';
 import PathDefinition from './PathDefinition';
@@ -12,6 +11,7 @@ import ActivityEdit from "./ActivityEdit";
 import CreatePath from "./CreatePath";
 import AddCoach from "./AddCoach";
 import BlockUser from "./BlockUser";
+import { getUserData, getPathsByCompany, getActivity, getActivities } from "@/services/ApiService";
 
 import '@/app/globals.css'
 import styles from "./learneradmindashboard.module.css"
@@ -22,8 +22,8 @@ import Profileeditor from "./Profileeditor";
 
 const LearnerAdminDashboard = () => {
     const language = "English"
-    const userName = "User Name"
-    const path = "Path Name"
+    // const userName = "User Name"
+    // const path = "Path Name"
     const day = "Day "+ 4
     const currentDate = new Date()
     const ActivityTitle = "Activity 1"
@@ -38,19 +38,58 @@ const LearnerAdminDashboard = () => {
         day: 'numeric',
         year: 'numeric',
     });
-    const data = [
-        { day: '1', activities: ['Activity1', 'Activity2'] },
-        { day: '2', activities: ['Activity3', 'Activity4'] },
-        { day: '3', activities: ['Activity5'] },
-      ];
+    const [days, setDays] = useState({});
+    // days = {
+    //     1: ['Activity1', 'Activity2'],
+    //     2: ['Activity3', 'Activity4'],
+    //     3: ['Activity5'],
+    // };
+    const [activities, setActivities] = useState([])
+    const [user, setUser] = useState({});
+    const [paths, setPaths] = useState([]);
+    const [path, setPath] = React.useState('');
+    const [PathDefinitionViewVisible, setPathDefinitionVisible] = useState(false);
+    const togglePathDefinitionView = (visible) => {
+        setPathDefinitionVisible(visible);
+    };
+    useEffect (() => {
+        getUserData().then((user) => {
+            setUser(user.data);
+        });
+    }, []);
 
+    useEffect (() => {
+        if(user.company)
+            getPathsByCompany(user.company).then((paths) => {
+                console.log(paths.data);
+                setPaths(paths.data);
+            });
+    }, [user]);
 
-    
+    const [NewActivityVisible, setNewActivityVisible] = useState(false);
+    const toggleNewActivityView = (visible) => {
+        setNewActivityVisible(visible);
+    };
 
-    const [selectedOption, setSelectedOption] = React.useState('');
+    useEffect (() => {
+        if (path) {
+            getActivities(path._id).then((activities) => {
+                let activityList = {}
+                activities.data.map(element => {
+                    if (element.day in activityList) {
+                        activityList[element.day].push(element)
+                    } else {
+                        activityList[element.day] = [element]
+                    }
+                });
+                setDays(activityList);
+                console.log("Activiities:",activityList);
+            });
+        }
+    }, [NewActivityVisible, path]);
       
     const handleChange = (event) => {
-        setSelectedOption(event.target.value);
+        setPath(paths[event.target.value]);
     };
 
 
@@ -71,16 +110,6 @@ const LearnerAdminDashboard = () => {
     const [PathViewVisible, setPathVisible] = useState(false);
     const togglePathView = (visible) => {
         setPathVisible(visible);
-    };
-
-    const [PathDefinitionViewVisible, setPathDefinitionVisible] = useState(false);
-    const togglePathDefinitionView = (visible) => {
-        setPathDefinitionVisible(visible);
-    };
-
-    const [NewActivityVisible, setNewActivityVisible] = useState(false);
-    const toggleNewActivityView = (visible) => {
-        setNewActivityVisible(visible);
     };
 
     const [ActivityEditVisible, setActivityEditVisible] = useState(false);
@@ -112,13 +141,13 @@ const LearnerAdminDashboard = () => {
         
       };
    
-
+    if (paths === undefined || path === undefined) return "Loading...";
     return (
         <div className={styles.page}>
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             {PathViewVisible && <PathOverview isOpen={togglePathView}/> }
             {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView}/> }
-            {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView}/> }
+            {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView} path={path._id}/> }
             {CreatePathVisible && <CreatePath isOpen={toggleCreatePathView}/> }
             {AddCoachVisible && <AddCoach isOpen={toggleAddCoachView}/> }
             {BlockUserVisible && <BlockUser isOpen={toggleBlockUserView}/> }
@@ -142,7 +171,7 @@ const LearnerAdminDashboard = () => {
                     <div className={styles.sidebar}>
                         <div className={styles.text}>
                             <div style={{fontSize: 20}}>
-                                { userName }
+                                { user.username }
                             </div>
                             <div style={{fontSize: 16}}>
                                 Administrator 
@@ -158,7 +187,7 @@ const LearnerAdminDashboard = () => {
                                 </div>
                             </div>
                             <Select
-                                value={selectedOption}
+                                value={""}
                                 onChange={handleChange}
                                 displayEmpty
                                 fullWidth
@@ -178,11 +207,11 @@ const LearnerAdminDashboard = () => {
                                 }}
                             >
                                 <MenuItem value="" disabled>
-                                Manage Path
+                                    Manage Path
                                 </MenuItem>
-                                <MenuItem value="option1">Path 1</MenuItem>
-                                <MenuItem value="option2">Path2</MenuItem>
-                                <MenuItem value="option3">Path 3</MenuItem>
+                                {paths.map((path, i) => {
+                                    return <MenuItem key={i} value={i}>{path.pathName}</MenuItem>
+                                })}
                             </Select>
                             <div className={styles.dashboardOption} >
                                 <div className={styles.dashboardText} onClick={toggleAddCoachView} >
@@ -209,20 +238,20 @@ const LearnerAdminDashboard = () => {
                             <div className={styles.PathManagerConatainer} >
                                 <div className={styles.PathManagerTab}>
                                     <div className={styles.PathDetailText}>
-                                        Path Name
+                                        {path.pathName}
                                     </div>
                                     <div className={styles.PathDetailText}>
-                                        #users/#seats
+                                        {path.seats}
                                     </div>
                                 </div>
                                 <div className={styles.PathManagerTab}>
-                                    <div className={styles.PathDetailText} onClick={togglePathView}>
-                                        Path Overview                      
-                                        <DeleteIcon />
+                                    <div className={styles.PathDetailText}>
+                                        <div style={{width: '100%'}} onClick={togglePathView}>Path Overview</div>
+                                        <Edit onClick={() => console.log("meow")}/>
                                     </div>
-                                    <div className={styles.PathDetailText} onClick={togglePathDefinitionView}>
-                                        Proficiency Definition
-                                        <DeleteIcon />
+                                    <div className={styles.PathDetailText}>
+                                        <div style={{width: '100%'}} onClick={togglePathDefinitionView}>Path Definition</div>
+                                        <Edit />
                                     </div>
                                 </div>
                                 <div className={styles.NewActivityButton} onClick={toggleNewActivityView}>
@@ -231,21 +260,24 @@ const LearnerAdminDashboard = () => {
                                 <div className={styles.ActivityCreatorContainer}>
                                 <table className={styles.ActivityCreator}>
                                     <tbody>
-                                    {data.map((item, index) => (
-                                        <React.Fragment key={index}>
-                                        {item.activities.map((activity, activityIndex) => (
+                                    {Object.entries(days).map(([day, item]) => (
+                                        <React.Fragment key={day}>
+                                        {item.map((activity, activityIndex) => (
                                             <tr key={activityIndex} className={styles.PathMargin}>
                                                 {activityIndex === 0 ? (
-                                                    <td rowSpan={item.activities.length} className={styles.PathDay}>Day {item.day}</td>
+                                                    <td rowSpan={item.length} className={styles.PathDay}>Day {day}</td>
                                                 ) : null}
                                                 <td className={styles.PathActivity}>
                                                     <div className={styles.PathActivityDetail}>
-                                                        <span style={{flex:'1', paddingTop:'1.5vh'}} >{activity}  </span>
-                                                        <span style={{flex:'1', }}> Require Signoff
-                                                        <Checkbox style={{flex:'0'}}/></span>
-                                                        <span style={{flex:'1'}}> Attach Milestone
-                                                        <Checkbox style={{flex:'0'}}/></span>
-                                                        <DeleteIcon style={{flex:'1', paddingTop:'1.5vh'}} />
+                                                        <span style={{flex:'1', alignItems: 'center', display: 'flex', justifyContent: 'center'}} >
+                                                            {activity.activityName}  
+                                                        </span>
+                                                        {/* <span style={{flex:'1', }}> Require Signoff */}
+                                                        {/* <Checkbox style={{flex:'0'}}/></span> */}
+                                                        {/* <span style={{flex:'1'}}> Attach Milestone */}
+                                                        {/* <Checkbox style={{flex:'0'}}/></span> */}
+                                                        <Edit style={{flex:'1', alignItems: 'center', display: 'flex', justifyContent: 'center'}}
+                                                            onClick={toggleActivityEditView} />
                                                     </div>
                                                 </td>
                                             </tr>

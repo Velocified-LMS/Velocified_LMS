@@ -1,5 +1,5 @@
 import React from "react"
-import  { useState } from "react";
+import  { useState, useEffect } from "react";
 
 import '@/app/globals.css'
 import styles from "./dashboard.module.css"
@@ -12,13 +12,11 @@ import Messenger from "./messenger";
 import Calendar from "./FullCalender";
 import Milestone from "./Milestone";
 import Profileeditor from "./Profileeditor";
+import { getUserData, getPath, getActivities, updateUser } from "@/services/ApiService";
 
 
 const Dashboard = () => {
     const language = "English"
-    const userName = "User Name"
-    const path = "Path Name"
-    const day = "Day "+ 4
     const currentDate = new Date()
     const ActivityTitle = "Activity 1"
     const ActivityDescription = "This is a description of the activity"
@@ -32,22 +30,117 @@ const Dashboard = () => {
         day: 'numeric',
         year: 'numeric',
     });
-
-
+    const [user, setUser] = useState(null);
+    const [completion, setCompletion] = useState(0);
+    const [path, setPath] = useState(null);
+    const [activities, setActivities] = useState([]);
+    const [days, setDays] = useState(null);
+    const [day, setDay] = useState(0);
+    const [back, setBack] = useState(false);
+    const [front, setFront] = useState(true);
+    const [listViewVisible, setListViewVisible] = useState(false);
+    const [activityChange, setActivityChange] = useState(false);
+    const listenActivityChange = (event) => {
+        setActivityChange(event);
+    };
+    const toggleListView = (visible) => {
+        setListViewVisible(visible);
+    };
     const [pathViewVisible, setPathViewVisible] = useState(false);
     const togglePathView = (visible) => {
         setPathViewVisible(visible);
     };
+    const navigate = (increment) => {
+        const courseLength = Object.keys(days).length;
+        const nextDay = (increment + day) % courseLength;
+        setDay(nextDay);
+        if (nextDay !== 0) {
+            setBack(true);
+        } else setBack(false);
+        if (nextDay === courseLength - 1) {
+            setFront(false);
+        } else setFront(true);
+
+    }
+    // useEffect(() => {
+    //     if(path) {
+    //         getActivities(path._id).then((activities) => {
+    //             activities.data.map(element => {
+    //                 const activityId = element._id;
+    //                 if(user.activities && activityId in user.activities) {
+    //                     element.completed = user.activities[activityId].completed;
+    //                     element.signoff = user.activities[activityId].signoff;
+    //                     element.notes = user.activities[activityId].notes;
+    //                     element.feedback = user.activities[activityId].feedback;
+    //                 }
+    //             });
+    //         });
+    //     }
+    // }, [listViewVisible, pathViewVisible]);
+
+    useEffect(() => {
+        initializeData();
+    }, [activityChange]);
+
+    const initializeData = async () => {
+        let user = await getUserData();
+        user = user.data
+        setUser(user);
+        let path = await getPath(user.path);
+        path = path.data
+        setPath(path);
+        let activities = await getActivities(path._id);
+        activities = activities.data;
+        setActivities(activities);
+        let activityList = {}
+        let cnt = 0;
+        activities.map(element => {
+            const activityId = element._id;
+            if(user.activities !== null && activityId in user.activities) {
+                element.completed = user.activities[activityId].completed;
+                element.signoff = user.activities[activityId].signoff;
+                element.notes = user.activities[activityId].notes;
+                element.feedback = user.activities[activityId].feedback;
+            } else {
+                if(user.activities === null) {
+                    user.activities = {};
+                }
+                user.activities[activityId] = {
+                    completed: false,
+                    notes: "",
+                    feedback: "",
+                    signoff: false
+                };
+            }
+            if (element.completed) cnt += 1;
+            if (element.day in activityList) {
+                activityList[element.day].push(element)
+            } else {
+                activityList[element.day] = [element]
+            }
+        });
+        const completion = (cnt / activities.length) * 100;
+        setCompletion(completion.toFixed(1));
+        updateUser(user).then(() => {
+            setUser(user);
+        });
+
+        const sortedObject = Object.fromEntries(
+            Object.entries(activityList).sort(([key1], [key2]) => key1.localeCompare(key2))
+        );
+        setDays(sortedObject);
+    };
+
+    useEffect (() => {
+        initializeData();
+    }, []);
+
 
     const [MilestoneViewVisible, setMilestoneViewVisible] = useState(false);
     const toggleMilestoneView = (visible) => {
         setMilestoneViewVisible(visible);
     };
 
-    const [listViewVisible, setListViewVisible] = useState(false);
-    const toggleListView = (visible) => {
-        setListViewVisible(visible);
-    };
     const [CalViewVisible, setCalViewVisible] = useState(false);
     const toggleCalView = (visible) => {
         setCalViewVisible(visible);
@@ -58,17 +151,17 @@ const Dashboard = () => {
         setProfileeditorViewVisible(visible);
     };
 
-    
-    
+    const [showMessenger, setShowMessenger] = useState(false);
+    const toggleMessenger = () => {
+    setShowMessenger(!showMessenger);
+    };
 
-      const [showMessenger, setShowMessenger] = useState(false);
-      const toggleMessenger = () => {
-        setShowMessenger(!showMessenger);
-      };
+    if (path === null || activities === null || user === null || user.activities === null || days === null)
+        return "Loading...";;
     return (
         <div className={styles.page} data-cy="dashboard-page">
             {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
-            {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
+            {listViewVisible && <ListCalendar path={path} isOpen={toggleListView}/>}
             {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
             {showMessenger && <Messenger />}
             {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
@@ -92,7 +185,7 @@ const Dashboard = () => {
                     <div className={styles.sidebar}>
                         <div className={styles.text}>
                             <div style={{fontSize: 20}}>
-                                { userName }
+                                { user.username }
                             </div>
                             <div style={{fontSize: 16}}>
                                 Learner
@@ -103,14 +196,14 @@ const Dashboard = () => {
                             <div className={styles.path}>
                                 <div style={{fontSize: 20}}>
                                     <a href="./login">
-                                        { path }
+                                        { path.pathName }
                                     </a>
                                 </div>
                                 <div style={{fontSize: 16}}>{ startDate }</div>
                             </div>
                         </div>
                         <div className={styles.studentActivity}>
-                            <Donut percentage={18.2}/>
+                            <Donut percentage={completion}/>
                             <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}} onClick={toggleMilestoneView}>
                                 Milestones
                             </div>
@@ -124,11 +217,11 @@ const Dashboard = () => {
                     <div className={styles.activities}>
                         <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                                <img src="/icons/back.svg" />
+                                {back && <img src="/icons/back.svg" onClick={() => navigate(-1)}/>}
                                 <div className={styles.space} />
-                                <div className={styles.text}>{day}</div>
+                                <div className={styles.text}>{"Day "+Object.keys(days)[day]}</div>
                                 <div className={styles.space} />
-                                <img src="/icons/front.svg" />
+                                {front && <img src="/icons/front.svg" onClick={() => navigate(1)}/>}
                             </div>
                             <div className={styles.tabGroup} data-cy="vector-container">
                                 <div onClick={toggleListView} data-cy="vector-button">
@@ -142,10 +235,9 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className={styles.activityBody} >
-                            <Activity title={ActivityTitle} description={ActivityDescription}  />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
-                            <Activity title={ActivityTitle} description={ActivityDescription} />
+                            {days[Object.keys(days)[day]].map((activity, index) => {
+                                return <Activity user={user} key={index} activity={activity} change={listenActivityChange} />
+                            })}
                         </div>
                     </div>
                 </div>
