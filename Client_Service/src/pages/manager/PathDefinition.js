@@ -4,7 +4,6 @@ import { updatePath } from '@/services/ApiService';
 
 const PathDefinition = ({ isOpen, path }) => {
 
-  const [text, setText] = useState(path.proficiencyDefinition);
   const handleClose = () => {
     isOpen(false);
   };
@@ -14,6 +13,11 @@ const PathDefinition = ({ isOpen, path }) => {
     updatePath(path);
     handleClose();
   };
+
+  if (path === undefined)
+    return "Loading..."
+
+  const [text, setText] = useState(path.proficiencyDefinition);
 
   return (
     <div className="modal">

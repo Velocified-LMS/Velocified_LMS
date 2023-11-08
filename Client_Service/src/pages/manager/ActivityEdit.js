@@ -5,6 +5,9 @@ import { Description } from '@mui/icons-material';
 import { updateActivity } from '@/services/ApiService';
 const ActivityEdit = ({ activity, isOpen }) => {
 
+  if (activity === undefined)
+    return "Loading..."
+
   const [inputActivity, setInputActivity] = useState(activity.activityName);
   const [description, setDescription] = useState(activity.activityDescription);
 

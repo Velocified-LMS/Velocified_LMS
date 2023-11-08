@@ -4,7 +4,6 @@ import { updatePath } from '@/services/ApiService';
 
 const PathOverview = ({ isOpen, path }) => {
 
-  const [text, setText] = useState(path.pathOverview);
   const handleClose = () => {
     isOpen(false);
   };
@@ -14,6 +13,11 @@ const PathOverview = ({ isOpen, path }) => {
     updatePath(path);
     handleClose();
   };
+
+  if (path === undefined)
+    return "Loading..."
+
+  const [text, setText] = useState(path.pathOverview);
 
   return (
     <div className="modal">
