@@ -1,0 +1,23 @@
+﻿Sprint 5 Review 
+
+
+Sprint Review Meeting Date: 11/10/2023 (12:00 PM to 1:00 PM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+
+Sprint Duration: Oct 20  to Nov 10
+
+
+What do you think is the value you created in this deliverable?
+In this deliverable, the value created stems from a systematic approach to ensuring seamless deployment processes, robust continuous integration, and efficient cost control. Configuring AWS Budgets enhances financial oversight, while detailed documentation empowers users to navigate login and dashboard functionalities confidently. The introduction of a user interaction module and security measures elevates the dashboard's usability and data protection. Automated test scripts for various scenarios and UI functionalities, coupled with the selection of an appropriate testing tool, bolster software reliability. Deployment scripts and insightful test execution reports streamline development, fostering quality, security, and operational excellence, thereby creating substantial value in this deliverable.
+Do you think you worked enough and that you did what was expected of you?
+Yes, we believe our efforts were sufficient, and we met all expectations. We systematically addressed user needs, enhanced features, and ensured reliability through testing. User involvement improved workflow, while realistic timelines and long-term planning contributed to success. Effective communication further supported project efficiency. The comprehensive testing, documentation, and deployment strategies affirm our commitment to delivering a robust and user-friendly application, aligning with project objectives and expectations.
+Would you say you met the customer’s expectations? Why or why not?
+In this sprint, we have successfully met and satisfied the customer's expectations, delivering all project requirements. While we diligently worked to address user needs and enhance features, our meticulous testing, documentation, and security implementations align with the customer's vision for a reliable and secure application. Our diligent work, clear communication, and user-centric approach ensured the project's success, fostering a positive partnership with the customer. The comprehensive deployment and testing strategies further validate that our deliverables meet the customer's standards and expectations, ensuring a successful collaboration.
+Next Meeting Date: Nov 24, 2023
