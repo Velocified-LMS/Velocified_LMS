@@ -1,0 +1,21 @@
+﻿Sprint 5 Retrospective
+
+
+Sprint Retrospective Meeting Date: 11/10/2023 (10:00 AM to 11:00 AM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+What went right?
+In this sprint, several key elements contributed to project success. Rigorous testing ensured the automatic deployment process triggers flawlessly on 'main' branch pushes, streamlining development. Configuration of a continuous integration tool adeptly identifies branch changes, enhancing error detection. AWS Budgets implementation showcased proactive cost control. Robust security measures, including password encryption, fortified the application. User and management modules on the dashboard met user needs, while automated test scripts and a chosen UI testing tool bolstered software reliability. Deployment and test execution reports showcased meticulous planning and execution. Overall, these accomplishments underscore effective collaboration, attention to detail, and a dedication to delivering a high-quality product.
+What went wrong?
+Throughout the sprint, challenges arose that warrant attention. The automatic deployment process faced intermittent issues, requiring additional testing iterations to ensure consistent triggers on every push to the 'main' branch. Configuration complexities were encountered during the setup of the continuous integration tool, causing delays in detecting changes. AWS Budgets implementation faced initial hurdles in effectively monitoring and controlling costs, necessitating refined strategies. These challenges, while managed and addressed, prompted adaptability and iterative refinement to ensure a successful project outcome.
+How are we going to do better?
+To enhance performance, we will conduct a thorough review of the automatic deployment process, addressing intermittent issues and ensuring consistent triggers on every 'main' branch push. Streamlining the configuration of our continuous integration tool is a priority, overcoming complexities to facilitate prompt change detection. We'll refine our AWS Budgets setup for more effective cost monitoring and control. Documentation will see improvement through an iterative and collaborative approach, minimizing delays in detailing login and dashboard functionalities. Learning from module development complexities, we'll adopt a more anticipatory stance to navigate unforeseen challenges. These strategic steps aim to optimize processes for a smoother and more efficient project execution.
+
+
+Next Meeting Date: Nov 24, 2023
