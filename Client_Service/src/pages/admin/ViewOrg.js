@@ -8,6 +8,9 @@ const ViewOrg = ({ isOpen, org }) => {
     isOpen(false);
   };
 
+  if (org === undefined)
+    return "Loading...";
+
   const [contactFields, setContactFields] = useState([...org.contact]); 
 
   const handleAddContact = () => {
