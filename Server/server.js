@@ -9,7 +9,7 @@ const activityRoutes = require('./routes/ActivityRoutes');
 
 const app = express();
 const corsOptions = {
-  origin: ['http://velocified.net', 'http://localhost:3000'],
+  origin: ['https://velocified.net', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   credentials: true
 };
