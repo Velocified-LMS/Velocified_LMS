@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import "./AddOrg.css";
 import { TextField } from '@mui/material';
+import { createCompany } from '@/services/ApiService';
 
-const AddOrg = ({ isOpen, children }) => {
+const AddOrg = ({ isOpen, setCompanies, companies }) => {
 
   const handleClose = () => {
     isOpen(false);
   };
 
-  const [contactFields, setContactFields] = useState(['Contact 1']); // Initialize with one field
+  const [companyName, setCompanyName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [contactFields, setContactFields] = useState(['']); // Initialize with one field
 
   const handleAddContact = () => {
     const newField = `Contact ${contactFields.length + 1}`;
@@ -20,6 +24,19 @@ const AddOrg = ({ isOpen, children }) => {
   const handleAddDivision = () => {
     const newField = `Division ${divisionFields.length + 1}`;
     setDivisionFields([...divisionFields, newField]);
+  };
+
+  const handleCreateCompany = async () => {
+    const company = {
+      name: companyName,
+      email: email,
+      address: address,
+      domain: email.split('@')[1],
+      seats: 0
+    }
+    const response = await createCompany(company);
+    setCompanies([...companies, response.data]);
+    handleClose();
   };
 
   return (
@@ -43,6 +60,8 @@ const AddOrg = ({ isOpen, children }) => {
                     height: "5px"
                   },
                 }}
+                // value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
                 placeholder= 'Organization Name'
                 className='OrgDetailField'            
                 ></TextField>   
@@ -58,55 +77,29 @@ const AddOrg = ({ isOpen, children }) => {
                   },
                 }}
                 placeholder= 'Location'  
-                className='OrgDetailField'          
+                className='OrgDetailField'
+                // value={address}
+                onChange={(e) => setAddress(e.target.value)}      
                 ></TextField>   
               </div>
               </div>
               <br />
-             
-      {contactFields.map((field, index) => (
-        <div key={index} className='OrgDetailAddableField'>
-          <span>
-            <TextField
-              inputProps={{
-                style: {
-                  height: "5px",
-                },
-              }}
-              placeholder={field}
-            />
-          </span>
-          {index === contactFields.length - 1 && (
-            <span onClick={handleAddContact} >
-              <img src='/add_contact.svg' alt='Add Contact'  style ={{ height:'80%', widht:'80%'}}/>
-            </span>
-          )}
-        </div>
-      ))}
-   
-              <br />
-              {divisionFields.map((dfield, index) => (
-        <div key={index} className='OrgDetailAddableField'>
-          <span>
-            <TextField
-              inputProps={{
-                style: {
-                  height: "5px",
-                },
-              }}
-              placeholder={dfield}
-            />
-          </span>
-          {index === divisionFields.length - 1 && (
-            <span onClick={handleAddDivision} >
-              <img src='/add_contact.svg' alt='Add Division'  style ={{ height:'80%', widht:'80%'}}/>
-            </span>
-          )}
-        </div>
-      ))}
+              <div>
+                <TextField 
+                inputProps={{
+                  style: {
+                    height: "5px",
+                  },
+                }}
+                placeholder= 'Email Address'  
+                className='OrgDetailField'
+                // value={email}
+                onChange={(e) => setEmail(e.target.value)}      
+                ></TextField>   
+              </div>
               <br />
               <div>
-                <button className="AddOrgBttn"  style={{textAlign: 'center'}}>
+                <button className="AddOrgBttn"  style={{textAlign: 'center'}} onClick={handleCreateCompany}>
                   Add
                 </button>
               </div>

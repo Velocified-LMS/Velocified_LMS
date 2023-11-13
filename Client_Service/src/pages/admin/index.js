@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import  { useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -12,6 +12,7 @@ import AddOrg from "./AddOrg";
 import ViewOrg from "./ViewOrg";
 import { Search } from "@mui/icons-material";
 import { TextField, InputAdornment } from "@mui/material";
+import { getCompanies, getCompany } from "@/services/ApiService";
 
 
 const VelocifiedAdminDashboard = () => {
@@ -24,58 +25,6 @@ const VelocifiedAdminDashboard = () => {
         day: 'numeric',
         year: 'numeric',
     });
-
-    const orgdata = [
-        {
-          "Organization_name": "Amazon",
-          "Location": "Ontario",
-          "contact":["Person1","Person2"],
-          "seat_number": "55"
-        },
-        {
-            "Organization_name": "Gamma",
-            "Location": "Cananda",
-            "contact":["Person1","Person2"],
-            "seat_number": "5255"
-          },
-          {
-            "Organization_name": "Velocofied",
-            "Location": "texas",
-            "contact":["Person1","Person2"],
-            "seat_number": "33"
-          },
-          {
-            "Organization_name": "google",
-            "Location": "Bllaaah",
-            "contact":["Person1","Person2"],
-            "seat_number": "5775"
-          },
-          {
-            "Organization_name": "Amazon",
-            "Location": "Ontario",
-            "contact":["Person1","Person2"],
-            "seat_number": "55"
-          },
-          {
-              "Organization_name": "Gamma",
-              "Location": "Cananda",
-              "contact":["Person1","Person2"],
-              "seat_number": "5255"
-            },
-            {
-              "Organization_name": "Velocofied",
-              "Location": "texas",
-              "contact":["Person1","Person2"],
-              "seat_number": "33"
-            },
-            {
-              "Organization_name": "google",
-              "Location": "Bllaaah",
-              "contact":["Person1","Person2"],
-              "seat_number": "5775"
-            },
-      ];
-
     const [ProfileeditorViewVisible, setProfileeditorViewVisible] = useState(false);
     const toggleProfileeditorView = (visible) => {
         setProfileeditorViewVisible(visible);
@@ -94,15 +43,29 @@ const VelocifiedAdminDashboard = () => {
         setViewOrgVisible(!ViewOrgVisible);
     };
 
-    
+    const [companies, setCompanies] = useState(null);
+
+    const [totalSeats, setTotalSeats] = useState(0);
+
+    useEffect(() => {
+        const initializeData = async () => {
+            const companies = await getCompanies();
+            const totalSeats = companies.data.reduce((sum, company) => sum += company.seats, 0);
+            setTotalSeats(totalSeats);
+            setCompanies(companies.data);
+        }
+        initializeData();
+    }, [AddOrgVisible]);
+
+    if(companies === null) {
+        return "Loading...";
+    }
 
     return (
         <div className={styles.page}>
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
-            
-            {AddOrgVisible && <AddOrg isOpen={toggleAddOrgView}/> }
+            {AddOrgVisible && <AddOrg isOpen={toggleAddOrgView} setCompanies={setCompanies} companies={companies}/> }
             {ViewOrgVisible && <ViewOrg isOpen={toggleViewOrgView} org={selectedOrg} /> }
-
             
             <Navbar />
             <div className={styles.dashboardContainer}>
@@ -134,12 +97,12 @@ const VelocifiedAdminDashboard = () => {
                         <div className={styles.studentActivity}>
                             <div className={styles.dashboardOption} >
                                 <div className={styles.dashboardText}  >
-                                    Total # Seats : 
+                                    Total Seats : {totalSeats}
                                 </div>
                             </div> 
                             <div className={styles.dashboardOption} >
                                 <div className={styles.dashboardText} >
-                                    Total # Organizations:
+                                    Total Organizations: {companies.length}
                                 </div>
                             </div>
                             <div className={styles.dashboardOption} >
@@ -191,13 +154,13 @@ const VelocifiedAdminDashboard = () => {
                                 </tr>
                                 </thead>
                                 <tbody >
-                                {orgdata.map((org, index) => (
+                                {companies.map((company, index) => (
                                     <tr key={index} className={styles.table_row} onClick={() => {
-                                        toggleViewOrgView(org);
+                                        toggleViewOrgView(company);
                                       }}>
-                                    <td className={styles.centered_cell} style={{textAlign: 'center'}}>{org.Organization_name}</td>
-                                    <td className={styles.centered_cell} style={{textAlign: 'center'}}>{org.Location}</td>
-                                    <td className={styles.centered_cell} style={{textAlign: 'center'}} >{org.seat_number}</td>
+                                    <td className={styles.centered_cell} style={{textAlign: 'center'}}>{company.name}</td>
+                                    <td className={styles.centered_cell} style={{textAlign: 'center'}}>{company.address}</td>
+                                    <td className={styles.centered_cell} style={{textAlign: 'center'}} >{company.seats}</td>
                                     </tr>
                                 ))}
                                 </tbody>

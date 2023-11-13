@@ -23,7 +23,30 @@ const getCompany = async (req, res) => {
     }
 };
 
+const getCompanies = async (req, res) => {
+    try {
+        const companies = await Company.find();
+        res.json(companies)
+    } catch (err) {
+        console.error('Error fetching Companies:', err);
+        res.status(500).json({ message: 'Error fetching Companies', error: err });
+    }
+};
+
+const createCompany = async (req, res) => {
+    try {
+        const company = req.body
+        const resposne = await Company.create(company);
+        res.status(200).json(resposne);
+    } catch (err) {
+        console.error('Error creating Company:', err);
+        res.status(500).json({ message: 'Error creating Company', error: err });
+    }
+};
+
 module.exports = {
     updateCompany,
-    getCompany
+    getCompany,
+    createCompany,
+    getCompanies
 };

@@ -104,6 +104,14 @@ export const getCompany = async (companyId) => {
   return await instance.get(`/company/get?company=${companyId}`);
 };
 
+export const getCompanies = async () => {
+  return await instance.get(`/company/all`);
+};
+
+export const createCompany = async (company) => {
+  return await instance.post('/company/create', company);
+};
+
 export const updateCompany = async (activity) => {
   return await instance.post('/company/update', activity);
 };

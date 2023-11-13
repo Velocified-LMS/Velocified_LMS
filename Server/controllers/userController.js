@@ -111,13 +111,6 @@ const register = async (req, res) => {
     if(req.body.pwd) {
       user.pwd = hashedPassword;
     }
-    if(req.body.company) {
-      user.company = new Company({
-        name: req.body.company.name,
-        domain: req.body.company.domain
-      });
-      await user.company.save();
-    }
     if(req.body.path) {
       user.path = req.body.path;
     }
@@ -125,6 +118,7 @@ const register = async (req, res) => {
     user.activities = {};
     const domain = user.email.split('@')[1];
     const company = await Company.findOne({"domain": domain});
+    user.company = company._id;
     if(company) {
       user.otp = generateOTP();
       user.validated = false;
