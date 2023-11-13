@@ -12,7 +12,7 @@ import Messenger from "./messenger";
 import Calendar from "./FullCalender";
 import Milestone from "./Milestone";
 import Profileeditor from "./Profileeditor";
-import { getUserData, getPath, getActivities, updateUser } from "@/services/ApiService";
+import { getUserData, getPath, getActivities, updateUser, getUser } from "@/services/ApiService";
 
 
 const Dashboard = () => {
@@ -62,21 +62,6 @@ const Dashboard = () => {
         } else setFront(true);
 
     }
-    // useEffect(() => {
-    //     if(path) {
-    //         getActivities(path._id).then((activities) => {
-    //             activities.data.map(element => {
-    //                 const activityId = element._id;
-    //                 if(user.activities && activityId in user.activities) {
-    //                     element.completed = user.activities[activityId].completed;
-    //                     element.signoff = user.activities[activityId].signoff;
-    //                     element.notes = user.activities[activityId].notes;
-    //                     element.feedback = user.activities[activityId].feedback;
-    //                 }
-    //             });
-    //         });
-    //     }
-    // }, [listViewVisible, pathViewVisible]);
 
     useEffect(() => {
         initializeData();
@@ -96,13 +81,13 @@ const Dashboard = () => {
         let cnt = 0;
         activities.map(element => {
             const activityId = element._id;
-            if(user.activities !== null && activityId in user.activities) {
+            if(user.activities !== undefined && activityId in user.activities) {
                 element.completed = user.activities[activityId].completed;
                 element.signoff = user.activities[activityId].signoff;
                 element.notes = user.activities[activityId].notes;
                 element.feedback = user.activities[activityId].feedback;
             } else {
-                if(user.activities === null) {
+                if(user.activities === undefined) {
                     user.activities = {};
                 }
                 user.activities[activityId] = {
@@ -121,10 +106,10 @@ const Dashboard = () => {
         });
         const completion = (cnt / activities.length) * 100;
         setCompletion(completion.toFixed(1));
+        user.completion = completion.toFixed(1);
         updateUser(user).then(() => {
             setUser(user);
         });
-
         const sortedObject = Object.fromEntries(
             Object.entries(activityList).sort(([key1], [key2]) => key1.localeCompare(key2))
         );

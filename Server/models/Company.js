@@ -7,7 +7,8 @@ const companySchema = new mongoose.Schema({
   address: String,
   city: String,
   state: String,
-  domain: String
+  domain: String,
+  seats: Number
 });
 
 const Company = mongoose.model('Company', companySchema);

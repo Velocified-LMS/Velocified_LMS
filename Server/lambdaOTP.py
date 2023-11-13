@@ -7,25 +7,25 @@ def is_valid_email(email):
     return re.match(pattern, email)
     
 def lambda_handler(event, context):
-    email = event["mail"]
-    otp = event["otp"]
+    body = json.loads(event['body'])
+    email = body["email"]
+    otp = body["otp"]
     
     if not is_valid_email(email):
         return {
             'statusCode': 400,
             'body': json.dumps({'error': 'Invalid email address'})
         }
-    # Send the mail.
-    print(email, otp)
+
     mail_client = boto3.client('ses')
     response = mail_client.send_email(
-      Source="vardhansai39@gmail.com",
+      Source="no-reply@velocified.net",
       Destination={
         'ToAddresses': [email]
       },
       Message = {
         'Subject': {
-          'Data': "OTP for velocified"
+          'Data': "OTP for verification of velocified account"
         },
         'Body': {
           'Text': {

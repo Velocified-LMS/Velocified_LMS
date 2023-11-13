@@ -1,10 +1,36 @@
 import React, { useState } from 'react';
 import "./AddCoach.css";
 import { TextField } from '@mui/material';
+import { getUser, getUserData, updateUser } from '@/services/ApiService';
 
-const AddCoach = ({ isOpen, children }) => {
+
+const AddCoach = ({ isOpen, path }) => {
 
   const handleClose = () => {
+    isOpen(false);
+  };
+
+  const [input, setInput] = useState("");
+  const [userError, setUserError] = useState(false);
+
+  const addCoach = async () => {
+    const res = await getUser({'email': input});
+    if(res.data[0] === undefined || res.data[0] === null) {
+      setUserError(true);
+      return;
+    }
+    const user = res.data[0];
+    const paths = [...user.coach, path]
+    user.coach = paths.reduce((unique, item) => {
+      if (!unique.includes(item)) {
+        unique.push(item);
+      }
+      return unique;
+    }, []);
+    if(user.access === undefined || user.access === "user") {
+      user.access = "coach";
+    }
+    const response = await updateUser(user);
     isOpen(false);
   };
 
@@ -22,6 +48,7 @@ const AddCoach = ({ isOpen, children }) => {
             </div>
             <div>
               <br></br>
+              {userError && <p>User has to be registered first to be made a coach</p>}
               <div>
                 <TextField 
                 inputProps={{
@@ -29,13 +56,15 @@ const AddCoach = ({ isOpen, children }) => {
                     height: "5px",
                   },
                 }}
-                placeholder= 'Enter Coach Mail ID'            
+                placeholder= 'Enter Coach Mail ID'  
+                value = {input}
+                onChange={(e) => setInput(e.target.value)}     
                 ></TextField>   
               </div>
               
               <br />
               <div>
-                <button className="AddCoachBttn"  style={{textAlign: 'center'}}>
+                <button className="AddCoachBttn"  style={{textAlign: 'center'}} onClick={addCoach}>
                   Add
                 </button>
               </div>

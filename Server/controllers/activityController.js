@@ -26,7 +26,6 @@ const getActivitiesByPath = async (req, res) => {
 const createActivity = async (req, res) => {
     try {
         const activity = req.body.activity
-        console.log(req.body)
         const resposne = await Activity.create(activity)
         res.status(200).json(resposne);
     } catch (err) {

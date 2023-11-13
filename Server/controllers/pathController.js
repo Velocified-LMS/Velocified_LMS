@@ -25,7 +25,7 @@ const getPathsByCompany = async (req, res) => {
 
 const createPath = async (req, res) => {
     try {
-        const path = req.body.path;
+        const path = req.body;
         path.pathId = await generateHexcode();
         const resposne = await Path.create(path)
         res.status(200).json(resposne);

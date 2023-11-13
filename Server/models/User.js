@@ -13,7 +13,13 @@ const userSchema = new mongoose.Schema({
     ref: Company
   },
   path: String,
-  activities: Object
+  activities: Object,
+  coach: [String],
+  admin: Boolean,
+  otp: String,
+  validated: Boolean,
+  access: String,
+  completion: Number
 });
 
 const User = mongoose.model('User', userSchema);

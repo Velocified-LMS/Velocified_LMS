@@ -1,5 +1,5 @@
 import React from "react"
-import  { useState } from "react";
+import  { useState, useEffect } from "react";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Search } from "@mui/icons-material";
@@ -14,12 +14,13 @@ import InformationPopup from "./informationPopup";
 import ListCalendar from "./Calendar";
 import Messenger from "./messenger";
 import Profileeditor from "./Profileeditor";
+import { getActivities, getActivity, getPath, getUser, getUserData, updateUser } from "@/services/ApiService";
+import ActivityDetail from "./ActivityDetail";
 
 
 const CoachDashboard = () => {
     const language = "English"
     const userName = "User Name"
-    const path = "Path Name"
     const day = "Day "+ 4
     const currentDate = new Date()
     const ActivityTitle = "Activity 1"
@@ -35,49 +36,53 @@ const CoachDashboard = () => {
         year: 'numeric',
     });
 
-    const users = [
-        {
-          "name": "User 1",
-          "progress": "75%",
-          "currentActivity": "Activity A"
-        },
-        {
-          "name": "User 2",
-          "progress": "50%",
-          "currentActivity": "Activity B"
-        },
-        {
-          "name": "User 3",
-          "progress": "90%",
-          "currentActivity": "Activity C"
-        }
-        ,
-        {
-          "name": "User 4",
-          "progress": "50%",
-          "currentActivity": "Activity B"
-        },
-        {
-          "name": "User 5",
-          "progress": "90%",
-          "currentActivity": "Activity C"
-        }
-        
-      ];
-
     
-    const [selectedOption, setSelectedOption] = React.useState('');
-      
+    // const users = [
+    //     {
+    //       "name": "User 1",
+    //       "progress": "75%",
+    //       "currentActivity": "Activity A"
+    //     },
+    //     {
+    //       "name": "User 2",
+    //       "progress": "50%",
+    //       "currentActivity": "Activity B"
+    //     },
+    //     {
+    //       "name": "User 3",
+    //       "progress": "90%",
+    //       "currentActivity": "Activity C"
+    //     }
+    //     ,
+    //     {
+    //       "name": "User 4",
+    //       "progress": "50%",
+    //       "currentActivity": "Activity B"
+    //     },
+    //     {
+    //       "name": "User 5",
+    //       "progress": "90%",
+    //       "currentActivity": "Activity C"
+    //     }
+        
+    //   ];
+    const [path, setPath] = useState(null);
+    const [paths, setPaths] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState(null);
+    const [activity, setActivity] = useState(null);
+    const [activities, setActivities] = useState(null);
+
     const handleChange = (event) => {
-        setSelectedOption(event.target.value);
+        setPath(paths[event.target.value]);
     };
 
-    const [checkedStates, setCheckedStates] = useState(users.map(() => false));
+    const [checkedStates, setCheckedStates] = useState([]);
 
-    const handleCheckboxChange = (index) => {
-        const newCheckedStates = [...checkedStates];
-        newCheckedStates[index] = !newCheckedStates[index];
-        setCheckedStates(newCheckedStates);
+    const handleCheckboxChange = (user, activityId) => {
+       user.activities[activityId].signoff = !user.activities[activityId].signoff;
+       setUser(user);
+       updateUser(user); 
     };
 
     const [pathViewVisible, setPathViewVisible] = useState(false);
@@ -97,16 +102,61 @@ const CoachDashboard = () => {
     };
 
 
-      const [showMessenger, setShowMessenger] = useState(false);
-      const toggleMessenger = () => {
+    const [showMessenger, setShowMessenger] = useState(false);
+    const toggleMessenger = () => {
         setShowMessenger(!showMessenger);
-      };
+    };
+
+    const [showActivity, setShowActivity] = useState(false);
+    const toggleActivity = async (user, activity) => {
+        console.log(activity, user);
+        setActivity(activity);
+        setUser(user);
+        setShowActivity(!showActivity);
+    };
+        
+    const getActivityById = async (activityId) => {
+        const activity = await getActivity(activityId);
+        return activity.data;
+    };
+
+    useEffect(() => {
+        const initializeData = async () => {
+            const coach = await getUserData();
+            const pathIds = coach.data.coach;
+            const paths = pathIds.map((pathId) => {
+                return getPath(pathId);
+            });
+            let resolvedPaths = await Promise.all(paths);
+            resolvedPaths = resolvedPaths.map((path) => path.data);
+            setPaths(resolvedPaths)
+        };
+        initializeData();
+    }, []);
+
+    useEffect(() => {
+        if(path === null || path === undefined)
+            return;
+        const getUsersAndActivities = async () => {
+            const users = await getUser({'path': path.pathId});
+            setUsers(users.data);
+            const activities = await getActivities(path._id);
+            setActivities(activities.data);
+        }
+        getUsersAndActivities();
+    }, [path]);
+
+    // if(users.length === 0)
+    //     return "Loading...";
+    
+
     return (
         <div className={styles.page}>
             {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
             {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
             {showMessenger && <Messenger />}
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
+            {showActivity && <ActivityDetail isOpen={() => setShowActivity(!showActivity)} user={user} activity={activity}/>}
             
             <Navbar />
             <div className={styles.dashboardContainer}>
@@ -136,7 +186,7 @@ const CoachDashboard = () => {
                             </div>
                             <div className={styles.path}>
                                 <div style={{fontSize: 20}}>
-                                        { path }
+                                        { "Path Name" || path.pathName }
                                 </div>
                                 
                             </div>
@@ -148,7 +198,7 @@ const CoachDashboard = () => {
                                 </div>
                             </div>
                             <Select
-                                value={selectedOption}
+                                value={path || ""}
                                 onChange={handleChange}
                                 displayEmpty
                                 fullWidth
@@ -167,12 +217,12 @@ const CoachDashboard = () => {
                                     backgroundColor:'white',
                                 }}
                             >
-                                <MenuItem value="" disabled>
-                                Change Path
-                                </MenuItem>
-                                <MenuItem value="option1">Path 1</MenuItem>
-                                <MenuItem value="option2">Path2</MenuItem>
-                                <MenuItem value="option3">Path 3</MenuItem>
+                                <MenuItem value="" disabled>Select Path</MenuItem>
+                                {
+                                    paths.map((path, i) => {
+                                        return <MenuItem key={i} value={i}>{path.pathName}</MenuItem>;
+                                    })
+                                }
                             </Select>
                         </div>
                     </div>
@@ -210,9 +260,9 @@ const CoachDashboard = () => {
                         <div className={styles.user_list_container}>
                             {users.map((user, index) => (
                                 <div key={index} className={styles.user_list}>
-                                <span className={styles.user_name}>{user.name}</span>
-                                <span className={styles.user_progress}>{user.progress}</span>
-                                <span className={styles.user_activity}>{user.currentActivity}</span>
+                                <span key={index} className={styles.user_name}>{user.username}</span>
+                                <span key={index} className={styles.user_progress}>{user.completion}</span>
+                                {/* <span className={styles.user_activity}>{user.currentActivity}</span> */}
                                 </div>
                             ))}
                         </div>
@@ -221,19 +271,33 @@ const CoachDashboard = () => {
                                 Sign-Offs
                             </div>
                             <div className={styles.user_signoff_container}>
-                                {users.map((user, index) => (
-                                    <div key={index} className={styles.user_list}>
-                                    <span className={styles.user_signoff_name}>UserName</span>
-                                    <span className={styles.user_signoff_activity}>Activity</span>
-                                    <span className={styles.user_signoffcheckbox}>
-                                    <Checkbox
-                                        checked={checkedStates[index]}
-                                        onChange={() => handleCheckboxChange(index)}
-                                        color="primary"
-                                    />
-                                    </span>
-                                    </div>
-                                ))}
+                                {
+                                    users.map((user, i) => {
+                                        if(activities === null)
+                                            return null;
+                                        return (
+                                            Object.entries(user.activities).map(([activityId, activity], index) => {
+                                                return (
+                                                    activity.completed && <div key={i} className={styles.user_list}>
+                                                        <span key={i} className={styles.user_signoff_name}>
+                                                            {user.username}
+                                                        </span>
+                                                        <span key={i} className={styles.user_signoff_activity} onClick={() => toggleActivity(user, activities[index])} >
+                                                            {activities[index].activityName}
+                                                        </span>
+                                                        <span key={i} className={styles.user_signoffcheckbox}>
+                                                        <Checkbox
+                                                            key={i}
+                                                            checked={activity.signoff}
+                                                            onChange={() => handleCheckboxChange(user, activityId)}
+                                                            color="primary"
+                                                        />
+                                                        </span>
+                                                    </div>
+                                                );
+                                        })
+                                    )
+                                    })}
                             </div>
                             <div className={styles.signoff_container}>
                                 <button className={styles.signoff_button}>Sign-off</button>
@@ -242,7 +306,7 @@ const CoachDashboard = () => {
                                 />
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>

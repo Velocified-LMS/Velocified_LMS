@@ -39,13 +39,8 @@ const LearnerAdminDashboard = () => {
         year: 'numeric',
     });
     const [days, setDays] = useState({});
-    // days = {
-    //     1: ['Activity1', 'Activity2'],
-    //     2: ['Activity3', 'Activity4'],
-    //     3: ['Activity5'],
-    // };
     const [activities, setActivities] = useState([])
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [paths, setPaths] = useState([]);
     const [path, setPath] = React.useState('');
     const [PathDefinitionViewVisible, setPathDefinitionVisible] = useState(false);
@@ -59,11 +54,11 @@ const LearnerAdminDashboard = () => {
     }, []);
 
     useEffect (() => {
-        if(user.company)
+        if(user && user.company)
             getPathsByCompany(user.company).then((paths) => {
                 setPaths(paths.data);
             });
-    }, [user]);
+    }, [user, path]);
 
     const [NewActivityVisible, setNewActivityVisible] = useState(false);
     const toggleNewActivityView = (visible) => {
@@ -139,15 +134,15 @@ const LearnerAdminDashboard = () => {
         
       };
    
-    if (paths === undefined || path === undefined) return "Loading...";
+    if (paths === undefined || path === undefined || user === null) return "Loading...";
     return (
         <div className={styles.page}>
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             {PathViewVisible && <PathOverview isOpen={togglePathView} path={path} /> }
             {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView} path={path} /> }
             {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView} path={path._id}/> }
-            {CreatePathVisible && <CreatePath isOpen={toggleCreatePathView}/> }
-            {AddCoachVisible && <AddCoach isOpen={toggleAddCoachView}/> }
+            {CreatePathVisible && <CreatePath isOpen={toggleCreatePathView} company={user.company} setPath={setPath} /> }
+            {AddCoachVisible && <AddCoach isOpen={toggleAddCoachView} user={user} path={path.pathId} /> }
             {BlockUserVisible && <BlockUser isOpen={toggleBlockUserView}/> }
 
             {ActivityEditVisible && <ActivityEdit activity={selectedActivity} isOpen={toggleActivityEditView} /> }
@@ -185,7 +180,7 @@ const LearnerAdminDashboard = () => {
                                 </div>
                             </div>
                             <Select
-                                value={""}
+                                value={path.pathName || ""}
                                 onChange={handleChange}
                                 displayEmpty
                                 fullWidth

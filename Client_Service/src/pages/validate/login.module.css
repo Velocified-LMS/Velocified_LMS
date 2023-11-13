@@ -1,0 +1,43 @@
+
+
+.login_container {
+  background-image: url('/login_background.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100vw;
+  height: 85vh;
+}
+
+.login_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e8ddfa5e;
+  width:35%;
+  height: 85vh;
+ 
+}
+
+.passwordField{
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: block;
+  cursor: pointer;
+  
+
+}
+
+.logInButton {
+  margin-top: 15vh;
+  display: block;
+  cursor: pointer;
+  border: 0;
+  width:15vw;
+  height: 8vh;
+  background-color: #6E28EE;
+  border-radius: 20px;
+}
+
+
+

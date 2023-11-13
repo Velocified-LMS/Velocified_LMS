@@ -1,11 +1,38 @@
 import React, { useState } from 'react';
 import "./CreatePath.css";
 import { TextField } from '@mui/material';
+import { createPath, getCompany, updateCompany } from '@/services/ApiService';
+import { combineEventUis } from '@fullcalendar/core/internal';
 
-const CreatePath = ({ isOpen, children }) => {
+const CreatePath = ({ isOpen, company, setPath }) => {
 
   const handleClose = () => {
     isOpen(false);
+  };
+
+  const [pathName, setPathName] = useState("");
+  const [seats, setSeats] = useState(0);
+
+  const handleCreate = async () => {
+    const path = {
+      pathName: pathName,
+      seats: seats,
+      company: company
+    }
+    const response = await createPath(path);
+    setPath(response.data)
+    const cmp = await getCompany(company);
+    if(cmp.data.seats === undefined || cmp.data.seats === null) {
+      cmp.data.seats = 0
+    }
+    const updatedCompany = {
+      id: company,
+      update: {
+        seats: parseInt(cmp.data.seats) + parseInt(seats),
+      }
+    }
+    const res = await updateCompany(updatedCompany);
+    handleClose();
   };
 
   return (
@@ -29,7 +56,9 @@ const CreatePath = ({ isOpen, children }) => {
                     height: "5px",
                   },
                 }}
-                placeholder= 'Enter Path Name'            
+                placeholder= 'Enter Path Name'     
+                value={pathName}
+                onChange={(e) => setPathName(e.target.value)}       
                 ></TextField>   
               </div>
               <br />
@@ -41,11 +70,13 @@ const CreatePath = ({ isOpen, children }) => {
                   },
                 }}
                 placeholder= 'Enter number of Seats'   
+                value={seats}
+                onChange={(e) => setSeats(e.target.value)}
                 ></TextField>        
               </div>
               <br />
               <div>
-                <button className="CreatePathBttn"  style={{textAlign: 'center'}}>
+                <button className="CreatePathBttn"  style={{textAlign: 'center'}} onClick={handleCreate}>
                   Create
                 </button>
               </div>

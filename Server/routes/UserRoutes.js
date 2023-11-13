@@ -5,10 +5,16 @@ const isAuthenticated = require('../Utils/AuthenticationUtil.js');
 
 router.get('/info', isAuthenticated, userController.getUser);
 
+router.get('/get', isAuthenticated, userController.getUserByAttribute);
+
 router.post('/update', isAuthenticated, userController.updateUser);
 
 router.post('/register', userController.register);
 
+router.post('/validate', userController.validateUser);
+
 router.post('/login', userController.authorizeLogin);
+
+router.get('/logout', userController.logout);
 
 module.exports = router;

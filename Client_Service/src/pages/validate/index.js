@@ -2,21 +2,19 @@ import styles from "./login.module.css";
 import Navbar from "@/app/components/navbar";
 import { useRouter } from 'next/router';
 import '@/app/globals.css'
-import { authorizeLogin, getUserData } from "../../services/ApiService";
+import { authorizeLogin, getUserData, validateUser } from "../../services/ApiService";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Select, MenuItem } from "@mui/material";
 import React, { useState } from 'react';
 
 const redirectToNewPage = (page, router) => {
   router.push('/' + page);
 };
 
-const Login = () => {
+const Validate = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [access, setAccess] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -27,21 +25,18 @@ const Login = () => {
   };
 
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     const data = {
       "email": username,
-      "pwd": password,
-      "access": access
+      "otp": password
     };
-    authorizeLogin(data).then((res) => {
+    const response = await validateUser(data);
+    if(response.status === 201) {
+      console.log('User Validation Successfull');
       redirectToNewPage('dashboard', router);
-    }).catch(error => {
-      console.error(error);
-    });;
-  };
-
-  const handleChange = (event) => {
-    setAccess(event.target.value);
+    } else {
+      console.error('User Validation Failed');
+    }
   };
 
   const handleReset = (e) => {
@@ -60,7 +55,7 @@ const Login = () => {
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
         <TextField
-        label="Email/Phone or Username"
+        label="Email"
         variant="outlined"
         margin="normal"
         className={styles.usernameField}
@@ -79,7 +74,7 @@ const Login = () => {
         }}
       />
           <TextField
-        label="Password"
+        label="OTP"
         type="password"
         variant="outlined"
         value={password}
@@ -97,32 +92,6 @@ const Login = () => {
         }}
         required
       />
-      <Select
-        value={access}
-        onChange={handleChange}
-        displayEmpty
-        placeholder="Manage Path"
-        fullWidth
-        variant="outlined"
-        sx={{
-            '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6E28EE', 
-              },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6E28EE', 
-            },
-            '&:focus .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6E28EE', 
-            },
-            width:'15vw',
-            backgroundColor:'white',
-        }}
-    >
-      <MenuItem value="" key={0} disabled>Select Access Level</MenuItem>
-      <MenuItem value={"user"} key={1}>User</MenuItem>
-      <MenuItem value={"coach"} key={2}>Coach</MenuItem>
-      <MenuItem value={"admin"} key={3}>Admin</MenuItem>
-    </Select>
 
       <Button
         onClick={handleLogin}
@@ -147,5 +116,5 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Validate;
       
