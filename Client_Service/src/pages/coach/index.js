@@ -36,36 +36,6 @@ const CoachDashboard = () => {
         year: 'numeric',
     });
 
-    
-    // const users = [
-    //     {
-    //       "name": "User 1",
-    //       "progress": "75%",
-    //       "currentActivity": "Activity A"
-    //     },
-    //     {
-    //       "name": "User 2",
-    //       "progress": "50%",
-    //       "currentActivity": "Activity B"
-    //     },
-    //     {
-    //       "name": "User 3",
-    //       "progress": "90%",
-    //       "currentActivity": "Activity C"
-    //     }
-    //     ,
-    //     {
-    //       "name": "User 4",
-    //       "progress": "50%",
-    //       "currentActivity": "Activity B"
-    //     },
-    //     {
-    //       "name": "User 5",
-    //       "progress": "90%",
-    //       "currentActivity": "Activity C"
-    //     }
-        
-    //   ];
     const [path, setPath] = useState(null);
     const [paths, setPaths] = useState([]);
     const [users, setUsers] = useState([]);
@@ -109,15 +79,9 @@ const CoachDashboard = () => {
 
     const [showActivity, setShowActivity] = useState(false);
     const toggleActivity = async (user, activity) => {
-        console.log(activity, user);
         setActivity(activity);
         setUser(user);
         setShowActivity(!showActivity);
-    };
-        
-    const getActivityById = async (activityId) => {
-        const activity = await getActivity(activityId);
-        return activity.data;
     };
 
     useEffect(() => {
@@ -272,11 +236,13 @@ const CoachDashboard = () => {
                             </div>
                             <div className={styles.user_signoff_container}>
                                 {
-                                    users.map((user, i) => {
-                                        if(activities === null)
+                                    users && users.map((user, i) => {
+                                        if(activities === null || activities === undefined || user.activities === undefined)
+                                            return null;
+                                        if(activities.length !== Object.keys(user.activities).length)
                                             return null;
                                         return (
-                                            Object.entries(user.activities).map(([activityId, activity], index) => {
+                                            activities && Object.entries(user.activities).map(([activityId, activity], index) => {
                                                 return (
                                                     activity.completed && <div key={i} className={styles.user_list}>
                                                         <span key={i} className={styles.user_signoff_name}>
