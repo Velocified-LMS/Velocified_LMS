@@ -1,0 +1,58 @@
+﻿Sprint 6 Plan
+
+
+Sprint Planning Meeting Date: 11/13/2023 (11:00 AM to 12:00 PM)
+
+
+Meeting Attendees:
+        Srikruthi Vedantham – svedant3@asu.edu
+                Sidharth Koyipallil Sivaprasad – sksivapr@asu.edu
+                Sesha Sai Aneeswar Kalisapudi – skalisap@asu.edu
+                Sai Vardhan Reddy Ainavolu – sainavol@asu.edu
+                Vashishtha Nareshbhai Patel – vpatel58@asu.edu
+
+
+Sprint Taskboard: 
+https://tree.taiga.io/project/vardhanreddy-517_capstopne_team_1/taskboard/sprint-6-2631 
+
+
+Sprint Goals:
+The sprint goal for this final sprint is to deploy, standardize and perform fit and finish for the overall system, enabling continuous integration and delivery for our application. We have pushed a working model into the production environment, and will work on overall testing of the system. Additionally, the system should look and function professionally.
+
+
+User Stories and Tasks:
+User Story 92: As a system administrator I want to deploy the latest version of the application with minimal downtime So that users can access new features and improvements without disruptions to their workflow.
+        Estimation: 21
+Estimation Criteria: The complexity of the deployment process, including the time required for backup, software installation, and rollback procedures. It will also account for testing efforts to ensure a smooth transition, minimizing downtime during the deployment of the latest application version.
+Acceptance criteria: The user story will be accepted when the deployment process is executed successfully, resulting in minimal downtime for end-users. Verification will include confirming that the latest application version is accessible, and users can seamlessly utilize new features and improvements without disruptions to their workflow.
+Task 100: Assess the potential impact of the deployment on end-users and establish strategies to mitigate disruptions to their workflow.
+                Assigned to: Vashishtha Nareshbhai Patel
+Task 101: Update and manage application dependencies, ensuring compatibility with the latest version and minimizing post-deployment issues.
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+Task 102: Develop and document backup procedures to ensure data integrity, and establish rollback plans in case of deployment issues.
+                Assigned to: Sai Vardhan Reddy Ainavolu
+
+
+User Story 91: As a collaborative user I want the application to support real-time collaboration and synchronization of data across multiple users So that teams can work together concurrently without conflicts.
+        Estimation: 19
+Estimation Criteria: The complexity of implementing real-time collaboration features, including data synchronization, conflict resolution mechanisms, and scalability considerations. Development efforts will also account for testing, ensuring seamless concurrent collaboration and minimizing conflicts among multiple users working on shared data.
+Acceptance criteria: The user story will be accepted when the application allows multiple users to collaborate in real-time, with changes instantly reflected for all users. Data synchronization should occur seamlessly, and the system must handle conflicts gracefully, providing a smooth collaborative experience. Thorough testing will validate the functionality and identify and resolve any potential conflicts.
+Task 97: Design and implement a data synchronization mechanism to ensure consistency across multiple users and prevent conflicts.
+                Assigned to: Sidharth Koyipallil Sivaprasad
+Task 98: Perform rigorous testing to simulate and validate real-world scenarios of concurrent usage and collaboration.
+                Assigned to: Vashishtha Nareshbhai Patel
+Task 99: Explore and evaluate existing tools and technologies that support real-time collaboration and data synchronization.
+                Assigned to: Sesha Sai Aneeswar Kalisapudi
+        
+User Story 90: As an end user I want the application interface to be polished and consistent across all screens, So that I can navigate and interact with the software more intuitively and with a professional appearance.
+        Estimation: 16
+Estimation Criteria: Development and testing efforts for achieving a seamless and professional appearance across all screens will be factored into the estimate.
+Acceptance criteria: The user story will be considered complete when all application screens exhibit a consistent design, including uniform color schemes, typography, and layout. The interface should adhere to established design guidelines, ensuring a visually polished and intuitive user experience. Testing will confirm the expected uniformity and professional appearance across screens.
+Task 93: Replace or update icons to ensure a consistent visual language throughout the application.
+                Assigned to: Sidharth Koyipallil Sivaprasad
+Task 94: Adjust font styles, sizes, and spacing to maintain a cohesive typographic hierarchy across screens.
+                Assigned to: Sai Vardhan Reddy Ainavolu
+Task 95: Review and refine navigation elements to ensure a seamless and intuitive user experience across screens.
+                Assigned to: Srikruthi Vedantham
+        Task 96: Create user guides and provide training materials to familiarize teams.
+                Assigned to: Srikruthi Vedantham
