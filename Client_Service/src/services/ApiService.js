@@ -5,8 +5,8 @@ import tough from 'tough-cookie';
 
 
 const instance = axios.create({
-  baseURL: 'http://velocified.net:3100',
-  // baseURL: 'http://localhost:3100/',
+  // baseURL: 'http://velocified.net:3100',
+   baseURL: 'http://localhost:3100/',
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
