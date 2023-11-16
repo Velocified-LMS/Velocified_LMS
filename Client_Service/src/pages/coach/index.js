@@ -118,7 +118,7 @@ const CoachDashboard = () => {
         <div className={styles.page}>
             {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
             {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
-            {showMessenger && <Messenger />}
+            {showMessenger && <Messenger path={path.pathId} />}
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             {showActivity && <ActivityDetail isOpen={() => setShowActivity(!showActivity)} user={user} activity={activity}/>}
             

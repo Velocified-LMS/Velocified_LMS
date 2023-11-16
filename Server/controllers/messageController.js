@@ -5,19 +5,19 @@ const bcrypt = require('bcrypt');
 const axios = require('axios');
 
 const getMessage = async (req, res) => {
-    const email = req.session.user.id;
-    const user = await User.findOne({ email: email });
-    const messages = await Message.find({ path: user.company });
+    const path = req.query.path;
+    const messages = await Message.find({ path: path });
     res.status(200).json(messages);
 }
 
 const sendMessage = async (req, res) => {
     const { message } = req.body;
+    const path = req.query.path;
     const email = req.session.user.id;
     const user = await User.findOne({ email: email });
     const response = await Message.create({ 
         content: message,
-        path: user.company,
+        path: path,
         date: new Date(),
         sender: {
             name: user.username,

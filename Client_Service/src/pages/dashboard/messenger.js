@@ -8,9 +8,8 @@ const Messenger = (user) => {
   const [messages, setMessages] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
 
-  const fetchMessages = async () => {
-    getMessage().then((res) => {
-      console.log(res.data);
+  const fetchMessages = async (path) => {
+    getMessage(path).then((res) => {
       setMessages(res.data);
     }).catch(error => {
       console.error(error);
@@ -18,10 +17,9 @@ const Messenger = (user) => {
   };
 
   useEffect(() => {
-    if (isOpen) {
-      fetchMessages();
-      console.log(messages);
-      const intervalId = setInterval(fetchMessages, 1000);
+    if (isOpen && user.user) {
+      fetchMessages(user.user.path);
+      const intervalId = setInterval(() => fetchMessages(user.user.path), 1000);
       return () => {
         clearInterval(intervalId);
       };
@@ -33,7 +31,7 @@ const Messenger = (user) => {
       const message = {
         message: newMessage
       };
-      sendMessage(message).then(() => {
+      sendMessage(message, user.user.path).then(() => {
         setNewMessage('');
       }).catch(error => {
         console.error(error);

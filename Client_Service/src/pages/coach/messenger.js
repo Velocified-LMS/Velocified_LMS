@@ -3,14 +3,14 @@ import MessageList from './messengeList';
 import styles from './messenger.module.css';
 import { sendMessage, getMessage, getUserData } from '../../services/ApiService';
 
-const Messenger = () => {
+const Messenger = (path) => {
   const [newMessage, setNewMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
-  const fetchMessages = async () => {
-    getMessage().then((res) => {
+  const fetchMessages = async (path) => {
+    getMessage(path).then((res) => {
       setMessages(res.data);
     }).catch(error => {
       console.error(error);
@@ -19,19 +19,19 @@ const Messenger = () => {
 
   const fetchUser = async () => {
     getUserData().then((res) => {
-      setUser(res.data[0]);
+      setUser(res.data);
     }).catch(error => console.error(error));
   }
 
   useEffect(() => {
-    if (isOpen) {
-      fetchMessages();
-      const intervalId = setInterval(fetchMessages, 1000);
+    if (isOpen && user) {
+      fetchMessages(path.path);
+      const intervalId = setInterval(() => fetchMessages(path.path), 1000);
       return () => {
         clearInterval(intervalId);
       };
     }
-  }, [isOpen]);
+  }, [isOpen, user]);
 
   useEffect(() => {
     fetchUser();
@@ -43,7 +43,7 @@ const Messenger = () => {
       const message = {
         message: newMessage
       };
-      sendMessage(message).then(() => {
+      sendMessage(message, path.path).then(() => {
         setNewMessage('');
       }).catch(error => {
         console.error(error);

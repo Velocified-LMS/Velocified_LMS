@@ -6,7 +6,7 @@ import tough from 'tough-cookie';
 
 const instance = axios.create({
   baseURL: 'https://velocified.net:3100',
-  // baseURL: 'http://localhost:3100/',
+  // baseURL: 'http://localhost:3100',
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
@@ -50,13 +50,13 @@ export const validateUser = async (user) => {
   return await instance.post('/user/validate', user);
 };
 
-export const sendMessage = async (data) => {
-  const response = await instance.post('/message/send', data);
+export const sendMessage = async (data, path) => {
+  const response = await instance.post(`/message/send?path=${path}`, data);
   return response;
 };
 
-export const getMessage = async () => {
-  const response = await instance.get('/message/get');
+export const getMessage = async (path) => {
+  const response = await instance.get(`/message/get?path=${path}`);
   return response;
 };
 
