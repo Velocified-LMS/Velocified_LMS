@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./ActivityDetail.css";
-import { getActivity, updateUser } from '@/services/ApiService';
+import { getActivity, updateActivity, updateUser } from '@/services/ApiService';
 
 const ActivityDetail = ({ isOpen, activity, user }) => {
 
@@ -13,9 +13,14 @@ const ActivityDetail = ({ isOpen, activity, user }) => {
     const [completed, setCompleted] = useState(false);
     const [signoff, setSignoff] = useState(false);
     const [notes, setNotes] = useState("");
+    const [update , setUpdated] = useState(activity.update);
 
     const handleNotes = (event) => {
         setFeedback(event.target.value)
+    };
+
+    const handleUpdate = (event) => {
+        setUpdated(event.target.value);
     };
 
     const saveNotes = () => {
@@ -24,6 +29,8 @@ const ActivityDetail = ({ isOpen, activity, user }) => {
         user.activities[activity._id].signoff = signoff;
         user.activities[activity._id].feedback = feedback;
         updateUser(user);
+        activity.update = update;
+        updateActivity(activity);
         isOpen(false);
     };
 
@@ -55,36 +62,56 @@ const ActivityDetail = ({ isOpen, activity, user }) => {
                     </div> 
                 </div>
 
-                    <div className='scrollableContentAD ' style={{margin:'5%'}} >
-                        <div style={{display:'flex', flexDirection:'column'}} >
-                        <div className='description' >
-                            {activityVal.activityDescription}
+                <div className='scrollableContentAD ' style={{margin:'5%', 'overflow-y': 'scroll', height: '50vh'}} >
+                    <div style={{display:'flex', flexDirection:'column'}} >
+                        <div style={{'margin-right': '5%'}}>
+                            Update on Activity
+                            <textarea 
+                                id="update" value={update} onChange={handleUpdate} 
+                                name="Update" rows="6" cols="30" 
+                                style={{border:'1px solid #DADADA'}}/>
+                        </div>
+                        <div style={{'margin-right': '5%'}}>
+                            Activity Description
+                            <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}} readOnly value={activity.activityDescription}/>
                         </div>
                         <div className='activityState'>
                             <input type='checkbox' checked={signoff} onChange={() => setSignoff(!signoff)}/>
                             <label>Sign-Off</label> 
-                            {/* <input type='checkbox' onChange={() => setCompleted(!completed)} checked={completed}/>
-                            <label>Complete</label>      */}
                         </div>
-                        <div className="notes-container">
-                            My Notes
+                        <div style={{'margin-right': '5%'}}>
+                            Message from User:
                             <textarea 
                                 id="myNotes" value={notes} readOnly 
                                 name="myNotes" rows="6" cols="30" 
                                 style={{border:'1px solid #DADADA'}}/>
                         </div>
-                        <div className="feedback-container">
-                            Feedback Notes
+                        <div style={{'margin-right': '5%'}}>
+                            Message from you:
                             <textarea 
                                 id="feedback" name="feedback" 
                                 rows="6" cols="30" style={{border:'1px solid #DADADA'}} 
                                 value={feedback} onChange={handleNotes}
                                 />
                         </div>
-                        <div className="path-feedback" style={{fontSize: '17px', fontWeight: 600}} onClick={saveNotes} >
-                            Save Notes
                         </div>
-                        </div>
+                    </div>
+                    <div className="save" style={{
+                        alignItems:'center',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        height: '3vh',
+                        width: '10vw',
+                        position: 'absolute',
+                        bottom: '18vh',
+                        left: '45vw',
+                        background: '#6E28EE',
+                        'border-radius': '16px',
+                        border: '1px solid #',
+                        color: '000'
+
+                    }} onClick={saveNotes} >
+                        Save Message
                     </div>
 
                 </div>

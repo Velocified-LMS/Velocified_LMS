@@ -13,6 +13,7 @@ const activitySchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'Path'
   },
+  update: String
 });
 
 const Activity = mongoose.model('Activity', activitySchema);
