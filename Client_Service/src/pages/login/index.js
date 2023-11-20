@@ -97,6 +97,7 @@ const Login = () => {
         }}
         required
       />
+      <br></br>
       <Select
         value={access}
         onChange={handleChange}
@@ -104,18 +105,15 @@ const Login = () => {
         placeholder="Manage Path"
         fullWidth
         variant="outlined"
-        sx={{
-            '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6E28EE', 
-              },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6E28EE', 
+        sx={{ width:'25vw',
+          '& .MuiOutlinedInput-root': {
+            '&:hover fieldset': {
+              borderColor: '#6E28EE', // Set the border color to green on hover
             },
-            '&:focus .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6E28EE', 
+            '&:focus fieldset': {
+              borderColor: '#6E28EE', // Set the border color to green on click (focus)
             },
-            width:'15vw',
-            backgroundColor:'white',
+          },
         }}
     >
       <MenuItem value="" key={0} disabled>Select Access Level</MenuItem>
@@ -123,7 +121,8 @@ const Login = () => {
       <MenuItem value={"coach"} key={2}>Coach</MenuItem>
       <MenuItem value={"admin"} key={3}>Admin</MenuItem>
     </Select>
-
+      <br></br>
+      <br></br>
       <Button
         onClick={handleLogin}
         variant="contained"
@@ -134,6 +133,16 @@ const Login = () => {
         Log In
       </Button>  
         <br></br>
+        <Button
+        onClick={handleLogin}
+        variant="contained"
+        color="primary"
+        type="submit"
+        className={styles.logInButton}
+      >
+        Register
+      </Button> 
+      <br></br>
       <span className={styles.forgetPasswordResetContainer1}>
             <span className={styles.forgetPassword}>Forgot Password?</span>
             <b className={styles.b}>{`  `}</b>

@@ -82,7 +82,9 @@ const LearnerAdminDashboard = () => {
     }, [NewActivityVisible, path]);
       
     const handleChange = (event) => {
-        setPath(paths[event.target.value]);
+        const selectedPathName = event.target.value;
+        const selectedPath = paths.find((path) => path.pathName === selectedPathName);
+        setPath(selectedPath);
     };
 
 
@@ -181,7 +183,7 @@ const LearnerAdminDashboard = () => {
                             </div>
                             <Select
                                 value={path.pathName || ""}
-                                onChange={handleChange}
+                                onChange={(event) => handleChange(event)}
                                 displayEmpty
                                 fullWidth
                                 variant="outlined"
@@ -203,7 +205,7 @@ const LearnerAdminDashboard = () => {
                                     Manage Path
                                 </MenuItem>
                                 {paths.map((path, i) => {
-                                    return <MenuItem key={i} value={i}>{path.pathName}</MenuItem>
+                                    return <MenuItem key={i} value={path.pathName}>{path.pathName}</MenuItem>
                                 })}
                             </Select>
                             <div className={styles.dashboardOption} >
@@ -224,10 +226,6 @@ const LearnerAdminDashboard = () => {
                             <div  style={{fontSize:'20px', fontFamily:'Roboto' }}>
                                 Manage Path
                             </div>
-                            
-                            </div>
-                            <div  style={{fontSize:'20px', fontFamily:'Roboto' }}>
-                                Path Code: {path.pathId}
                             </div>
                             
                         </div>

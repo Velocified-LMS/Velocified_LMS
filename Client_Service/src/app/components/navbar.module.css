@@ -6,8 +6,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 5vw;
-    margin-right: 5vw;
     margin-top: 1vh;
     margin-bottom: 1vh;
     font-family: var(--font-sf-pro);
@@ -18,6 +16,7 @@
     align-items: center;
     height: inherit;
     display: flex;
+    margin-left: 5%;
     margin-right: 5%;
   }
   .velocifiedicon {
@@ -34,11 +33,7 @@
     height: 6vh;
     width: 30%;
   }
-  .home1,
-  .about,
-  .training,
-  .news,
-  .fr,
+
   .logIn {
     cursor: pointer;
     font-size: var(--font-size-base);
@@ -51,12 +46,14 @@
     padding-left: 0.5vw;
     padding-right: 0.5vw;
     margin-right: 1vw;
+    
 }
 
 .navlinks {
   display: flex;
   position: relative;
   width: fit-content;
+  
   align-items: center;
   height: inherit;
   font-size: var(--font-size-base);
@@ -64,23 +61,36 @@
 
 .right {
   position: absolute;
-  right: 9%;
+  right: 3%;
+
+}
+.home1{
+  padding-right: 10px;
+  font-size: var(--font-size-base);
+  font-family: var(--font-sf-pro);
+  color: black;
 }
 
 .navlinks a {
   cursor: pointer;
   font-size: var(--font-size-base);
+  font-family: var(--font-sf-pro);
   font-weight: 500;
   height: 100%;
   display: flex;
   align-items: center;
   color: var(--color-dimgray);
   text-decoration: none; /* Remove underlines from links */
+  margin-right: 20px;
 }
 
 .activeLink {
   /* Add your active link styling here */
   background-color: #6E28EE; /* Change to the desired active link color */
   border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   color: white;
 }

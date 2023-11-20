@@ -50,11 +50,7 @@ const Navbar = () => {
         
         <div className={`${styles.navlinks} ${styles.right}`} >
             <Link href="/"><div className={`${styles.home1} ${router === "/" ? styles.activeLink : ""}`}>Home </div></Link>
-            <Link href="/about"><div className={`${styles.about} ${router === "/about" ? styles.activeLink : ""}`}>About</div></Link>
-            <Link href="/training"><div className={`${styles.training} ${router === "/training" ? styles.activeLink : ""}`}>Training</div></Link>
-            <Link href="/news"><div className={`${styles.news} ${router === "/news" ? styles.activeLink : ""}`}>News</div></Link>
-            <Link href="/fr"><div className={`${styles.fr} ${router === "/fr" ? styles.activeLink : ""}`}>FR</div></Link>
-            <div onClick={handleLogout}>
+           <div onClick={handleLogout}>
                 <Link href={router === "/dashboard" || router === "/coach"? "/login" : "/login"}>
                     <div className={`${styles.logIn} ${router === "/login" ? styles.activeLink : ""} ${router === "/dashboard" || router === "/coach"? styles.activeLink : ""}`}>
                         {router === "/dashboard" || router === "/coach" ? "Logout" : "Log in"}
