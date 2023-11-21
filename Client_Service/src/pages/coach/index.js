@@ -214,9 +214,9 @@ const CoachDashboard = () => {
                                     />
                             </div>
                             <div className={styles.tabGroup}>
-                                <div onClick={toggleListView}>
+                                {/* <div onClick={toggleListView}>
                                     <img src="/icons/vector.svg" />
-                                </div>
+                                </div> */}
                                 <div className={styles.space} />
                                 <div className={styles.space} />  
                             </div>
