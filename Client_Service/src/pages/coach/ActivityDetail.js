@@ -13,7 +13,7 @@ const ActivityDetail = ({ isOpen, activity, user }) => {
     const [completed, setCompleted] = useState(false);
     const [signoff, setSignoff] = useState(false);
     const [notes, setNotes] = useState("");
-    const [update , setUpdated] = useState(activity.update);
+    const [update , setUpdated] = useState(null);
 
     const handleNotes = (event) => {
         setFeedback(event.target.value)
@@ -41,6 +41,7 @@ const ActivityDetail = ({ isOpen, activity, user }) => {
             setCompleted(user.activities[activity._id].completed);
             setSignoff(user.activities[activity._id].signoff);
             setActivity(activity);
+            setUpdated(activity.update)
         }
         initializeData();
     }, []);
