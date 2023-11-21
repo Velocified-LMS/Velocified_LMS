@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-// const mongoURI = `mongodb://velocified:velocified@docdb-2023-11-20-05-39-09.cawmuccrafqd.ca-central-1.docdb.amazonaws.com:27017/?tls=true&tlsCAFile=global-bundle.pem&retryWrites=false`;
-const mongoURI = process.env.MONGODB_URI
+const mongoURI = `mongodb://velocified:velocified@docdb-2023-11-20-05-39-09.cawmuccrafqd.ca-central-1.docdb.amazonaws.com:27017/?tls=true&tlsCAFile=global-bundle.pem&retryWrites=false`;
+// const mongoURI = process.env.MONGODB_URI
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
