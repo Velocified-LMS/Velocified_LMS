@@ -3,7 +3,7 @@
   background-image: url('/Image 8-13-23 at 3 2.jpg'); /* Replace with the actual path to your image */
   background-size: cover;
   background-position: center;
-  height: 85vh; /* Adjust the height as needed */
+  height: 92vh; /* Adjust the height as needed */
    /* This margin will push the container below the Navbar's height */
   display: flex;
   justify-content: center; /* Center horizontally */
