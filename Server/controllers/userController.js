@@ -40,29 +40,6 @@ const updateUser = async (req, res) => {
   }
 };
 
-const authorizeUser = async (req, res) => {
-  try {
-    const email = req.body.email;
-    const userInfo = await User.findOne({"email":email});
-    const otp = generateOTP();
-    apiUrl = "https://151cif4amj.execute-api.us-east-1.amazonaws.com/prod";
-    postData = {
-      "otp":otp
-    }
-    if(!userInfo) {
-      const domain = email.split('@')[1];
-      const company = await Company.findOne({"domain": domain});
-      if(company) {
-        postRequest(apiUrl, postData);
-        return res.status(201).json({ "message": 'unregistered user' });
-      } 
-      return res.status(403).json({ error: `User's company is not registered`});
-    }
-  } catch(error) {
-    console.error(`User's company is not registered`, error);
-    res.status(403).json({ error: `User's company is not registered` });
-  }
-}
 
 const authorizeLogin = async (req, res) => {
   try {
@@ -75,7 +52,10 @@ const authorizeLogin = async (req, res) => {
       if(access === "coach" && userInfo._doc.access === "user") {
         return res.status(401).json({ error: 'Not Authorized' });
       }
-      if(access === "admin" && userInfo._doc.access !== "admin") {
+      if(access === "admin" && userInfo._doc.access !== "admin" && userInfo._doc.access !== "owner") {
+        return res.status(401).json({ error: 'Not Authorized' });
+      }
+      if(access === "owner" && userInfo._doc.access !== "owner") {
         return res.status(401).json({ error: 'Not Authorized' });
       }
       req.session.user = {
@@ -155,6 +135,27 @@ const validateUser = async (req, res) => {
   }
 };
 
+const access = (req, res) => {
+  try {
+    const currentAccessLevel = req.session.user.access;
+    const requiredAccessLevel = req.query.access;
+    const accessLevel = {
+      "user": 1,
+      "coach": 2,
+      "admin": 3,
+      "owner": 4
+    }
+    if(accessLevel[currentAccessLevel] >= accessLevel[requiredAccessLevel]) {
+      res.status(201).json({"message": "Access to page granted"});
+    } else {
+      res.status(401).json({"message": "Access Denied"});
+    }
+  } catch (error) {
+    console.error('Error while validating access:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 const logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -197,5 +198,6 @@ module.exports = {
   authorizeLogin,
   validateUser,
   updateUser,
-  logout
+  logout,
+  access
 };

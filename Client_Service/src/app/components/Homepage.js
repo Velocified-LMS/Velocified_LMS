@@ -5,7 +5,7 @@ import Navbar from "./navbar";
 const Homepage = () => {
   return (
     <div >
-      <Navbar />
+      <Navbar authorized={false}/>
       <div className={styles.homepagecontainer}>
       <div className={styles.explore}> <button >Explore</button> </div>
       </div>

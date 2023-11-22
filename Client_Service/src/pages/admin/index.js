@@ -12,10 +12,23 @@ import AddOrg from "./AddOrg";
 import ViewOrg from "./ViewOrg";
 import { Search } from "@mui/icons-material";
 import { TextField, InputAdornment } from "@mui/material";
-import { getCompanies, getCompany } from "@/services/ApiService";
+import { getAccess, getCompanies, getCompany } from "@/services/ApiService";
+import { useRouter } from "next/router";
 
 
 const VelocifiedAdminDashboard = () => {
+    const router = useRouter();
+    const verifyAccess = async () => {
+        try {
+            const response = await getAccess('owner');
+        } catch (error) {
+            router.push('/_error');
+            console.error('API request error:', error);
+        }
+    };
+    useEffect(() => {
+        verifyAccess();
+    }, []);
     const language = "English"
     const userName = "User Name"
 
@@ -67,7 +80,7 @@ const VelocifiedAdminDashboard = () => {
             {AddOrgVisible && <AddOrg isOpen={toggleAddOrgView} setCompanies={setCompanies} companies={companies}/> }
             {ViewOrgVisible && <ViewOrg isOpen={toggleViewOrgView} org={selectedOrg} /> }
             
-            <Navbar />
+            <Navbar authorized={true}/>
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
                 <div className={styles.profileContainer} >

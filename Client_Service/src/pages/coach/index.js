@@ -3,22 +3,34 @@ import  { useState, useEffect } from "react";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Search } from "@mui/icons-material";
-import { TextField, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment, InputLabel } from "@mui/material";
 import Checkbox from '@mui/material/Checkbox';
 
 import '@/app/globals.css'
 import styles from "./coach.module.css"
 import Navbar from "@/app/components/navbar";
-
 import InformationPopup from "./informationPopup";
 import ListCalendar from "./Calendar";
 import Messenger from "./messenger";
 import Profileeditor from "./Profileeditor";
-import { getActivities, getActivity, getPath, getUser, getUserData, updateUser } from "@/services/ApiService";
+import { getActivities, getAccess, getPath, getUser, getUserData, updateUser } from "@/services/ApiService";
 import ActivityDetail from "./ActivityDetail";
+import { useRouter } from "next/router";
 
 
 const CoachDashboard = () => {
+    const router = useRouter();
+    const verifyAccess = async () => {
+        try {
+            const response = await getAccess('coach');
+        } catch (error) {
+            router.push('/_error');
+            console.error('API request error:', error);
+        }
+    };
+    useEffect(() => {
+        verifyAccess();
+    }, []);
     const language = "English"
     const userName = "User Name"
     const day = "Day "+ 4
@@ -37,14 +49,20 @@ const CoachDashboard = () => {
     });
 
     const [path, setPath] = useState(null);
+    const [pathName, setPathName] = useState("");
     const [paths, setPaths] = useState([]);
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState(null);
     const [activity, setActivity] = useState(null);
     const [activities, setActivities] = useState(null);
+    const [coach, setCoach] = useState(null);
+    const [selected, setSelected] = useState(-1);
 
     const handleChange = (event) => {
-        setPath(paths[event.target.value]);
+        const selected = event.target.value;
+        setSelected(selected);
+        setPathName(paths[selected].pathName);
+        setPath(paths[selected]);
     };
 
     const [checkedStates, setCheckedStates] = useState([]);
@@ -87,6 +105,7 @@ const CoachDashboard = () => {
     useEffect(() => {
         const initializeData = async () => {
             const coach = await getUserData();
+            setCoach(coach.data);
             const pathIds = coach.data.coach;
             const paths = pathIds.map((pathId) => {
                 return getPath(pathId);
@@ -110,8 +129,8 @@ const CoachDashboard = () => {
         getUsersAndActivities();
     }, [path]);
 
-    // if(users.length === 0)
-    //     return "Loading...";
+    if(coach === null)
+        return "Loading...";
     
 
     return (
@@ -122,7 +141,7 @@ const CoachDashboard = () => {
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             {showActivity && <ActivityDetail isOpen={() => setShowActivity(!showActivity)} user={user} activity={activity}/>}
             
-            <Navbar />
+            <Navbar authorized={true}/>
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
                 <div className={styles.profileContainer} >
@@ -140,7 +159,7 @@ const CoachDashboard = () => {
                     <div className={styles.sidebar}>
                         <div className={styles.text}>
                             <div style={{fontSize: 20}}>
-                                { userName }
+                                { coach.username }
                             </div>
                             <div style={{fontSize: 16}}>
                                 Coach
@@ -156,15 +175,21 @@ const CoachDashboard = () => {
                             </div>
                         </div>
                         <div className={styles.studentActivity}>
-                            <div className={styles.messages} onClick={toggleMessenger}>
-                                <div className={styles.messageText}>
-                                    Messages
-                                </div>
+                            <div className={styles.messages}
+                                onClick={path !== null ? toggleMessenger : null}
+                                style={{
+                                    cursor: path === null ? 'not-allowed' : 'pointer',
+                                    opacity: path === null ? 0.5 : 1,
+                                    /* Add any other styles you want for the disabled and enabled appearance */
+                                }}
+                            >
+                            <div className={styles.messageText}>Messages</div>
                             </div>
                             <Select
-                                value={path || ""}
+                                value={selected}
                                 onChange={handleChange}
                                 displayEmpty
+                                labelid="access-label"
                                 fullWidth
                                 variant="outlined"
                                 sx={{
@@ -181,7 +206,7 @@ const CoachDashboard = () => {
                                     backgroundColor:'white',
                                 }}
                             >
-                                <MenuItem value="" disabled>Select Path</MenuItem>
+                                <MenuItem value={-1} disabled={true}>Select Path</MenuItem>
                                 {
                                     paths.map((path, i) => {
                                         return <MenuItem key={i} value={i}>{path.pathName}</MenuItem>;

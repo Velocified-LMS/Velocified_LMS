@@ -50,7 +50,7 @@ const Validate = () => {
   return (
     <>
       <div >
-        <Navbar />
+        <Navbar authorized={false}/>
       </div >
       <div className={styles.login_container}> 
         <div className={styles.login_box}>

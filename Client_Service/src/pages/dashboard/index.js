@@ -152,7 +152,7 @@ const Dashboard = () => {
             {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
             
-            <Navbar />
+            <Navbar authorized={true}/>
             <div className={styles.dashboardContainer} data-cy="dashboard-container">
                 <div className={styles.dashboardHeader}>
                 <div className={styles.profileContainer} data-cy="profile-container"  >

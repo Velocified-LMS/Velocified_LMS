@@ -11,8 +11,8 @@ import ActivityEdit from "./ActivityEdit";
 import CreatePath from "./CreatePath";
 import AddCoach from "./AddCoach";
 import BlockUser from "./BlockUser";
-import { getUserData, getPathsByCompany, getActivity, updateUser, getActivities } from "@/services/ApiService";
-
+import { getUserData, getPathsByCompany, getAccess, updateUser, getActivities } from "@/services/ApiService";
+import { useRouter } from "next/router";
 import '@/app/globals.css'
 import styles from "./learneradmindashboard.module.css"
 import Navbar from "@/app/components/navbar";
@@ -21,6 +21,18 @@ import Profileeditor from "./Profileeditor";
 
 
 const LearnerAdminDashboard = () => {
+    const router = useRouter();
+    const verifyAccess = async () => {
+        try {
+            const response = await getAccess('admin');
+        } catch (error) {
+            router.push('/_error');
+            console.error('API request error:', error);
+        }
+    };
+    useEffect(() => {
+        verifyAccess();
+    }, []);
     const language = "English"
     // const userName = "User Name"
     // const path = "Path Name"
@@ -42,7 +54,8 @@ const LearnerAdminDashboard = () => {
     const [activities, setActivities] = useState([])
     const [user, setUser] = useState(null);
     const [paths, setPaths] = useState([]);
-    const [path, setPath] = React.useState('');
+    const [path, setPath] = React.useState(null);
+    const [selected, setSelected] = useState(-1);
     const [PathDefinitionViewVisible, setPathDefinitionVisible] = useState(false);
     const togglePathDefinitionView = (visible) => {
         setPathDefinitionVisible(visible);
@@ -82,9 +95,9 @@ const LearnerAdminDashboard = () => {
     }, [NewActivityVisible, path]);
       
     const handleChange = (event) => {
-        const selectedPathName = event.target.value;
-        const selectedPath = paths.find((path) => path.pathName === selectedPathName);
-        setPath(selectedPath);
+        const selected = event.target.value;
+        setSelected(selected);
+        setPath(paths[selected]);
     };
 
 
@@ -135,8 +148,72 @@ const LearnerAdminDashboard = () => {
         setSelectedActivity(activity);
         
       };
+
+    const renderBody = (path) => {
+        return(
+
+           <div>
+           <div className={styles.user_list_container}>
+               <div className={styles.PathManagerConatainer} >
+                   <div className={styles.PathManagerTab}>
+                       <div className={styles.PathDetailText}>
+                           {path.pathName}
+                       </div>
+                       <div className={styles.PathDetailText}>
+                           {path.seats}
+                       </div>
+                   </div>
+                   <div className={styles.PathManagerTab}>
+                       <div className={styles.PathDetailText}>
+                           <div style={{width: '100%'}} onClick={togglePathView}>Path Overview</div>
+                           <Edit onClick={() => console.log("meow")}/>
+                       </div>
+                       <div className={styles.PathDetailText}>
+                           <div style={{width: '100%'}} onClick={togglePathDefinitionView}>Path Definition</div>
+                           <Edit />
+                       </div>
+                   </div>
+                   <div className={styles.NewActivityButton} onClick={toggleNewActivityView}>
+                           Add New Activity
+                   </div>
+                   <div className={styles.ActivityCreatorContainer}>
+                   <table className={styles.ActivityCreator}>
+                       <tbody>
+                       {Object.entries(days).map(([day, item]) => (
+                           <React.Fragment key={day}>
+                           {item.map((activity, activityIndex) => (
+                               <tr key={activityIndex} className={styles.PathMargin}>
+                                   {activityIndex === 0 ? (
+                                       <td rowSpan={item.length} className={styles.PathDay}>Day {day}</td>
+                                   ) : null}
+                                   <td className={styles.PathActivity} onClick={() => handleActivityClick(activity)}>
+                                       <div className={styles.PathActivityDetail}>
+                                           <span style={{flex:'1', alignItems: 'center', display: 'flex', justifyContent: 'center'}} >
+                                               {activity.activityName}  
+                                           </span>
+                                           {/* <span style={{flex:'1', }}> Require Signoff */}
+                                           {/* <Checkbox style={{flex:'0'}}/></span> */}
+                                           {/* <span style={{flex:'1'}}> Attach Milestone */}
+                                           {/* <Checkbox style={{flex:'0'}}/></span> */}
+                                           <Edit style={{flex:'1', alignItems: 'center', display: 'flex', justifyContent: 'center'}}
+                                               onClick={toggleActivityEditView} />
+                                       </div>
+                                   </td>
+                               </tr>
+                           ))}
+                           </React.Fragment>
+                       ))}
+                       </tbody>
+                   </table>
+                   </div>
+               </div>
+           </div>
+           <div className={styles.signoff}/>
+           </div>
+        );
+    };
    
-    if (paths === undefined || path === undefined || user === null) return "Loading...";
+    if (paths === undefined|| user === null) return "Loading...";
     return (
         <div className={styles.page}>
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
@@ -148,7 +225,7 @@ const LearnerAdminDashboard = () => {
             {BlockUserVisible && <BlockUser isOpen={toggleBlockUserView}/> }
 
             {ActivityEditVisible && <ActivityEdit activity={selectedActivity} isOpen={toggleActivityEditView} /> }
-            <Navbar />
+            <Navbar authorized={true}/>
             <div className={styles.dashboardContainer}>
                 <div className={styles.dashboardHeader}>
                 <div className={styles.profileContainer} >
@@ -182,7 +259,7 @@ const LearnerAdminDashboard = () => {
                                 </div>
                             </div>
                             <Select
-                                value={path.pathName || ""}
+                                value={selected}
                                 onChange={(event) => handleChange(event)}
                                 displayEmpty
                                 fullWidth
@@ -201,94 +278,41 @@ const LearnerAdminDashboard = () => {
                                     backgroundColor:'white',
                                 }}
                             >
-                                <MenuItem value="" disabled>
+                                <MenuItem value={-1} disabled>
                                     Manage Path
                                 </MenuItem>
                                 {paths.map((path, i) => {
-                                    return <MenuItem key={i} value={path.pathName}>{path.pathName}</MenuItem>
+                                    return <MenuItem key={i} value={i}>{path.pathName}</MenuItem>
                                 })}
                             </Select>
                             <div className={styles.dashboardOption} >
-                                <div className={styles.dashboardText} onClick={toggleAddCoachView} >
-                                    Add Coach
-                                </div>
+                            <div
+                                className={styles.dashboardText}
+                                onClick={path === null ? null : toggleAddCoachView}
+                                disabled={path === null}
+                                style={{ color: path === null ? 'gray' : 'black', cursor: path === null ? 'not-allowed' : 'pointer' }}
+                            >
+                                Add Coach
                             </div>
-                            <div className={styles.dashboardOptionBlock} >
+
+                            </div>
+                            {/* <div className={styles.dashboardOptionBlock} >
                                 <div className={styles.dashboardText} onClick={toggleBlockUserView}>
                                     Blocklist User
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className={styles.activities}>
-                         <div className={styles.activityHeader}>
+                        <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                            <div  style={{fontSize:'20px', fontFamily:'Roboto' }}>
-                                Manage Path
-                            </div>
-                            </div>
-                            
-                        </div>
-                        <div className={styles.user_list_container}>
-                            <div className={styles.PathManagerConatainer} >
-                                <div className={styles.PathManagerTab}>
-                                    <div className={styles.PathDetailText}>
-                                        {path.pathName}
-                                    </div>
-                                    <div className={styles.PathDetailText}>
-                                        {path.seats}
-                                    </div>
-                                </div>
-                                <div className={styles.PathManagerTab}>
-                                    <div className={styles.PathDetailText}>
-                                        <div style={{width: '100%'}} onClick={togglePathView}>Path Overview</div>
-                                        <Edit onClick={() => console.log("meow")}/>
-                                    </div>
-                                    <div className={styles.PathDetailText}>
-                                        <div style={{width: '100%'}} onClick={togglePathDefinitionView}>Path Definition</div>
-                                        <Edit />
-                                    </div>
-                                </div>
-                                <div className={styles.NewActivityButton} onClick={toggleNewActivityView}>
-                                        Add New Activity
-                                </div>
-                                <div className={styles.ActivityCreatorContainer}>
-                                <table className={styles.ActivityCreator}>
-                                    <tbody>
-                                    {Object.entries(days).map(([day, item]) => (
-                                        <React.Fragment key={day}>
-                                        {item.map((activity, activityIndex) => (
-                                            <tr key={activityIndex} className={styles.PathMargin}>
-                                                {activityIndex === 0 ? (
-                                                    <td rowSpan={item.length} className={styles.PathDay}>Day {day}</td>
-                                                ) : null}
-                                                <td className={styles.PathActivity} onClick={() => handleActivityClick(activity)}>
-                                                    <div className={styles.PathActivityDetail}>
-                                                        <span style={{flex:'1', alignItems: 'center', display: 'flex', justifyContent: 'center'}} >
-                                                            {activity.activityName}  
-                                                        </span>
-                                                        {/* <span style={{flex:'1', }}> Require Signoff */}
-                                                        {/* <Checkbox style={{flex:'0'}}/></span> */}
-                                                        {/* <span style={{flex:'1'}}> Attach Milestone */}
-                                                        {/* <Checkbox style={{flex:'0'}}/></span> */}
-                                                        <Edit style={{flex:'1', alignItems: 'center', display: 'flex', justifyContent: 'center'}}
-                                                            onClick={toggleActivityEditView} />
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                        </React.Fragment>
-                                    ))}
-                                    </tbody>
-                                </table>
+                                <div  style={{fontSize:'20px', fontFamily:'Roboto' }}>
+                                    Manage Path
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.signoff}>
-                           
-                            
-                        </div>
-                        </div>
+                        {path ? renderBody(path) : ""}
+                    </div>
                 </div>
             </div>
         </div>

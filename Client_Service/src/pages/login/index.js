@@ -5,7 +5,7 @@ import '@/app/globals.css'
 import { authorizeLogin, getUserData } from "../../services/ApiService";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem, InputLabel } from "@mui/material";
 import React, { useState } from 'react';
 
 const redirectToNewPage = (page, router) => {
@@ -16,7 +16,7 @@ const Login = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [access, setAccess] = useState("");
+  const [access, setAccess] = useState("user");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -34,7 +34,15 @@ const Login = () => {
       "access": access
     };
     authorizeLogin(data).then((res) => {
-      redirectToNewPage('dashboard', router);
+      let redirect = "";
+      switch (access) {
+        case "user": redirect = "dashboard"; break;
+        case "admin": redirect = "manager"; break;
+        case "coach": redirect = "coach"; break;
+        case "owner": redirect = "admin"; break;
+        default: redirect = "dashboard";
+      }
+      redirectToNewPage(redirect, router);
     }).catch(error => {
       console.error(error);
     });;
@@ -55,7 +63,7 @@ const Login = () => {
   return (
     <>
       <div >
-        <Navbar />
+        <Navbar authorized={false}/>
       </div >
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
@@ -98,8 +106,10 @@ const Login = () => {
         required
       />
       <br></br>
+      <InputLabel id='access-label'>Select Access level</InputLabel>
       <Select
         value={access}
+        labelid="access-label"
         onChange={handleChange}
         displayEmpty
         placeholder="Manage Path"
@@ -115,12 +125,13 @@ const Login = () => {
             },
           },
         }}
-    >
-      <MenuItem value="" key={0} disabled>Select Access Level</MenuItem>
-      <MenuItem value={"user"} key={1}>User</MenuItem>
-      <MenuItem value={"coach"} key={2}>Coach</MenuItem>
-      <MenuItem value={"admin"} key={3}>Admin</MenuItem>
-    </Select>
+      >
+        {/* <MenuItem value="" key={0} disabled>Select Access Level</MenuItem> */}
+        <MenuItem value={"user"} key={1} >User</MenuItem>
+        <MenuItem value={"coach"} key={2}>Coach</MenuItem>
+        <MenuItem value={"admin"} key={3}>Admin</MenuItem>
+        <MenuItem value={"owner"} key={4}>Owner</MenuItem>
+      </Select>
       <br></br>
       <br></br>
       <Button

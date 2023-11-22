@@ -2,7 +2,9 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { wrapper } from 'axios-cookiejar-support';
 import tough from 'tough-cookie';
+import { useRouter } from 'next/router';
 
+const cookieJar = new tough.CookieJar();
 
 const instance = axios.create({
   // baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -11,12 +13,16 @@ const instance = axios.create({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   },
+  jar: cookieJar,
   withCredentials: true
 });
 
-
 export const getUserData = async () => {
     return await instance.get(`/user/info`);
+};
+
+export const getAccess = async (accessLevel) => {
+  return await instance.get(`/user/access?access=${accessLevel}`);
 };
 
 export const getUser = async (attr) => {
