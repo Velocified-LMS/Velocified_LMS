@@ -1,4 +1,4 @@
-import styles from "./login.module.css";
+import styles from "./register.module.css";
 import Navbar from "@/app/components/navbar";
 import { useRouter } from 'next/router';
 import '@/app/globals.css'

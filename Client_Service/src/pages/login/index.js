@@ -48,6 +48,10 @@ const Login = () => {
     });;
   };
 
+  const handleRegister = () => {
+    redirectToNewPage("register", router);
+  }
+
   const handleChange = (event) => {
     setAccess(event.target.value);
   };
@@ -145,7 +149,7 @@ const Login = () => {
       </Button>  
         <br></br>
         <Button
-        onClick={handleLogin}
+        onClick={handleRegister}
         variant="contained"
         color="primary"
         type="submit"
