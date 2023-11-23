@@ -136,7 +136,7 @@ const VelocifiedAdminDashboard = () => {
                         <div className={styles.activities}>
                          <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                                <TextField
+                                {/* <TextField
                                     id="outlined-basic"
                                     label="Search Organization"
                                     color="secondary"
@@ -154,7 +154,7 @@ const VelocifiedAdminDashboard = () => {
                                             ),
                                         }}
                                         variant="outlined"
-                                    />
+                                    /> */}
                             </div>
                             </div>
                             <div className={styles.table_container}>

@@ -218,7 +218,7 @@ const CoachDashboard = () => {
                     <div className={styles.activities}>
                          <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                                <TextField
+                                {/* <TextField
                                     id="outlined-basic"
                                     label="Search User"
                                     color="secondary"
@@ -236,7 +236,7 @@ const CoachDashboard = () => {
                                             ),
                                         }}
                                         variant="outlined"
-                                    />
+                                    /> */}
                             </div>
                             <div className={styles.tabGroup}>
                                 {/* <div onClick={toggleListView}>
@@ -290,12 +290,12 @@ const CoachDashboard = () => {
                                     )
                                     })}
                             </div>
-                            <div className={styles.signoff_container}>
+                            {/* <div className={styles.signoff_container}>
                                 <button className={styles.signoff_button}>Sign-off</button>
                                 <Checkbox
                                     color="primary"
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
