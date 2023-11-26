@@ -1,4 +1,4 @@
-.modalContent {
+.profilemodalContent {
     color: #000;
     font-weight: 100;
     background: #FFF;
@@ -52,6 +52,7 @@
 .right {
     position: absolute;
     right: 5%;
+    cursor:pointer;
 }
 
 
@@ -62,8 +63,7 @@
 }
 
 .profile_background {
-    /* Add styles for the profile background image */
-    /* For example, you can set a width, height, and background properties here */
+
     width: 30vw;
     height: auto;
 }

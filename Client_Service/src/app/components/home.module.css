@@ -1,10 +1,9 @@
 
 .homepagecontainer {
-  background-image: url('/Image 8-13-23 at 3 2.jpg'); /* Replace with the actual path to your image */
+  background-image: url('/Image 8-13-23 at 3 2.jpg'); 
   background-size: cover;
   background-position: center;
-  height: 92vh; /* Adjust the height as needed */
-   /* This margin will push the container below the Navbar's height */
+  height: 92vh; 
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
@@ -24,4 +23,14 @@
   border-color: #6E28EE;
   font-size: large;
   padding : 15px 80px;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .homepagecontainer {
+    background-color: #c69bef;
+    background-image: none ;
+
+  }
+
 }

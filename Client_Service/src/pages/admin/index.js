@@ -135,27 +135,7 @@ const VelocifiedAdminDashboard = () => {
                         </div>
                         <div className={styles.activities}>
                          <div className={styles.activityHeader}>
-                            <div className={styles.tabGroup}>
-                                {/* <TextField
-                                    id="outlined-basic"
-                                    label="Search Organization"
-                                    color="secondary"
-                                    InputProps={{
-                                        style: {
-                                            borderRadius: "10px",
-                                            height: "40px",
-                                            width: "400px",
-                                        }
-                                        ,
-                                        startAdornment: (
-                                        <InputAdornment position="start">
-                                        <Search />
-                                        </InputAdornment>
-                                            ),
-                                        }}
-                                        variant="outlined"
-                                    /> */}
-                            </div>
+                            
                             </div>
                             <div className={styles.table_container}>
                             <table className={styles.tableStyle}  >

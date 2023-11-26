@@ -10,7 +10,7 @@ const Donut = ({ percentage }) => {
         labels: ['done', 'remaining'],
         datasets: [{
             data: [percentage, 100-percentage],
-            backgroundColor: ['#5A20C3', '#F56F91'],
+            backgroundColor: ['#5A20C0', '#b3d1ed'],
             borderWidth: 2,
         }],
     };
@@ -21,7 +21,7 @@ const Donut = ({ percentage }) => {
             height = chart.height,
             ctx = chart.ctx;
             ctx.restore();
-            var fontSize = '18px ';
+            var fontSize = '14px ';
             ctx.font = fontSize + "Roboto";
             ctx.textBaseline = "middle";
             var text = currentPercentage + "%",

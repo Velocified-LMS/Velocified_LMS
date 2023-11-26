@@ -1,11 +1,11 @@
 
 
 .login_container {
-  background-image: url('/login_background.svg');
+  background-color: #d9cbf5;
   background-size: cover;
   background-repeat: no-repeat;
   width:100vw;
-  height: 85vh;
+  height: 92vh;
 }
 
 .login_box {
@@ -13,9 +13,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #e8ddfa5e;
+  background-color: #ede7f6b4;
   width:35%;
-  height: 85vh;
+  height: 100%;
  
 }
 
@@ -29,7 +29,7 @@
 }
 
 .logInButton {
-  margin-top: 15vh;
+  margin-top: 8vh;
   display: block;
   cursor: pointer;
   border: 0;
@@ -39,5 +39,15 @@
   border-radius: 20px;
 }
 
+@media only screen and (max-width: 768px) {
+
+  .login_box {
+    width: 100%; /* Adjust width for smaller screens */
+  }
+
+  .logInButton {
+    width: 80%; /* Adjust width for smaller screens */
+  }
+}
 
 

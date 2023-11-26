@@ -39,5 +39,21 @@
   border-radius: 20px;
 }
 
+.errorMessage {
+  color: red;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .login_box {
+    width: 100%; /* Adjust width for smaller screens */
+  }
+
+  .logInButton {
+    width: 80%; /* Adjust width for smaller screens */
+  }
+}
+
 
 
