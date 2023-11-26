@@ -310,6 +310,7 @@ const LearnerAdminDashboard = () => {
                                     Manage Path
                                 </div>
                             </div>
+                            <div style={{fontSize:'20px', fontFamily:'Roboto' }}>{path ? `Path ID :${path.pathId}`: ""}</div>
                         </div>
                         {path ? renderBody(path) : ""}
                     </div>
