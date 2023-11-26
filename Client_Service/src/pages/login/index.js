@@ -1,6 +1,7 @@
+"use client"
 import styles from "./login.module.css";
 import Navbar from "@/app/components/navbar";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import '@/app/globals.css'
 import { authorizeLogin, getUserData } from "../../services/ApiService";
 import TextField from '@mui/material/TextField';

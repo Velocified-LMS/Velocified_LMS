@@ -26,7 +26,7 @@ const LearnerAdminDashboard = () => {
         try {
             const response = await getAccess('admin');
         } catch (error) {
-            router.push('/_error');
+            router.back(error);
             console.error('API request error:', error);
         }
     };

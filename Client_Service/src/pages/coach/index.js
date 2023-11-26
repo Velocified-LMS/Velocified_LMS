@@ -24,8 +24,8 @@ const CoachDashboard = () => {
         try {
             const response = await getAccess('coach');
         } catch (error) {
-            router.push('/_error');
             console.error('API request error:', error);
+            router.back({ query: { accessDenied: true } });
         }
     };
     useEffect(() => {

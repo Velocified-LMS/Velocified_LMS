@@ -12,10 +12,23 @@ import Messenger from "./messenger";
 import Calendar from "./FullCalender";
 import Milestone from "./Milestone";
 import Profileeditor from "./Profileeditor";
-import { getUserData, getPath, getActivities, updateUser, getUser } from "@/services/ApiService";
+import { getUserData, getPath, getActivities, updateUser, getUser, getAccess } from "@/services/ApiService";
+import { useRouter } from "next/router";
 
 
 const Dashboard = () => {
+    const router  = useRouter();
+    const verifyAccess = async () => {
+        try {
+            const response = await getAccess('user');
+        } catch (error) {
+            console.error('API request error:', error);
+            router.back();
+        }
+    };
+    useEffect(() => {
+        verifyAccess();
+    }, []); 
     const language = "English"
     const currentDate = new Date()
     const ActivityTitle = "Activity 1"

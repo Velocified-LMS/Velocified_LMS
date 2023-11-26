@@ -22,7 +22,7 @@ const VelocifiedAdminDashboard = () => {
         try {
             const response = await getAccess('owner');
         } catch (error) {
-            router.push('/_error');
+            router.back(error);
             console.error('API request error:', error);
         }
     };
