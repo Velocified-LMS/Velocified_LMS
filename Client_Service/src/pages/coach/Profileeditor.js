@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import "./ProfileModal.css";
-const Profileeditor = ({ isOpen, children }) => {
+const Profileeditor = ({ isOpen, user }) => {
 
   const handleClose = () => {
     isOpen(false);
   };
 
   return (
-    <div className="modal">
+    <div className="profilemodal">
         <div className="popup">
-            <div className="modalContent">
+            <div className="profilemodalContent">
               <div className="header">
                 <div className="pathTitle left">
                      PROFILE
@@ -24,7 +24,7 @@ const Profileeditor = ({ isOpen, children }) => {
                 <div style={{backgroundColor:"#5A20C3", width:'30vw', height:'5vh', marginTop:'-4px'}}> </div>
               </div>
              
-              <div className="Name">Name</div>
+              <div className="Name">{ user.username }</div>
               <table className="profile-table">
                 <tbody>
                   <tr>

@@ -17,6 +17,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [access, setAccess] = useState("user");
+  const [errorMessage, setErrorMessage] = useState(""); 
+
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -33,6 +35,8 @@ const Login = () => {
       "pwd": password,
       "access": access
     };
+    setErrorMessage("");
+
     authorizeLogin(data).then((res) => {
       let redirect = "";
       switch (access) {
@@ -45,6 +49,11 @@ const Login = () => {
       redirectToNewPage(redirect, router);
     }).catch(error => {
       console.error(error);
+      if (error.response && error.response.status === 403) {
+        setErrorMessage("Incorrect username or password.");
+      } else {
+        setErrorMessage('Restricted Access');
+      }
     });;
   };
 
@@ -71,6 +80,9 @@ const Login = () => {
       </div >
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
+        {errorMessage && (
+          <div className={styles.errorMessage}>{errorMessage}</div>
+        )}
         <TextField
         label="Email/Phone or Username"
         variant="outlined"
@@ -79,7 +91,7 @@ const Login = () => {
         required
         value={username}
         onChange={handleUsernameChange}
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -97,7 +109,7 @@ const Login = () => {
         value={password}
         onChange={handlePasswordChange}
         margin="normal"
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -119,7 +131,7 @@ const Login = () => {
         placeholder="Manage Path"
         fullWidth
         variant="outlined"
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover

@@ -94,3 +94,39 @@
   padding-bottom: 5px;
   color: white;
 }
+
+@media only screen and (max-width: 768px) {
+  .search {
+    display:none;
+  }
+
+  .logIn {
+    width: 80%; /* Adjust width for smaller screens */
+  }
+
+
+  .header {
+    flex-direction: column; /* Change to a column layout for smaller screens */
+
+}
+.navlinks{
+  flex-direction: column;
+}
+
+.home1,
+.logIn {
+    margin-top: 1vh; /* Add some top margin between the buttons */
+}
+
+.activeLink {
+  /* Add your active link styling here */
+  background-color: #6E28EE; /* Change to the desired active link color */
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+}

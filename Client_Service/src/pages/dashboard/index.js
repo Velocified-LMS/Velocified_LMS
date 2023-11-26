@@ -150,7 +150,7 @@ const Dashboard = () => {
             {CalViewVisible && <Calendar children={content} isOpen={toggleCalView}/>}
             {showMessenger && <Messenger user={user}/>}
             {MilestoneViewVisible && <Milestone isOpen={toggleMilestoneView}/> } 
-            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
+            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } user={user} />}
             
             <Navbar authorized={true}/>
             <div className={styles.dashboardContainer} data-cy="dashboard-container">
@@ -189,7 +189,7 @@ const Dashboard = () => {
                         </div>
                         <div className={styles.studentActivity}>
                             <Donut percentage={completion}/>
-                            <div className={styles.text} style={{fontSize: '20px', fontWeight: 600}} onClick={toggleMilestoneView}>
+                            <div className={styles.text} style={{fontSize: '20px', fontWeight: 600, cursor: 'pointer'}} onClick={toggleMilestoneView}>
                                 Milestones
                             </div>
                             <div className={styles.messages} onClick={toggleMessenger}>

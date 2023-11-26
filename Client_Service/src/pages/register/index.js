@@ -108,7 +108,7 @@ const Register = () => {
         required
         value={email}
         onChange={handleEmailChange}
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -126,7 +126,7 @@ const Register = () => {
         value={password}
         onChange={handlePasswordChange}
         margin="normal"
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -145,7 +145,7 @@ const Register = () => {
         value={retypePassword}
         onChange={handleRetytpePasswordChange}
         margin="normal"
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -164,7 +164,7 @@ const Register = () => {
         value={path}
         onChange={handlePathChange}
         margin="normal"
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover

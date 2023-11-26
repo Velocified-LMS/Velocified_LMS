@@ -216,7 +216,7 @@ const LearnerAdminDashboard = () => {
     if (paths === undefined|| user === null) return "Loading...";
     return (
         <div className={styles.page}>
-            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
+            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } user={user}/>}
             {PathViewVisible && <PathOverview isOpen={togglePathView} path={path} /> }
             {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView} path={path} /> }
             {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView} path={path._id}/> }

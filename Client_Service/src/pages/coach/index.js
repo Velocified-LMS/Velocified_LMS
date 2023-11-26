@@ -138,7 +138,7 @@ const CoachDashboard = () => {
             {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
             {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
             {showMessenger && <Messenger path={path.pathId} />}
-            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } />}
+            {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } user={coach}/>}
             {showActivity && <ActivityDetail isOpen={() => setShowActivity(!showActivity)} user={user} activity={activity}/>}
             
             <Navbar authorized={true}/>
@@ -218,25 +218,7 @@ const CoachDashboard = () => {
                     <div className={styles.activities}>
                          <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                                {/* <TextField
-                                    id="outlined-basic"
-                                    label="Search User"
-                                    color="secondary"
-                                    InputProps={{
-                                        style: {
-                                            borderRadius: "10px",
-                                            height: "40px",
-                                            width: "400px",
-                                        }
-                                        ,
-                                        startAdornment: (
-                                        <InputAdornment position="start">
-                                        <Search />
-                                        </InputAdornment>
-                                            ),
-                                        }}
-                                        variant="outlined"
-                                    /> */}
+                                <p>User</p>
                             </div>
                             <div className={styles.tabGroup}>
                                 {/* <div onClick={toggleListView}>
