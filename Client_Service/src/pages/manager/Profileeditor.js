@@ -5,7 +5,8 @@ const Profileeditor = ({ isOpen, user }) => {
   const handleClose = () => {
     isOpen(false);
   };
-
+  if(user === undefined)
+    return "Loading...";
   return (
     <div className="modal">
         <div className="popup">
