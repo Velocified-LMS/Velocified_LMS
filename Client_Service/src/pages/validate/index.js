@@ -32,21 +32,18 @@ const Validate = () => {
       "email": username,
       "otp": password
     };
-    const response = await validateUser(data);
-    if(response.status === 201) {
-      console.log('User Validation Successfull');
-      redirectToNewPage('dashboard', router);
-    }
-    else if(response.status === 404) {
-      console.log('User Validation Unsuccessfull');
-      seterrorMessage("User Validation Unsuccessfull");
-      return;
-      
-    } 
-    else {
-      console.log('User Validation failed:', response.data);
-      seterrorMessage("Invalid OTP");
-      console.error('User Validation Failed');
+    try {
+      const response = await validateUser(data);
+      if(response.status === 201) {
+        redirectToNewPage('dashboard', router);
+      }
+    } catch (error) {
+      if(error.response.status === 401) {
+        seterrorMessage("User Validation failed");
+      } 
+      else {
+        seterrorMessage("Invalid OTP");
+      }
     }
   };
 
@@ -59,7 +56,7 @@ const Validate = () => {
       </div >
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
-          <p> {errorMessage}</p>
+          <p class={styles.errorMessage}> {errorMessage}</p>
         <TextField
         label="Email"
         variant="outlined"

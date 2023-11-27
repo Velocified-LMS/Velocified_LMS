@@ -154,11 +154,12 @@ const validateUser = async (req, res) => {
         access: "user"
       };
       const response = await User.findOneAndUpdate({"email": user.email}, { otp: "######", validated: true}, { new: true });
-      res.status(201).json({"message": "User validated!"})
+      return res.status(201).json({"message": "User validated!"})
     }
+    return res.status(401).json({"message": "user validation failed"})
   } catch (error) {
-    console.error('Error creating user:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error validating user:', error);
+    res.status(500).json({ error: 'Error validating user' });
   }
 };
 

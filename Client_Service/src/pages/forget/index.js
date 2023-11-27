@@ -48,11 +48,9 @@ const Forget = () => {
       const response = await resetUser(data);
       redirectToNewPage('validate', router);
     } catch (error) {
-
-      if(error.response.status === 409) {
+      if(error.response.status === 404) {
         setUserExists(true);
       }
-      console.error(error);
     }
   };
 
@@ -64,7 +62,7 @@ const Forget = () => {
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
           {pwdMatchError && <p  className={styles.errorMessage}>Password and Retyped password doesn't match</p>}
-          {userExists && <p className={styles.errorMessage}>User already exists so please login or try forget password</p>}
+          {userExists && <p className={styles.errorMessage}>User doesn't exist</p>}
       <TextField
         label="Email"
         variant="outlined"
