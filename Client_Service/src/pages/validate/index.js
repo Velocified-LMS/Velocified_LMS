@@ -1,4 +1,4 @@
-import styles from "./login.module.css";
+import styles from "./validate.module.css";
 import Navbar from "@/app/components/navbar";
 import { useRouter } from 'next/router';
 import '@/app/globals.css'
@@ -15,6 +15,7 @@ const Validate = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, seterrorMessage] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -26,6 +27,7 @@ const Validate = () => {
 
 
   const handleLogin = async (e) => {
+    seterrorMessage("");
     const data = {
       "email": username,
       "otp": password
@@ -34,19 +36,21 @@ const Validate = () => {
     if(response.status === 201) {
       console.log('User Validation Successfull');
       redirectToNewPage('dashboard', router);
-    } else {
+    }
+    else if(response.status === 404) {
+      console.log('User Validation Unsuccessfull');
+      seterrorMessage("User Validation Unsuccessfull");
+      return;
+      
+    } 
+    else {
       console.log('User Validation failed:', response.data);
+      seterrorMessage("Invalid OTP");
       console.error('User Validation Failed');
     }
   };
 
-  const handleReset = (e) => {
-    getUserData().then((res) => {
-      console.log(res);
-    }).catch(error => {
-      console.error(error);
-    });;
-  };
+
 
   return (
     <>
@@ -55,6 +59,7 @@ const Validate = () => {
       </div >
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
+          <p> {errorMessage}</p>
         <TextField
         label="Email"
         variant="outlined"
@@ -63,7 +68,7 @@ const Validate = () => {
         required
         value={username}
         onChange={handleUsernameChange}
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -81,7 +86,7 @@ const Validate = () => {
         value={password}
         onChange={handlePasswordChange}
         margin="normal"
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -104,11 +109,7 @@ const Validate = () => {
         Log In
       </Button>  
         <br></br>
-      {/* <span className={styles.forgetPasswordResetContainer1}>
-            <span className={styles.forgetPassword}>Forgot Password?</span>
-            <b className={styles.b}>{`  `}</b>
-            <b className={styles.resetHere} onClick={handleReset}>Reset Here.</b>
-      </span>  */}
+
       </div>
      
       </div>

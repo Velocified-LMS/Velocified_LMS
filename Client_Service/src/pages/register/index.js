@@ -65,11 +65,7 @@ const Register = () => {
   };
 
   const handleReset = (e) => {
-    getUserData().then((res) => {
-      console.log(res);
-    }).catch(error => {
-      console.error(error);
-    });;
+    redirectToNewPage("forget", router);
   };
 
   return (
@@ -79,8 +75,8 @@ const Register = () => {
       </div >
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
-          {pwdMatchError && <p>Password and Retyped password doesn't match</p>}
-          {userExists && <p>User already exists so please login or try forget password</p>}
+          {pwdMatchError && <p className={styles.errorMessage}>Password and Retyped password doesn't match</p>}
+          {userExists && <p className={styles.errorMessage}>User already exists so please login or try forgot password</p>}
         <TextField
         label="Username"
         variant="outlined"
@@ -89,7 +85,7 @@ const Register = () => {
         required
         value={username}
         onChange={handleUsernameChange}
-        sx={{ width:'25vw',
+        sx={{ width:'70%',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover

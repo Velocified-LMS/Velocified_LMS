@@ -32,9 +32,6 @@ const Forget = () => {
     setRetypePassword(event.target.value);
   };
 
-  const handlePathChange = (event) => {
-    setPath(event.target.value);
-  }
 
 
   const handleReset = async () => {
@@ -66,8 +63,8 @@ const Forget = () => {
       </div >
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
-          {pwdMatchError && <p>Password and Retyped password doesn't match</p>}
-          {userExists && <p>User already exists so please login or try forget password</p>}
+          {pwdMatchError && <p  className={styles.errorMessage}>Password and Retyped password doesn't match</p>}
+          {userExists && <p className={styles.errorMessage}>User already exists so please login or try forget password</p>}
       <TextField
         label="Email"
         variant="outlined"
