@@ -11,6 +11,8 @@ router.post('/update', isAuthenticated, userController.updateUser);
 
 router.post('/register', userController.register);
 
+router.post('/reset', userController.reset);
+
 router.post('/validate', userController.validateUser);
 
 router.post('/login', userController.authorizeLogin);

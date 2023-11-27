@@ -48,7 +48,7 @@ const authorizeLogin = async (req, res) => {
     const access = req.body.access;
 
     const userInfo = await User.findOne({"email":email});
-    if(bcrypt.compareSync(pwd, userInfo._doc.pwd)) {
+    if(bcrypt.compareSync(pwd, userInfo._doc.pwd) && userInfo._doc.validated) {
       if(access === "coach" && userInfo._doc.access === "user") {
         return res.status(401).json({ error: 'Not Authorized' });
       }
@@ -111,6 +111,33 @@ const register = async (req, res) => {
     }
   } catch (error) {
     console.error('Error creating user:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+const reset = async (req, res) => {
+  try {
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(req.body.pwd, salt);
+    const userInfo = await User.findOne({"email": req.body.email});
+    if(!userInfo) {
+      return res.status(404).json({"message": "user doesn't exist"});
+    }
+    let user = {};
+    if(req.body.email) {
+      user.email = req.body.email;
+    }
+    if(req.body.pwd) {
+      user.pwd = hashedPassword;
+    }
+    user.activities = {};
+    user.otp = generateOTP();
+    user.validated = false;
+    sendOTP(user.email, user.otp);
+    const response = await User.findOneAndUpdate({ email: req.body.email }, user);
+    res.status(200).json({"message": "user password updated!", "response": response});
+  } catch (error) {
+    console.error('Error updating user:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
@@ -193,6 +220,7 @@ const postRequest = (apiUrl, postData) => {
 
 module.exports = {
   register,
+  reset,
   getUser,
   getUserByAttribute,
   authorizeLogin,

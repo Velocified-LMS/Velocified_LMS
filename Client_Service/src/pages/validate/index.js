@@ -35,6 +35,7 @@ const Validate = () => {
       console.log('User Validation Successfull');
       redirectToNewPage('dashboard', router);
     } else {
+      console.log('User Validation failed:', response.data);
       console.error('User Validation Failed');
     }
   };
@@ -103,11 +104,11 @@ const Validate = () => {
         Log In
       </Button>  
         <br></br>
-      <span className={styles.forgetPasswordResetContainer1}>
+      {/* <span className={styles.forgetPasswordResetContainer1}>
             <span className={styles.forgetPassword}>Forgot Password?</span>
             <b className={styles.b}>{`  `}</b>
             <b className={styles.resetHere} onClick={handleReset}>Reset Here.</b>
-      </span> 
+      </span>  */}
       </div>
      
       </div>

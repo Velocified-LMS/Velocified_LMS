@@ -1,0 +1,53 @@
+
+
+.login_container {
+  background-color: #d9cbf5;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100vw;
+  height: 92vh;
+}
+
+.login_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ede7f6b4;
+  width:35%;
+  height: 100%;
+ 
+}
+
+.passwordField{
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: block;
+  cursor: pointer;
+  
+
+}
+
+.logInButton {
+  margin-top: 8vh;
+  display: block;
+  cursor: pointer;
+  border: 0;
+  width:15vw;
+  height: 8vh;
+  background-color: #6E28EE;
+  border-radius: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .login_box {
+    width: 100%; /* Adjust width for smaller screens */
+  }
+
+  .logInButton {
+    width: 80%; /* Adjust width for smaller screens */
+  }
+}
+
+

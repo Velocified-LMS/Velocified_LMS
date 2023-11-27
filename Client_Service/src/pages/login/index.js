@@ -67,11 +67,7 @@ const Login = () => {
   };
 
   const handleReset = (e) => {
-    getUserData().then((res) => {
-      console.log(res);
-    }).catch(error => {
-      console.error(error);
-    });;
+    redirectToNewPage("forget", router);
   };
 
   return (
