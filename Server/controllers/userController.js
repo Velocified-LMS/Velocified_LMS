@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Company = require('../models/Company');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
+const Path = require('../models/Path');
 
 const getUser = async (req, res) => {
     try {
@@ -94,12 +95,19 @@ const register = async (req, res) => {
     if(req.body.path) {
       user.path = req.body.path;
     }
+    const path = await Path.findOne({"pathId": user.path});
+    if(!path) {
+      return res.status(404).json({message:"path not found"});
+    }
     user.access = "user";
     user.activities = {};
     const domain = user.email.split('@')[1];
     const company = await Company.findOne({"domain": domain});
-    user.company = company._id;
     if(company) {
+      user.company = company._id;
+      if(path.company.toString() !== company._id.toString()) {
+        return res.status(403).json({"message": "Path doesn't belong to the company"});
+      }
       user.otp = generateOTP();
       user.validated = false;
       sendOTP(user.email, user.otp);

@@ -18,8 +18,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
   const [path, setPath] = useState("");
-  const [pwdMatchError, setPwdError] = useState(false);
-  const [userExists, setUserExists] = useState(false);
+  const [error, setError] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -45,7 +44,7 @@ const Register = () => {
   const handleRegistration = async () => {
     try {
       if (password !== retypePassword) {
-        setPwdError(true);
+        setError("Password and Retyped password doesn't match");
         return;
       }
       const data = {
@@ -58,7 +57,13 @@ const Register = () => {
       redirectToNewPage('validate', router);
     } catch (error) {
       if(error.response.status === 409) {
-        setUserExists(true);
+        setError("User already exists so please login or try forgot password");
+      } else if(error.response.status === 404) {
+        setError("Path not found");
+      } else if(error.response.status === 403) {
+        setError("Unauthorized Path");
+      } else if(error.response.status === 401) {
+        setError("Company not registered");
       }
       console.error(error);
     }
@@ -75,8 +80,7 @@ const Register = () => {
       </div >
       <div className={styles.login_container}> 
         <div className={styles.login_box}>
-          {pwdMatchError && <p className={styles.errorMessage}>Password and Retyped password doesn't match</p>}
-          {userExists && <p className={styles.errorMessage}>User already exists so please login or try forgot password</p>}
+          {error !== "" && <p className={styles.errorMessage}>{error}</p>}
         <TextField
         label="Username"
         variant="outlined"
