@@ -12,7 +12,7 @@ import AddOrg from "./AddOrg";
 import ViewOrg from "./ViewOrg";
 import { Search } from "@mui/icons-material";
 import { TextField, InputAdornment } from "@mui/material";
-import { getAccess, getCompanies, getCompany } from "@/services/ApiService";
+import { getAccess, getCompanies, getCompany, getUserData } from "@/services/ApiService";
 import { useRouter } from "next/router";
 
 
@@ -60,9 +60,13 @@ const VelocifiedAdminDashboard = () => {
 
     const [totalSeats, setTotalSeats] = useState(0);
 
+    const [user, setUser] = useState(null);
+
     useEffect(() => {
         const initializeData = async () => {
             const companies = await getCompanies();
+            const user = await getUserData();
+            setUser(user.data);
             const totalSeats = companies.data.reduce((sum, company) => sum += company.seats, 0);
             setTotalSeats(totalSeats);
             setCompanies(companies.data);
@@ -70,7 +74,7 @@ const VelocifiedAdminDashboard = () => {
         initializeData();
     }, [AddOrgVisible]);
 
-    if(companies === null) {
+    if(companies === null || user === null) {
         return "Loading...";
     }
 
@@ -98,7 +102,7 @@ const VelocifiedAdminDashboard = () => {
                     <div className={styles.sidebar}>
                         <div className={styles.text}>
                             <div style={{fontSize: 20}}>
-                                { userName }
+                                { user.username }
                             </div>
                             <div style={{fontSize: 16}}>
                                 Velocified Administrator 
