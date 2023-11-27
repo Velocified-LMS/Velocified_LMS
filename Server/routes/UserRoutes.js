@@ -17,7 +17,7 @@ router.post('/validate', userController.validateUser);
 
 router.post('/login', userController.authorizeLogin);
 
-router.get('/logout', isAuthenticated, userController.logout);
+router.get('/logout', userController.logout);
 
 router.get('/access', isAuthenticated, userController.access);
 
