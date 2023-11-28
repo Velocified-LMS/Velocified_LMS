@@ -30,6 +30,17 @@ const getUserByAttribute = async (req, res) => {
   }
 };
 
+const createUser = async (req, res) => {
+  try {
+    const user = req.body;
+    const response = await User.create(user);
+    res.status(201).json(response);
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json({ error: 'Error updating user' });
+  }
+};
+
 const updateUser = async (req, res) => {
   try {
     const id = req.body.email;
@@ -46,25 +57,25 @@ const authorizeLogin = async (req, res) => {
   try {
     const email = req.body.email;
     const pwd = req.body.pwd;
-    const access = req.body.access;
+    // const access = req.body.access;
 
     const userInfo = await User.findOne({"email":email});
     if(bcrypt.compareSync(pwd, userInfo._doc.pwd) && userInfo._doc.validated) {
-      if(access === "coach" && userInfo._doc.access === "user") {
-        return res.status(401).json({ error: 'Not Authorized' });
-      }
-      if(access === "admin" && userInfo._doc.access !== "admin" && userInfo._doc.access !== "owner") {
-        return res.status(401).json({ error: 'Not Authorized' });
-      }
-      if(access === "owner" && userInfo._doc.access !== "owner") {
-        return res.status(401).json({ error: 'Not Authorized' });
-      }
+      // if(access === "coach" && userInfo._doc.access === "user") {
+      //   return res.status(401).json({ error: 'Not Authorized' });
+      // }
+      // if(access === "admin" && userInfo._doc.access !== "admin" && userInfo._doc.access !== "owner") {
+      //   return res.status(401).json({ error: 'Not Authorized' });
+      // }
+      // if(access === "owner" && userInfo._doc.access !== "owner") {
+      //   return res.status(401).json({ error: 'Not Authorized' });
+      // }
       req.session.user = {
         id: email,
-        access: access
+        access: userInfo._doc.access
       };
       console.log('Login successfull');
-      res.status(200).json({"message": "Login successfull"});
+      res.status(200).json({message: "Login successfull", access: userInfo._doc.access});
     } else {
       res.status(403).json({ error: 'Login Failed' });
     }
@@ -229,6 +240,7 @@ const postRequest = (apiUrl, postData) => {
 
 module.exports = {
   register,
+  createUser,
   reset,
   getUser,
   getUserByAttribute,

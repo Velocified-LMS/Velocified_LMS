@@ -17,7 +17,7 @@ const Login = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [access, setAccess] = useState("user");
+  // const [access, setAccess] = useState("user");
   const [errorMessage, setErrorMessage] = useState(""); 
 
 
@@ -30,17 +30,16 @@ const Login = () => {
   };
 
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     const data = {
       "email": username,
       "pwd": password,
-      "access": access
+      // "access": access
     };
     setErrorMessage("");
-
     authorizeLogin(data).then((res) => {
       let redirect = "";
-      switch (access) {
+      switch (res.data.access) {
         case "user": redirect = "dashboard"; break;
         case "admin": redirect = "manager"; break;
         case "coach": redirect = "coach"; break;
@@ -119,8 +118,8 @@ const Login = () => {
         required
       />
       <br></br>
-      <InputLabel id='access-label'>Select Access level</InputLabel>
-      <Select
+      {/* <InputLabel id='access-label'>Select Access level</InputLabel> */}
+      {/* <Select
         value={access}
         labelid="access-label"
         onChange={handleChange}
@@ -139,12 +138,11 @@ const Login = () => {
           },
         }}
       >
-        {/* <MenuItem value="" key={0} disabled>Select Access Level</MenuItem> */}
         <MenuItem value={"user"} key={1} >User</MenuItem>
         <MenuItem value={"coach"} key={2}>Coach</MenuItem>
         <MenuItem value={"admin"} key={3}>Admin</MenuItem>
         <MenuItem value={"owner"} key={4}>Owner</MenuItem>
-      </Select>
+      </Select> */}
       <br></br>
       <br></br>
       <Button

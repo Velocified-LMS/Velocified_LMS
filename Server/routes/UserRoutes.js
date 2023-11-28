@@ -5,6 +5,8 @@ const isAuthenticated = require('../Utils/AuthenticationUtil.js');
 
 router.get('/info', isAuthenticated, userController.getUser);
 
+router.post('/create', isAuthenticated, userController.createUser);
+
 router.get('/get', isAuthenticated, userController.getUserByAttribute);
 
 router.post('/update', isAuthenticated, userController.updateUser);

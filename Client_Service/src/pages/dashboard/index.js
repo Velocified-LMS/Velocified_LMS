@@ -117,7 +117,7 @@ const Dashboard = () => {
                 activityList[element.day] = [element]
             }
         });
-        const completion = (cnt / activities.length) * 100;
+        const completion = activities.length > 0 ? (cnt / activities.length) * 100 : 0;
         setCompletion(completion.toFixed(1));
         user.completion = completion.toFixed(1);
         updateUser(user).then(() => {
@@ -153,7 +153,35 @@ const Dashboard = () => {
     const toggleMessenger = () => {
     setShowMessenger(!showMessenger);
     };
-
+    const renderBody = () => {
+        return (
+            <div>
+                <div className={styles.activityHeader}>
+                    <div className={styles.tabGroup}>
+                        {back && <img src="/icons/back.svg" onClick={() => navigate(-1)}/>}
+                        <div className={styles.space} />
+                        <div className={styles.text}>{"Day "+Object.keys(days)[day]}</div>
+                        <div className={styles.space} />
+                        {front && <img src="/icons/front.svg" onClick={() => navigate(1)}/>}
+                    </div>
+                    <div className={styles.tabGroup} data-cy="vector-container">
+                        <div onClick={toggleListView} data-cy="vector-button">
+                            <img src="/icons/vector.svg" data-cy="vector-image" />
+                        </div>
+                        <div className={styles.space} data-cy="calendar-container"/>
+                        <div className={styles.space} data-cy="calendar-container"/>
+                        <div onClick={toggleCalView} data-cy="calendar-button">
+                            <img src="/icons/cal.svg" data-cy="calendar-image"/>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.activityBody} >
+                    {days[Object.keys(days)[day]].map((activity, index) => {
+                        return <Activity user={user} key={index} activity={activity} change={listenActivityChange} />
+                    })}
+                </div>
+            </div>);
+    };
     if (path === null || activities === null || user === null || user.activities === null || days === null)
         return "Loading...";;
     return (
@@ -213,30 +241,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className={styles.activities}>
-                        <div className={styles.activityHeader}>
-                            <div className={styles.tabGroup}>
-                                {back && <img src="/icons/back.svg" onClick={() => navigate(-1)}/>}
-                                <div className={styles.space} />
-                                <div className={styles.text}>{"Day "+Object.keys(days)[day]}</div>
-                                <div className={styles.space} />
-                                {front && <img src="/icons/front.svg" onClick={() => navigate(1)}/>}
-                            </div>
-                            <div className={styles.tabGroup} data-cy="vector-container">
-                                <div onClick={toggleListView} data-cy="vector-button">
-                                    <img src="/icons/vector.svg" data-cy="vector-image" />
-                                </div>
-                                <div className={styles.space} data-cy="calendar-container"/>
-                                <div className={styles.space} data-cy="calendar-container"/>
-                                <div onClick={toggleCalView} data-cy="calendar-button">
-                                    <img src="/icons/cal.svg" data-cy="calendar-image"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.activityBody} >
-                            {days[Object.keys(days)[day]].map((activity, index) => {
-                                return <Activity user={user} key={index} activity={activity} change={listenActivityChange} />
-                            })}
-                        </div>
+                        {activities.length > 0 ? renderBody() : "No activities found in this path :("}
                     </div>
                 </div>
             </div>

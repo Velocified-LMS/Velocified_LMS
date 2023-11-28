@@ -36,8 +36,15 @@ const getCompanies = async (req, res) => {
 const createCompany = async (req, res) => {
     try {
         const company = req.body
-        const resposne = await Company.create(company);
-        res.status(200).json(resposne);
+        const response = await Company.create(company);
+        const admin = {
+            email: company.email,
+            access: 'admin',
+            username: company.name + ':admin',
+            company: response._id
+        }
+        const user = await User.create(admin);
+        res.status(200).json({company: response, user: user});
     } catch (err) {
         console.error('Error creating Company:', err);
         res.status(500).json({ message: 'Error creating Company', error: err });

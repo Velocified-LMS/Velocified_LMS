@@ -38,11 +38,11 @@ const NewActivity = ({ isOpen, path }) => {
       newErrors.day = 'Day is required';
     }
 
-    if (!formData.date) {
-      newErrors.date = 'Date is required';
-    }else if (!validateDate(formData.date)) {
-      newErrors.date = 'Invalid date format (mm/dd/yyyy)';
-    }
+    // if (!formData.date) {
+    //   newErrors.date = 'Date is required';
+    // }else if (!validateDate(formData.date)) {
+    //   newErrors.date = 'Invalid date format (mm/dd/yyyy)';
+    // }
 
     if (!formData.activityName) {
       newErrors.activityName = 'Activity Name is required';
@@ -94,7 +94,7 @@ const NewActivity = ({ isOpen, path }) => {
                    {errors.day && <div className="error">{errors.day}</div>}
                 </td>
               </tr>
-              <tr style={{ height: '70px' }}>
+              {/* <tr style={{ height: '70px' }}>
                 <td>Date</td>
                 <td style={{width:'30%'}}>
                   <TextField
@@ -111,7 +111,7 @@ const NewActivity = ({ isOpen, path }) => {
                   />
                   {errors.date && <div className="error">{errors.date}</div>}
                 </td>
-              </tr>
+              </tr> */}
               <tr style={{ height: '70px' }}>
                 <td>Activity Name</td>
                 <td>

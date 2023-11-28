@@ -78,6 +78,11 @@ const LearnerAdminDashboard = () => {
         setNewActivityVisible(visible);
     };
 
+    const [ActivityEditVisible, setActivityEditVisible] = useState(false);
+    const toggleActivityEditView = (visible) => {
+        setActivityEditVisible(visible);
+    };
+
     useEffect (() => {
         if (path) {
             getActivities(path._id).then((activities) => {
@@ -92,7 +97,7 @@ const LearnerAdminDashboard = () => {
                 setDays(activityList);
             });
         }
-    }, [NewActivityVisible, path]);
+    }, [NewActivityVisible, path, ActivityEditVisible]);
       
     const handleChange = (event) => {
         const selected = event.target.value;
@@ -118,11 +123,6 @@ const LearnerAdminDashboard = () => {
     const [PathViewVisible, setPathVisible] = useState(false);
     const togglePathView = (visible) => {
         setPathVisible(visible);
-    };
-
-    const [ActivityEditVisible, setActivityEditVisible] = useState(false);
-    const toggleActivityEditView = (visible) => {
-        setActivityEditVisible(visible);
     };
 
     const [CreatePathVisible, setCreatePathVisible] = useState(false);
@@ -221,7 +221,7 @@ const LearnerAdminDashboard = () => {
             {PathDefinitionViewVisible && <PathDefinition isOpen={togglePathDefinitionView} path={path} /> }
             {NewActivityVisible && <NewActivity isOpen={toggleNewActivityView} path={path._id}/> }
             {CreatePathVisible && <CreatePath isOpen={toggleCreatePathView} company={user.company} setPath={setPath} /> }
-            {AddCoachVisible && <AddCoach isOpen={toggleAddCoachView} user={user} path={path.pathId} /> }
+            {AddCoachVisible && <AddCoach isOpen={toggleAddCoachView} user={user} path={path} /> }
             {BlockUserVisible && <BlockUser isOpen={toggleBlockUserView}/> }
 
             {ActivityEditVisible && <ActivityEdit activity={selectedActivity} isOpen={toggleActivityEditView} /> }

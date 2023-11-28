@@ -49,7 +49,7 @@ const CoachDashboard = () => {
     });
 
     const [path, setPath] = useState(null);
-    const [pathName, setPathName] = useState("");
+    const [pathName, setPathName] = useState("Path Name");
     const [paths, setPaths] = useState([]);
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState(null);
@@ -120,6 +120,7 @@ const CoachDashboard = () => {
     useEffect(() => {
         if(path === null || path === undefined)
             return;
+        setPathName(path.pathName);
         const getUsersAndActivities = async () => {
             const users = await getUser({'path': path.pathId});
             setUsers(users.data);
@@ -169,7 +170,7 @@ const CoachDashboard = () => {
                             </div>
                             <div className={styles.path}>
                                 <div style={{fontSize: 20}}>
-                                        { "Path Name" || path.pathName }
+                                        { pathName }
                                 </div>
                                 
                             </div>

@@ -8,8 +8,13 @@ const ActivityEdit = ({ activity, isOpen }) => {
   if (activity === undefined)
     return "Loading..."
 
+  const [day, setDay] = useState(activity.day);
   const [inputActivity, setInputActivity] = useState(activity.activityName);
   const [description, setDescription] = useState(activity.activityDescription);
+
+  const handleDayChange = (e) => {
+    setDay(e.target.value);
+  };
 
   const handleActivityNameChange = (e) => {
     setInputActivity(e.target.value);
@@ -20,6 +25,7 @@ const ActivityEdit = ({ activity, isOpen }) => {
   };
 
   const handleSaveActivity = () => {
+    activity.day = day;
     activity.activityDescription = description;
     activity.activityName = inputActivity;
     updateActivity(activity);
@@ -43,17 +49,81 @@ const ActivityEdit = ({ activity, isOpen }) => {
                 </div> 
             </div>
             <div className="contentAE"  >
+            <table >
+              <tr>
+                <td style={{width:'20%'}}>Day</td>
+                <td>
+                  <TextField
+                    value={day}
+                    name="day"
+                    onChange={handleDayChange}
+                    placeholder="Day"
+                    inputProps={{
+                      style: {
+                        height: "5px",
+                      },
+                    }}
+                    sx={{ width: '30%' }}
+                  />
+                   {/* {errors.day && <div className="error">{errors.day}</div>} */}
+                </td>
+              </tr>
+              <tr style={{ height: '70px' }}>
+                <td>Activity Name</td>
+                <td>
+                  <TextField
+                    placeholder="Name"
+                    name="activityName"
+                    value={inputActivity}
+                    onChange={handleActivityNameChange}
+                    inputProps={{
+                      style: {
+                        height: "5px",
+                      },
+                    }}
+                    sx={{ width: '60%'}}
+                  />
+                  {/* {errors.activityName && <div className="error">{errors.activityName}</div>} */}
+                </td>
+              </tr>
+              <tr style={{ height: '70px' }}>
+                <td>Activity Description</td>
+                <td >
+                  <TextareaAutosize 
+                  name="activityDescription"
+                    minRows={5} 
+                    placeholder="Write Description of the Activity"
+                    value={description}
+                    onChange={handleActivityDescriptionChange}
+                    className="descriptionArea"
+                  />
+                  {/* {errors.activityDescription && <div className="error">{errors.activityDescription}</div>} */}
+                </td>
+              </tr>
+            </table>
+              {/* <div style={{textAlign: 'left' , marginLeft:"2%", marginBottom: "2%"}}> 
+                <TextField 
+                  inputProps={{
+                    style: {
+                      height: "5px",
+                    },
+                  }}
+                  placeholder="activity day"
+                  value={day}
+                  onChange={handleDayChange}
+                />
+              </div>
               <div style={{textAlign: 'left' , marginLeft:"2%"}}> 
-              <TextField 
-                inputProps={{
-                  style: {
-                    height: "5px",
-                  },
-                }}
-                placeholder="activity name"
-                value={inputActivity}
-                onChange={handleActivityNameChange}
-              />
+                <TextField 
+                  inputProps={{
+                    style: {
+                      height: "5px",
+                    },
+                  }}
+                  placeholder="activity name"
+                  value={inputActivity}
+                  onChange={handleActivityNameChange}
+                />
               </div>
             <div className="scrollableContent" >
               <TextareaAutosize 
@@ -62,7 +132,7 @@ const ActivityEdit = ({ activity, isOpen }) => {
                value={description}
                onChange={handleActivityDescriptionChange}
               />
-              </div>
+              </div> */}
               <button className="Msgsubmit"  style={{textAlign: 'center'}} onClick={handleSaveActivity}>
                 Apply changes
               </button>

@@ -35,7 +35,7 @@ const Validate = () => {
     try {
       const response = await validateUser(data);
       if(response.status === 201) {
-        redirectToNewPage('dashboard', router);
+        redirectToNewPage('login', router);
       }
     } catch (error) {
       if(error.response.status === 401) {

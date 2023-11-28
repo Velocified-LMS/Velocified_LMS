@@ -52,6 +52,10 @@ export const registerUser = async (user) => {
   return await instance.post('/user/register', user);
 };
 
+export const createUser = async (user) => {
+  return await instance.post('/user/create', user);
+};
+
 export const resetUser = async (user) => {
   return await instance.post('/user/reset', user);
 };

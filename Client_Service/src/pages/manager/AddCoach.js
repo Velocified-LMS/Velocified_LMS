@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import "./AddCoach.css";
 import { TextField } from '@mui/material';
-import { getUser, getUserData, updateUser } from '@/services/ApiService';
+import { createUser, getUser, getUserData, updateUser } from '@/services/ApiService';
 
 
-const AddCoach = ({ isOpen, path }) => {
+const AddCoach = ({ isOpen, path, user }) => {
 
   const handleClose = () => {
     isOpen(false);
@@ -15,22 +15,28 @@ const AddCoach = ({ isOpen, path }) => {
 
   const addCoach = async () => {
     const res = await getUser({'email': input});
+    
     if(res.data[0] === undefined || res.data[0] === null) {
-      setUserError(true);
-      return;
-    }
-    const user = res.data[0];
-    const paths = [...user.coach, path]
-    user.coach = paths.reduce((unique, item) => {
-      if (!unique.includes(item)) {
-        unique.push(item);
+      const coach = {
+        email: input,
+        access: 'coach',
+        coach: [path.pathId],
+        company: user.company,
+        username: path.pathName + ":coach"
       }
-      return unique;
-    }, []);
-    if(user.access === undefined || user.access === "user") {
-      user.access = "coach";
+      const response = await createUser(coach);
+    } else {
+      const coach = res.data[0];
+      const paths = [...coach.coach, path.pathId]
+      coach.coach = paths.reduce((unique, item) => {
+        if (!unique.includes(item)) {
+          unique.push(item);
+        }
+        return unique;
+      }, []);
+      coach.access = "coach";
+      const response = await updateUser(coach);
     }
-    const response = await updateUser(user);
     isOpen(false);
   };
 
@@ -48,7 +54,7 @@ const AddCoach = ({ isOpen, path }) => {
             </div>
             <div>
               <br></br>
-              {userError && <p>User has to be registered first to be made a coach</p>}
+              {userError && <p>User is already registered</p>}
               <div>
                 <TextField 
                 inputProps={{
