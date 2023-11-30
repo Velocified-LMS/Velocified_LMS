@@ -2,6 +2,8 @@
 .message_list {
     display: flex;
     flex-direction: column;
+    font-family: var(--font-sf-pro);
+
 }
 
 /* Style individual messages */
@@ -13,6 +15,8 @@
     display: flex; /* Display the message content horizontally */
     align-items: flex-start; /* Align items to the left */
     gap: 30px; /* You can adjust this gap as needed */
+    font-family: var(--font-sf-pro);
+
 }
 
 /* Style messages from User1 (on the left) */

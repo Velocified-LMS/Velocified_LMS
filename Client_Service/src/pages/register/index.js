@@ -193,7 +193,8 @@ const Register = () => {
             <b className={styles.resetHere} onClick={handleReset}>Reset Here.</b>
       </span> 
       </div>
-     
+      <div className={styles.login_container1}> 
+      </div>
       </div>
     </>
       

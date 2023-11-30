@@ -15,6 +15,8 @@
     padding-left: 5%;
     padding-right: 5%;
     flex-direction: column;
+    font-family: var(--font-sf-pro);
+
 }
 
 .dashboardHeader {
@@ -42,7 +44,7 @@
 
 .text {
     color: #5A20C3;
-    font-family: Roboto;
+    font-family: var(--font-sf-pro);
     font-style: normal;
     display: flex;
     flex-direction: column;
@@ -80,7 +82,7 @@
     color: #FFF;
     align-items: center;
     justify-content: center;
-    font-family: Roboto;
+    font-family: var(--font-sf-pro);
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -114,6 +116,8 @@
     align-items: center;
     padding-left: 5%;
     padding-right: 5%;
+    font-family: var(--font-sf-pro);
+
 }
 
 .tabGroup {
@@ -160,6 +164,8 @@
     z-index: 1; /* Set a higher z-index to display "editprofile" over "profile" */
     background-color: white;
     border-radius: 100px;
+    font-family: var(--font-sf-pro);
+
   }
 
   

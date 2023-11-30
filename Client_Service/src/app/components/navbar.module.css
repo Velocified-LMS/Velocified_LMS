@@ -102,6 +102,8 @@
 
   .logIn {
     width: 80%; /* Adjust width for smaller screens */
+    font-family: var(--font-sf-pro);
+
   }
 
 

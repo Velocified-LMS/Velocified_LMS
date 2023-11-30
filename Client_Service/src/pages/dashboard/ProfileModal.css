@@ -11,6 +11,8 @@
     text-align: center;
     height: 72vh;
     width: 30vw;
+    font-family: var(--font-sf-pro);
+
 }
 
 .popup {
