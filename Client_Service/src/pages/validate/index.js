@@ -108,7 +108,8 @@ const Validate = () => {
         <br></br>
 
       </div>
-     
+      <div className={styles.login_container1}> 
+      </div>
       </div>
     </>
       

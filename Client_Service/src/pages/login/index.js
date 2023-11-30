@@ -88,6 +88,7 @@ const Login = () => {
         value={username}
         onChange={handleUsernameChange}
         sx={{ width:'70%',
+              fontFamily:'sans-serif',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -106,6 +107,7 @@ const Login = () => {
         onChange={handlePasswordChange}
         margin="normal"
         sx={{ width:'70%',
+              fontFamily:'sans-serif',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -171,7 +173,8 @@ const Login = () => {
             <b className={styles.resetHere} onClick={handleReset}>Reset Here.</b>
       </span> 
       </div>
-     
+      <div className={styles.login_container1}> 
+      </div>
       </div>
     </>
       

@@ -25,6 +25,8 @@
     justify-content: center;
     align-items: center;
     z-index: 1000; 
+    font-family: var(--font-sf-pro);
+
 }
 
 .headerMilestone {
@@ -36,6 +38,8 @@
     align-items: center;
     position: relative;
     color: #FFF;
+    font-family: var(--font-sf-pro);
+
 }
 
 
@@ -70,6 +74,8 @@
     margin:10px;
     margin-left: 10px; /* Add margin to separate the input field from the button */
     outline: none;
+    font-family: var(--font-sf-pro);
+
 }
 
 /* Style the button on hover */

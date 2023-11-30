@@ -10,6 +10,8 @@
     max-width: 400px; /* Adjust the width as needed */
     width: 100%;
     border-radius: 10px 10px 10px 10px;
+    font-family: var(--font-sf-pro);
+
   }
   
   /* Style the chat content inside the popup */

@@ -36,6 +36,8 @@
     align-items: center;
     position: relative;
     color: #FFF;
+    font-family: var(--font-sf-pro);
+
 }
 
 
@@ -46,6 +48,8 @@
     border: 0px solid #B5B5B5;
     justify-content: center;
     margin: 5%;
+    font-family: var(--font-sf-pro);
+
 }
 
 .scrollableContentAE {
@@ -66,6 +70,8 @@
     margin:10px;
     margin-left: 10px; /* Add margin to separate the input field from the button */
     outline: none;
+    font-family: var(--font-sf-pro);
+
 }
 
 /* Style the button on hover */

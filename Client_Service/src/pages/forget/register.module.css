@@ -1,7 +1,18 @@
 
 
 .login_container {
+
+  display: flex;
+
   background-color: #d9cbf5;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100vw;
+  height: 92vh;
+}
+
+.login_container1 {
+  background-image: url('../../../public/login_background4.svg') ;
   background-size: cover;
   background-repeat: no-repeat;
   width:100vw;
@@ -37,22 +48,29 @@
   height: 8vh;
   background-color: #6E28EE;
   border-radius: 20px;
+  font-family: var(--font-sf-pro);
+
 }
 
 .errorMessage {
   color: red;
   margin-top: 10px;
+  font-family: var(--font-sf-pro);
+
 }
 
 
 @media only screen and (max-width: 768px) {
 
+  .login_container1 {
+    display: none;
+  }
   .login_box {
-    width: 100%; /* Adjust width for smaller screens */
+    width: 100%;
   }
 
   .logInButton {
-    width: 80%; /* Adjust width for smaller screens */
+    width: 80%;
   }
 }
 

@@ -27,7 +27,7 @@ const Dashboard = () => {
         }
     };
     useEffect(() => {
-        verifyAccess();
+         verifyAccess();
     }, []); 
     const language = "English"
     const currentDate = new Date()

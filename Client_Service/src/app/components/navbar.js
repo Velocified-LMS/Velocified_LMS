@@ -30,7 +30,9 @@ const Navbar = (authorized) => {
                         height: "100%",
                         display: "flex",
                         alignItems: "center",
-                        flexDirection: "row"
+                        flexDirection: "row",
+                        fontFamily: "sans-serif"
+
                     }}
                     InputProps={{
                         style: {

@@ -2,6 +2,7 @@ import React from "react"
 import  { useState, useEffect } from "react";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { Typography } from "@mui/material";
 import { Edit, Delete, Update } from "@mui/icons-material";
 import Checkbox from '@mui/material/Checkbox';
 import PathOverview from './PathOverview';
@@ -265,6 +266,7 @@ const LearnerAdminDashboard = () => {
                                 fullWidth
                                 variant="outlined"
                                 sx={{
+                                    fontFamily:'sans-serif',
                                     '& .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#6E28EE', 
                                       },
@@ -279,10 +281,12 @@ const LearnerAdminDashboard = () => {
                                 }}
                             >
                                 <MenuItem value={-1} disabled>
+                                <Typography variant="body1" style={{ fontFamily: 'san-serif' }}>
                                     Manage Path
+                                </Typography>
                                 </MenuItem>
                                 {paths.map((path, i) => {
-                                    return <MenuItem key={i} value={i}>{path.pathName}</MenuItem>
+                                    return <MenuItem key={i} value={i}> <Typography variant="body1" style={{ fontFamily: 'san-serif' }}>{path.pathName} </Typography></MenuItem>
                                 })}
                             </Select>
                             <div className={styles.dashboardOption} >
@@ -307,7 +311,7 @@ const LearnerAdminDashboard = () => {
                         <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
                                 <div  style={{fontSize:'20px', fontFamily:'Roboto' }}>
-                                    Manage Path
+                                <p className={styles.pathtext}> Manage Path </p>
                                 </div>
                             </div>
                             <div style={{fontSize:'20px', fontFamily:'Roboto' }}>{path ? `Path ID :${path.pathId}`: ""}</div>
