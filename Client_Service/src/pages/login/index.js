@@ -88,7 +88,7 @@ const Login = () => {
         value={username}
         onChange={handleUsernameChange}
         sx={{ width:'70%',
-              fontFamily:'sans-serif',
+              fontFamily:'Roboto',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover
@@ -107,7 +107,7 @@ const Login = () => {
         onChange={handlePasswordChange}
         margin="normal"
         sx={{ width:'70%',
-              fontFamily:'sans-serif',
+              fontFamily:'Roboto',
           '& .MuiOutlinedInput-root': {
             '&:hover fieldset': {
               borderColor: '#6E28EE', // Set the border color to green on hover

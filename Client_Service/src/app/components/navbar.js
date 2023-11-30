@@ -31,7 +31,7 @@ const Navbar = (authorized) => {
                         display: "flex",
                         alignItems: "center",
                         flexDirection: "row",
-                        fontFamily: "sans-serif"
+                        fontFamily: "Roboto"
 
                     }}
                     InputProps={{

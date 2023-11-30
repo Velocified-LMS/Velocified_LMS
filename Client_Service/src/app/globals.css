@@ -7,9 +7,9 @@ html, body {
 
 :root {
   /* fonts */
-  --font-family: 'Roboto', sans-serif;
-  --font-sf-pro: "SF Pro";
-  --font-sf-pro-display: "SF Pro Display";
+  --font-family: 'Roboto';
+  --font-sf-pro:  'Roboto';
+  --font-sf-pro-display:  'Roboto';
 
   /* font sizes */
   --font-size-base: 16px;

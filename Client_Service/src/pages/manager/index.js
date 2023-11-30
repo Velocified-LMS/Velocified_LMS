@@ -266,7 +266,7 @@ const LearnerAdminDashboard = () => {
                                 fullWidth
                                 variant="outlined"
                                 sx={{
-                                    fontFamily:'sans-serif',
+                                    fontFamily:'Roboto',
                                     '& .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#6E28EE', 
                                       },
@@ -281,12 +281,12 @@ const LearnerAdminDashboard = () => {
                                 }}
                             >
                                 <MenuItem value={-1} disabled>
-                                <Typography variant="body1" style={{ fontFamily: 'san-serif' }}>
+                                <Typography variant="body1" style={{ fontFamily: 'Roboto' }}>
                                     Manage Path
                                 </Typography>
                                 </MenuItem>
                                 {paths.map((path, i) => {
-                                    return <MenuItem key={i} value={i}> <Typography variant="body1" style={{ fontFamily: 'san-serif' }}>{path.pathName} </Typography></MenuItem>
+                                    return <MenuItem key={i} value={i}> <Typography variant="body1" style={{ fontFamily: 'Roboto' }}>{path.pathName} </Typography></MenuItem>
                                 })}
                             </Select>
                             <div className={styles.dashboardOption} >

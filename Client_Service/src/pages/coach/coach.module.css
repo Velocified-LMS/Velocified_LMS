@@ -2,6 +2,7 @@
 
 .page {
     overflow: hidden;
+    font-family: 'Roboto';
 }
 
 
@@ -42,7 +43,7 @@
 
 .text {
     color: #5A20C3;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-style: normal;
     display: flex;
     flex-direction: column;
@@ -79,7 +80,7 @@
     color: #FFF;
     align-items: center;
     justify-content: center;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -113,6 +114,7 @@
     align-items: center;
     padding-left: 5%;
     padding-right: 5%;
+    font-family: 'Roboto';
 }
 
 .tabGroup {
