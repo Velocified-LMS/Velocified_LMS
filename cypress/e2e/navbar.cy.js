@@ -40,9 +40,14 @@ describe('Navbar', () => {
   
     context('Search Functionality', () => {
       it('should perform a search when the search input is filled', () => {
+
+        cy.get('#outlined-basic').should('have.value', '');
+
+        cy.contains('button', 'Search').click();
+
+        cy.url().should('include', `/search?q=${encodeURIComponent(searchTerm)}`);
         
-      });
-  
     });
   });
+});
   
