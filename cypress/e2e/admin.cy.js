@@ -47,6 +47,24 @@ describe('Velocified Admin Component', () => {
         cy.contains("Velocified").click();
     });
 
+    it("Should contain 'Organization name', 'Location' and 'number of seats'", () =>{
+
+        cy.contains("Organization Name").should("exist");
+        cy.contains("Number of Seats").should("exist");
+        cy.contains("Location").should("exist");
+
+
+    })
+
+    it("Should search the organization using search bar", () =>{
+
+        cy.get('#outlined-basic').should('have.value', '');
+
+        cy.contains('button', 'Search').click();
+
+        cy.url().should('include', `/search?q=${encodeURIComponent(searchTerm)}`);
+
+    })
 
   });
   
