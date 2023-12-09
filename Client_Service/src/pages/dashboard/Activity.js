@@ -4,8 +4,6 @@ import { useState } from "react";
 
 
 const Activity = ({ activity, user, change }) => {
-    const Activity = "Activity 1";
-    const ActivityDescription = "This is a description of the activity";
     const [ActivityDetailViewVisible, setActivityDetailViewVisible] = useState(false);
     const toggleActivityDetailView = (visible) => {
         change(visible);
