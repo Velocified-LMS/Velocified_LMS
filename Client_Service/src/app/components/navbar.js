@@ -54,9 +54,11 @@ const Navbar = (authorized) => {
             <div className={`${styles.navlinks} ${styles.right}`} >
                 {/* <Link href="/"><div className={`${styles.home1} ${""}`}>Home </div></Link> */}
                 <div onClick={handleLogout}>
+                    {authorized.authorized &&
                     <div className={`${styles.logIn} ${styles.activeLink}`}>
-                        {authorized.authorized ? "Log Out" : "Log In"}
+                        Log Out
                     </div>
+                    }
                 </div>
             </div>
         </div>
