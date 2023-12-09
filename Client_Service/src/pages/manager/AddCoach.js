@@ -46,7 +46,7 @@ const AddCoach = ({ isOpen, path, user }) => {
             <div className="modalContentAC">
             <div className="headerAC">
                 <div className="pathTitle left">
-                    Add Coach
+                    Add Manager
                 </div>
                 <div onClick={handleClose} className='right'>
                     <img src='/icons/close.svg' style={{height: '30%'}}/>

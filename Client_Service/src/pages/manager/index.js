@@ -296,7 +296,7 @@ const LearnerAdminDashboard = () => {
                                 disabled={path === null}
                                 style={{ color: path === null ? 'gray' : 'black', cursor: path === null ? 'not-allowed' : 'pointer' }}
                             >
-                                Add Coach
+                                Add Manager
                             </div>
 
                             </div>
