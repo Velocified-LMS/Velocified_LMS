@@ -21,7 +21,7 @@ const Navbar = (authorized) => {
     
         <div className={styles.header}>
             <div className={styles.titles}><img src="/velocified-symbol.svg" alt="Velocified Logo" className={styles.velocifiedicon}/><img src="/text-only-white-background.png" alt="Velocified Text Logo" className={styles.velocifiedtext} /></div>
-            <div className={styles.search}>
+            {/* <div className={styles.search}>
                 <TextField
                     id="outlined-basic"
                     label=""
@@ -49,10 +49,10 @@ const Navbar = (authorized) => {
                     }}
                     variant="outlined"
                 />
-            </div>
+            </div> */}
             
             <div className={`${styles.navlinks} ${styles.right}`} >
-                <Link href="/"><div className={`${styles.home1} ${""}`}>Home </div></Link>
+                {/* <Link href="/"><div className={`${styles.home1} ${""}`}>Home </div></Link> */}
                 <div onClick={handleLogout}>
                     <div className={`${styles.logIn} ${styles.activeLink}`}>
                         {authorized.authorized ? "Log Out" : "Log In"}

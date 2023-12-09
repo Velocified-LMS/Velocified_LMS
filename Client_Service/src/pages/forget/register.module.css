@@ -46,7 +46,7 @@
   border: 0;
   width:15vw;
   height: 8vh;
-  background-color: #6E28EE;
+  background-color: #6E28EE !important;
   border-radius: 20px;
   font-family: var(--font-sf-pro);
 
