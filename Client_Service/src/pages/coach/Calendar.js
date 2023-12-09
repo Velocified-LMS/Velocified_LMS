@@ -62,7 +62,7 @@ const ListCalendar = ({children, isOpen}) => {
                 Path Overview
             </div>
             <div className="path" onClick={togglePathDefinitionView}>
-                Path Definition
+                Proficiency Definition
             </div>
             <div className="scrollableContent">
                 <div className='activities' style={{display: 'flex', flexDirection: 'row', width: '100%'}}>

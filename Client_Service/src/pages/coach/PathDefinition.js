@@ -13,7 +13,7 @@ const PathDefinition = ({ isOpen, children }) => {
             <div className="modalContentM">
             <div className="headerMilestone">
                 <div className="pathTitle left">
-                    Path Definition
+                    Proficiency Definition
                 </div>
                 <div onClick={handleClose} className='right'>
                     <img src='/icons/close.svg' style={{height: '30%'}}/>

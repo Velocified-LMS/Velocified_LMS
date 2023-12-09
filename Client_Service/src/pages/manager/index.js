@@ -170,7 +170,7 @@ const LearnerAdminDashboard = () => {
                            <Edit onClick={() => console.log("meow")}/>
                        </div>
                        <div className={styles.PathDetailText}>
-                           <div style={{width: '100%'}} onClick={togglePathDefinitionView}>Path Definition</div>
+                           <div style={{width: '100%'}} onClick={togglePathDefinitionView}>Proficiency Definition</div>
                            <Edit />
                        </div>
                    </div>
