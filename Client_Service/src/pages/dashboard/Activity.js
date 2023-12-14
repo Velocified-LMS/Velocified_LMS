@@ -17,10 +17,25 @@ const Activity = ({ activity, user, change }) => {
             <div className={styles.activity} onClick={toggleActivityDetailView} >
                 <div className={styles.activityTitle} >
                     { activity.activityName }
-                    <div style={{width: '3%'}} />
-                    <div className={styles.star} />
+                    {/* <div style={{width: '3%'}} /> */}
+                    {/* <div className={styles.star} /> */}
                 </div>
-                <div style={{fontSize: '16px'}}>{ activity.activityDescription }</div>
+                {/* <div
+                    id="feedback"
+                    name="feedback"
+                    style={{
+                        // border: '1px solid #DADADA',
+                        minHeight: '50px', // simulates 'rows' attribute in textarea
+                        maxHeight: '', // maximum height before scrolling
+                        overflowY: 'auto', // adds scrollbar if content exceeds maxHeight
+                        padding: '5px', // optional, for better text spacing
+                        textAlign: 'left', // ensures text alignment is consistent with the source
+                        whiteSpace: 'pre-wrap', // respects new lines and spaces
+                        wordBreak: 'break-word' // ensures long words do not overflow
+                    }}
+                    readOnly={true}
+                    dangerouslySetInnerHTML={{ __html: activity.activityDescription }}
+                /> */}
             </div>
         </div>
     );

@@ -3,6 +3,15 @@ import "./ActivityEdit.css";
 import { TextField,TextareaAutosize } from '@mui/material';
 import { Description } from '@mui/icons-material';
 import { updateActivity } from '@/services/ApiService';
+import dynamic from 'next/dynamic';
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
+// import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 const ActivityEdit = ({ activity, isOpen }) => {
 
   if (activity === undefined)
@@ -20,10 +29,15 @@ const ActivityEdit = ({ activity, isOpen }) => {
     setInputActivity(e.target.value);
   };
 
-  const handleActivityDescriptionChange = (e) => {
-    setDescription(e.target.value);
+  // const handleActivityDescriptionChange = (e) => {
+  //   setDescription(e.target.value);
+  // };
+
+  const handleActivityDescriptionChange = (content, delta, source, editor) => {
+    setDescription(editor.getHTML()); // or use `content` for raw content
   };
 
+  
   const handleSaveActivity = () => {
     activity.day = day;
     activity.activityDescription = description;
@@ -86,16 +100,23 @@ const ActivityEdit = ({ activity, isOpen }) => {
                   {/* {errors.activityName && <div className="error">{errors.activityName}</div>} */}
                 </td>
               </tr>
-              <tr style={{ height: '70px' }}>
+              <tr style={{ height: '25vh' }}>
                 <td>Activity Description</td>
-                <td >
-                  <TextareaAutosize 
+                <td style={{ height: '100%' }}>
+                  {/* <TextareaAutosize 
                   name="activityDescription"
                     minRows={5} 
                     placeholder="Write Description of the Activity"
                     value={description}
                     onChange={handleActivityDescriptionChange}
                     className="descriptionArea"
+                  /> */}
+                  <ReactQuill 
+                    className="scrollableContentAE"
+                    value={description}
+                    onChange={handleActivityDescriptionChange}
+                    placeholder="Write Description of the Activity"
+                    // className="descriptionArea"
                   />
                   {/* {errors.activityDescription && <div className="error">{errors.activityDescription}</div>} */}
                 </td>

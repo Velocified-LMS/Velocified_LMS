@@ -48,18 +48,46 @@ const ActivityDetail = ({ isOpen, activity, user }) => {
 
                     <div className='scrollableContentAD ' style={{margin:'5%', 'overflow-y': 'scroll', height: '50vh'}} >
                         <div style={{display:'flex', flexDirection:'column'}} >
-                            <div style={{'margin-right': '5%'}}>
+                            <div style={{'margin-right': '0%'}}>
                                 Update on Activity
-                                <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}} readOnly value={activity.update}/>
+                                <div
+                                    id="feedback"
+                                    name="feedback"
+                                    style={{
+                                        border: '1px solid #DADADA',
+                                        minHeight: '50px', // simulates 'rows' attribute in textarea
+                                        maxHeight: '150px', // maximum height before scrolling
+                                        overflowY: 'auto', // adds scrollbar if content exceeds maxHeight
+                                        padding: '5px', // optional, for better text spacing
+                                        textAlign: 'left', // ensures text alignment is consistent with the source
+                                        whiteSpace: 'pre-wrap', // respects new lines and spaces
+                                        wordBreak: 'break-word' // ensures long words do not overflow
+                                    }}
+                                    readOnly={true}
+                                    dangerouslySetInnerHTML={{ __html: activity.update }}
+                                />
+                                {/* <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}} readOnly value={activity.update}/> */}
                             </div>
-                            <div style={{'margin-right': '5%'}}>
+                            <div style={{ marginRight: '0%' }}>
                                 Activity Description
-                                <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}} readOnly value={activity.activityDescription}/>
+                                <div
+                                    id="feedback"
+                                    name="feedback"
+                                    style={{
+                                        border: '1px solid #DADADA',
+                                        minHeight: '100px', // simulates 'rows' attribute in textarea
+                                        maxHeight: '300px', // maximum height before scrolling
+                                        overflowY: 'auto', // adds scrollbar if content exceeds maxHeight
+                                        padding: '5px', // optional, for better text spacing
+                                        textAlign: 'left', // ensures text alignment is consistent with the source
+                                        whiteSpace: 'pre-wrap', // respects new lines and spaces
+                                        wordBreak: 'break-word' // ensures long words do not overflow
+                                    }}
+                                    readOnly={true}
+                                    dangerouslySetInnerHTML={{ __html: activity.activityDescription }}
+                                />
                             </div>
-                            {/* <div className='description' >
-                                Activity Description
-                                <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}} readOnly value={activity.activityDescription}/>
-                            </div> */}
+
                             <div className='activityState'>
                                 {/* <input type='checkbox' checked={signoff} onChange={() => setSignoff(!signoff)}/>
                                 <label>Sign-Off</label>  */}

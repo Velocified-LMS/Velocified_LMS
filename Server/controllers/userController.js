@@ -44,7 +44,7 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const id = req.body.email;
-    const response = await User.findOneAndUpdate({ email: id}, req.body);
+    const response = await User.findOneAndUpdate({ email: id}, req.body, {new: true});
     res.json(response);
   } catch (error) {
     console.error('Error updating user:', error);

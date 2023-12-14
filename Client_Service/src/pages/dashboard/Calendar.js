@@ -46,34 +46,9 @@ const ListCalendar = ({path, isOpen}) => {
                 <div className="pathTitle left">
                     {path.pathName}
                 </div>
-                <div className='pathTitle center'>
-                    {completion + '% completed'}
-                </div>
                 <div onClick={handleClose} className='right'>
                     <img src='/icons/close.svg' style={{height: '30%'}}/>
                 </div> 
-            </div>
-            <div className="search-container">
-                <TextField
-                    id="search"
-                    className='search'
-                    label=""
-                    InputProps={{
-                        style: {
-                            borderRadius: "10px",
-                            height: "80%",
-                            width: "90%",
-                            backgroundColor: "#FFF"
-                        }
-                        ,
-                        startAdornment: (
-                        <InputAdornment position="start">
-                            <Search />
-                        </InputAdornment>
-                        ),
-                    }}
-                    variant="outlined"
-                />
             </div>
             <div className="path" onClick={togglePathView}>
                 Path Overview
