@@ -9,7 +9,6 @@ const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false,
   loading: () => <p>Loading...</p>,
 });
-// import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const ActivityEdit = ({ activity, isOpen }) => {
@@ -28,10 +27,6 @@ const ActivityEdit = ({ activity, isOpen }) => {
   const handleActivityNameChange = (e) => {
     setInputActivity(e.target.value);
   };
-
-  // const handleActivityDescriptionChange = (e) => {
-  //   setDescription(e.target.value);
-  // };
 
   const handleActivityDescriptionChange = (content, delta, source, editor) => {
     setDescription(editor.getHTML()); // or use `content` for raw content
@@ -103,14 +98,6 @@ const ActivityEdit = ({ activity, isOpen }) => {
               <tr style={{ height: '25vh' }}>
                 <td>Activity Description</td>
                 <td style={{ height: '100%' }}>
-                  {/* <TextareaAutosize 
-                  name="activityDescription"
-                    minRows={5} 
-                    placeholder="Write Description of the Activity"
-                    value={description}
-                    onChange={handleActivityDescriptionChange}
-                    className="descriptionArea"
-                  /> */}
                   <ReactQuill 
                     className="scrollableContentAE"
                     value={description}
@@ -122,38 +109,6 @@ const ActivityEdit = ({ activity, isOpen }) => {
                 </td>
               </tr>
             </table>
-              {/* <div style={{textAlign: 'left' , marginLeft:"2%", marginBottom: "2%"}}> 
-                <TextField 
-                  inputProps={{
-                    style: {
-                      height: "5px",
-                    },
-                  }}
-                  placeholder="activity day"
-                  value={day}
-                  onChange={handleDayChange}
-                />
-              </div>
-              <div style={{textAlign: 'left' , marginLeft:"2%"}}> 
-                <TextField 
-                  inputProps={{
-                    style: {
-                      height: "5px",
-                    },
-                  }}
-                  placeholder="activity name"
-                  value={inputActivity}
-                  onChange={handleActivityNameChange}
-                />
-              </div>
-            <div className="scrollableContent" >
-              <TextareaAutosize 
-               style={{ width: '100%', height: '100%', resize: 'none', border: 'none' }}
-               placeholder='Activity Description'
-               value={description}
-               onChange={handleActivityDescriptionChange}
-              />
-              </div> */}
               <button className="Msgsubmit"  style={{textAlign: 'center'}} onClick={handleSaveActivity}>
                 Apply changes
               </button>

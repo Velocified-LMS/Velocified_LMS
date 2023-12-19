@@ -3,6 +3,13 @@ import "./ActivityDetail.css";
 import PathFeedback from './PathFeedback';
 import styles from "./dashboard.module.css"
 import { updateActivity, updateUser } from '@/services/ApiService';
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
 
 const ActivityDetail = ({ isOpen, activity, user }) => {
 
@@ -21,14 +28,21 @@ const ActivityDetail = ({ isOpen, activity, user }) => {
     const feedback = user.activities[activity._id].feedback;
     const [completed, setCompleted] = useState(user.activities[activity._id].completed);
 
-    const handleNotes = (event) => {
-        setNotes(event.target.value)
+    const handleNotes = (content, delta, source, editor) => {
+        setNotes(editor.getHTML());
     };
 
-    const saveNotes = () => {
+    const saveNotes = async () => {
         user.activities[activity._id].notes = notes
         user.activities[activity._id].completed = completed;
-        updateUser(user);
+        let cnt = 0;
+        Object.values(user.activities).forEach(element => {
+            if (element.completed)
+                cnt += 1
+        });
+        const completion = user.activities.length > 0 ? (cnt / user.activities.length) * 100 : 0;
+        user.completion = completion.toFixed(1);
+        await updateUser(user);
         isOpen(false);
     };
 
@@ -46,71 +60,57 @@ const ActivityDetail = ({ isOpen, activity, user }) => {
                     </div> 
                 </div>
 
-                    <div className='scrollableContentAD ' style={{margin:'5%', 'overflow-y': 'scroll', height: '50vh'}} >
+                    <div className='scrollableContentAD ' style={{margin:'5%', 'overflow-y': 'scroll', height: '50vh', fontWeight: '400'}} >
+
                         <div style={{display:'flex', flexDirection:'column'}} >
-                            <div style={{'margin-right': '0%'}}>
-                                Update on Activity
-                                <div
-                                    id="feedback"
-                                    name="feedback"
-                                    style={{
-                                        border: '1px solid #DADADA',
-                                        minHeight: '50px', // simulates 'rows' attribute in textarea
-                                        maxHeight: '150px', // maximum height before scrolling
-                                        overflowY: 'auto', // adds scrollbar if content exceeds maxHeight
-                                        padding: '5px', // optional, for better text spacing
-                                        textAlign: 'left', // ensures text alignment is consistent with the source
-                                        whiteSpace: 'pre-wrap', // respects new lines and spaces
-                                        wordBreak: 'break-word' // ensures long words do not overflow
-                                    }}
-                                    readOnly={true}
-                                    dangerouslySetInnerHTML={{ __html: activity.update }}
-                                />
-                                {/* <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}} readOnly value={activity.update}/> */}
-                            </div>
                             <div style={{ marginRight: '0%' }}>
                                 Activity Description
-                                <div
-                                    id="feedback"
-                                    name="feedback"
-                                    style={{
-                                        border: '1px solid #DADADA',
-                                        minHeight: '100px', // simulates 'rows' attribute in textarea
-                                        maxHeight: '300px', // maximum height before scrolling
-                                        overflowY: 'auto', // adds scrollbar if content exceeds maxHeight
-                                        padding: '5px', // optional, for better text spacing
-                                        textAlign: 'left', // ensures text alignment is consistent with the source
-                                        whiteSpace: 'pre-wrap', // respects new lines and spaces
-                                        wordBreak: 'break-word' // ensures long words do not overflow
-                                    }}
+                                <ReactQuill 
+                                    className="scrollableContentAE"
+                                    style={{height: '30vh'}}
+                                    value={activity.activityDescription}
                                     readOnly={true}
-                                    dangerouslySetInnerHTML={{ __html: activity.activityDescription }}
+                                    theme={"bubble"}
+                                    placeholder="Activity Description"
                                 />
                             </div>
 
                             <div className='activityState'>
-                                {/* <input type='checkbox' checked={signoff} onChange={() => setSignoff(!signoff)}/>
-                                <label>Sign-Off</label>  */}
                                 <input type='checkbox' onChange={() => setCompleted(!completed)} checked={completed}/>
                                 <label>Complete</label>     
                             </div>
-                            <div style={{'margin-right': '5%'}}>
+
+                            <div style={{'margin-right': '0%'}}>
+                                Update on Activity
+                                <ReactQuill 
+                                    className="scrollableContentAE"
+                                    value={activity.update}
+                                    readOnly={true}
+                                    theme={"bubble"}
+                                    placeholder="Update of the Activity"
+                                />
+                            </div>
+
+
+                            <div style={{'margin-top': '3%'}}>
                                 Message to Coach
-                                <textarea 
-                                    id="myNotes" value={notes} onChange={handleNotes} 
-                                    name="myNotes" rows="6" cols="30" 
-                                    style={{border:'1px solid #DADADA'}}/>
+                                <ReactQuill 
+                                    className="scrollableContentAE"
+                                    value={notes}
+                                    onChange={handleNotes}
+                                    placeholder="Message to Coach"
+                                />
                             </div>
-                            <div style={{'margin-right': '5%'}}>
+                            <div style={{'margin-top': '3%'}}>
                                 Message from Coach
-                                <textarea id="feedback" name="feedback" rows="6" cols="30" style={{border:'1px solid #DADADA'}} readOnly value={feedback}/>
+                                <ReactQuill 
+                                    className="scrollableContentAE"
+                                    value={feedback}
+                                    readOnly={true}
+                                    theme={"bubble"}
+                                    placeholder="Message from the coach"
+                                />
                             </div>
-                            {/* <div className="path-feedback" style={{fontSize: '17px', fontWeight: 600}} onClick={saveNotes} >
-                                Save Notes
-                            </div> */}
-                            {/* <div className="path-feedback" style={{fontSize: '17px', fontWeight: 600}} onClick={togglePathFeedback} >
-                                Path feedback
-                            </div> */}
                             </div>
                             <div className="save" style={{
                                 alignItems:'center',

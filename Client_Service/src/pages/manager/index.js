@@ -153,8 +153,8 @@ const LearnerAdminDashboard = () => {
     const renderBody = (path) => {
         return(
 
-           <div>
-           <div className={styles.user_list_container}>
+           <div style={{height: '100%'}}>
+           <div style={{height: '100%'}}>
                <div className={styles.PathManagerConatainer} >
                    <div className={styles.PathManagerTab}>
                        <div className={styles.PathDetailText}>
@@ -208,6 +208,7 @@ const LearnerAdminDashboard = () => {
                    </table>
                    </div>
                </div>
+               <div style={{height: '100%', backgroundColor: '#F2F2F2'}}></div>
            </div>
            <div className={styles.signoff}/>
            </div>

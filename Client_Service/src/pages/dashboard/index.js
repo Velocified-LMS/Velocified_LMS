@@ -120,9 +120,10 @@ const Dashboard = () => {
         const completion = activities.length > 0 ? (cnt / activities.length) * 100 : 0;
         setCompletion(completion.toFixed(1));
         user.completion = completion.toFixed(1);
-        updateUser(user).then(() => {
-            setUser(user);
-        });
+        setUser(user);
+        // updateUser(user).then(() => {
+        //     setUser(user);
+        // });
         const sortedObject = Object.fromEntries(
             Object.entries(activityList).sort(([key1], [key2]) => key1.localeCompare(key2))
         );

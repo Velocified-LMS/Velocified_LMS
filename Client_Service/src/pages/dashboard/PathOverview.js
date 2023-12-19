@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import "./Pathview.css";
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
 
 const PathOverview = ({ isOpen, path }) => {
 
@@ -21,7 +28,14 @@ const PathOverview = ({ isOpen, path }) => {
                 </div> 
             </div>
             <div className="scrollableContent">
-              <p>{ path.pathOverview }</p>
+              <ReactQuill 
+                    // className="scrollableContentAE"
+                    style={{height: '100%'}}
+                    value={path.pathOverview}
+                    readOnly={true}
+                    theme={"bubble"}
+                    placeholder="Path Overview"
+                />
             </div>
     
           </div>

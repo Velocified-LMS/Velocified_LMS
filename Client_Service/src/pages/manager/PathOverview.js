@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import "./Pathview.css";
 import { updatePath } from '@/services/ApiService';
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
 
 const PathOverview = ({ isOpen, path }) => {
 
@@ -12,6 +19,10 @@ const PathOverview = ({ isOpen, path }) => {
     path.pathOverview = text;
     updatePath(path);
     handleClose();
+  };
+
+  const handleChange = (content, delta, source, editor) => {
+    setText(editor.getHTML());
   };
 
   if (path === undefined)
@@ -32,7 +43,11 @@ const PathOverview = ({ isOpen, path }) => {
                 </div> 
             </div>
             <div className="scrollableContent">
-              <input value={text} onChange={e => setText(e.target.value)} style={{ height: '100%', width: '100%' }}></input>
+              <ReactQuill 
+                className="scrollableContentPath"
+                value={text}
+                onChange={handleChange}
+              />
             </div>
             <div className="AddCoachBttn" onClick={handleSave}>
                 Save

@@ -75,7 +75,7 @@
     width: 70%;
     height: 10%;
     background: #ffffff;
-    border: 1px solid  #6E28EE;
+    border: 1px solid #6E28EE;
     border-radius: 3px;
 }
 
@@ -172,6 +172,7 @@
 
   .PathManagerConatainer{
     display: block;
+    height: '60%';
   }
 
   .PathManagerTab{
@@ -218,7 +219,7 @@
     border: 0.5px solid rgb(216, 211, 211);
     width: 100%;
     overflow: auto;
-    height: 38vh;
+    height: 42vh;
   }
 
   .ActivityCreatorContainer::-webkit-scrollbar {

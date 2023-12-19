@@ -10,7 +10,7 @@ import '@/app/globals.css'
 import styles from "./coach.module.css"
 import Navbar from "@/app/components/navbar";
 import InformationPopup from "./informationPopup";
-import ListCalendar from "./Calendar";
+import ListCalendar from "../dashboard/Calendar";
 import Messenger from "./messenger";
 import Profileeditor from "./Profileeditor";
 import { getActivities, getAccess, getPath, getUser, getUserData, updateUser } from "@/services/ApiService";
@@ -32,16 +32,7 @@ const CoachDashboard = () => {
         verifyAccess();
     }, []);
     const language = "English"
-    const userName = "User Name"
-    const day = "Day "+ 4
     const currentDate = new Date()
-    const ActivityTitle = "Activity 1"
-    const ActivityDescription = "This is a description of the activity"
-    const content = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam nec nulla venenatis pharetra. Integer eget odio auctor, convallis ante ac, vestibulum sapien. Fusce sit amet hendrerit nisl. Aenean tristique leo vel nulla lacinia, eget condimentum quam bibendum. Vivamus scelerisque, quam at sollicitudin suscipit, arcu felis eleifend odio, in euismod nisi arcu ut est. In hac habitasse platea dictumst. Sed non hendrerit justo. Nulla facilisi. Quisque rhoncus tristique justo, nec pharetra libero congue a. Sed et malesuada dolor, quis ullamcorper turpis. Suspendisse potenti. Nam feugiat tortor a ex sollicitudin, vel interdum odio scelerisque. Maecenas at tellus vel risus pharetra convallis vel eu ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam nec nulla venenatis pharetra. Integer eget odio auctor, convallis ante ac, vestibulum sapien. Fusce sit amet hendrerit nisl. Aenean tristique leo vel nulla lacinia, eget condimentum quam bibendum. Vivamus scelerisque, quam at sollicitudin suscipit, arcu felis eleifend odio, in euismod nisi arcu ut est. 
-    In hac habitasse platea dictumst. Sed non hendrerit justo. Nulla facilisi. Quisque rhoncus tristique justo, nec pharetra libero congue a. Sed et malesuada dolor, quis ullamcorper turpis. Suspendisse potenti. Nam feugiat tortor a ex sollicitudin, vel interdum odio scelerisque. Maecenas at tellus vel risus pharetra convallis vel eu ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam nec nulla venenatis pharetra. Integer eget odio auctor, convallis ante ac, vestibulum sapien. Fusce sit amet hendrerit nisl. Aenean tristique leo vel nulla lacinia, eget condimentum quam bibendum. Vivamus scelerisque, quam at sollicitudin suscipit, arcu felis eleifend odio, in euismod nisi arcu ut est. In hac habitasse platea dictumst. Sed non hendrerit justo. Nulla facilisi. Quisque rhoncus tristique justo, nec pharetra libero congue a. Sed et malesuada dolor, quis ullamcorper turpis. Suspendisse potenti. Nam feugiat tortor a ex sollicitudin, vel interdum odio scelerisque. Maecenas at tellus vel risus pharetra convallis vel eu ligula. Lorem ipsum dolor sit amet, consectetur adipiscing 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam nec nulla venenatis pharetra. Integer eget odio auctor, convallis ante ac, vestibulum sapien. Fusce sit amet hendrerit nisl. Aenean tristique leo vel nulla lacinia, eget condimentum quam bibendum. Vivamus scelerisque, quam at sollicitudin suscipit, arcu felis eleifend odio, in euismod nisi arcu ut est. In hac habitasse platea dictumst. Sed non hendrerit justo. Nulla facilisi. Quisque rhoncus tristique justo, nec pharetra libero congue a. Sed et malesuada dolor, quis ullamcorper turpis. Suspendisse potenti. Nam feugiat tortor a ex sollicitudin, vel interdum odio scelerisque. Maecenas at tellus vel risus pharetra convallis vel eu ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam nec nulla venenatis pharetra. Integer eget odio auctor, convallis ante ac, vestibulum sapien. Fusce sit amet hendrerit nisl. Aenean tristique leo vel nulla lacinia, eget condimentum quam bibendum. Vivamus scelerisque, quam at sollicitudin suscipit, arcu felis eleifend odio, in euismod nisi arcu ut est. 
-    In hac habitasse platea dictumst. Sed non hendrerit justo. Nulla facilisi. Quisque rhoncus tristique justo, nec pharetra libero congue a. Sed et malesuada dolor, quis ullamcorper turpis. Suspendisse potenti. Nam feugiat tortor a ex sollicitudin, vel interdum odio scelerisque. Maecenas at tellus vel risus pharetra convallis vel eu ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam nec nulla venenatis pharetra. Integer eget odio auctor, convallis ante ac, vestibulum sapien. Fusce sit amet hendrerit nisl. Aenean tristique leo vel nulla lacinia, eget condimentum quam bibendum. Vivamus scelerisque, quam at sollicitudin suscipit, arcu felis eleifend odio, in euismod nisi arcu ut est. In hac habitasse platea dictumst. Sed non hendrerit justo. Nulla facilisi. Quisque rhoncus tristique justo, nec pharetra libero congue a. Sed et malesuada dolor, quis ullamcorper turpis. Suspendisse potenti. Nam feugiat tortor a ex sollicitudin, vel interdum odio scelerisque. Maecenas at tellus vel risus pharetra convallis vel eu ligula. Lorem ipsum dolor sit amet, consectetur adipiscing 
-    In hac habitasse platea dictumst. Sed non hendrerit justo. Nulla facilisi. Quisque rhoncus tristique justo, nec pharetra libero congue a. Sed et malesuada dolor, quis ullamcorper turpis. Suspendisse potenti. Nam feugiat tortor a ex sollicitudin, vel interdum odio scelerisque. Maecenas at tellus vel risus pharetra convallis vel eu ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac quam nec nulla venenatis pharetra. Integer eget odio auctor, convallis ante ac, vestibulum sapien. Fusce sit amet hendrerit nisl. Aenean tristique leo vel nulla lacinia, eget condimentum quam bibendum. Vivamus scelerisque, quam at sollicitudin suscipit, arcu felis eleifend odio, in euismod nisi arcu ut est. In hac habitasse platea dictumst. Sed non hendrerit justo. Nulla facilisi. Quisque rhoncus tristique justo, nec pharetra libero congue a. Sed et malesuada dolor, quis ullamcorper turpis. Suspendisse potenti. Nam feugiat tortor a ex sollicitudin, vel interdum odio scelerisque. Maecenas at tellus vel risus pharetra convallis vel eu ligula. Lorem ipsum dolor sit amet, consectetur adipiscing `;
     const startDate = currentDate.toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
@@ -65,12 +56,13 @@ const CoachDashboard = () => {
         setPath(paths[selected]);
     };
 
-    const [checkedStates, setCheckedStates] = useState([]);
+    const [checkedStates, setCheckedStates] = useState(false);
 
-    const handleCheckboxChange = (user, activityId) => {
-       user.activities[activityId].signoff = !user.activities[activityId].signoff;
-       setUser(user);
-       updateUser(user); 
+    const handleCheckboxChange = (selectedUser, activityId) => {
+        selectedUser.activities[activityId].signoff = !selectedUser.activities[activityId].signoff;
+        setCheckedStates(!checkedStates);
+        setUser(selectedUser);
+        updateUser(selectedUser); 
     };
 
     const [pathViewVisible, setPathViewVisible] = useState(false);
@@ -120,15 +112,20 @@ const CoachDashboard = () => {
     useEffect(() => {
         if(path === null || path === undefined)
             return;
-        setPathName(path.pathName);
-        const getUsersAndActivities = async () => {
-            const users = await getUser({'path': path.pathId});
-            setUsers(users.data);
-            const activities = await getActivities(path._id);
-            setActivities(activities.data);
+        try {
+            setPathName(path.pathName);
+            const getUsersAndActivities = async () => {
+                const users = await getUser({'path': path.pathId});
+                setUsers(users.data);
+                const activities = await getActivities(path._id);
+                setActivities(activities.data);
+            }
+            getUsersAndActivities();
+        } catch (e) {
+            console.log("error");
+            return
         }
-        getUsersAndActivities();
-    }, [path]);
+    }, [path, checkedStates]);
 
     if(coach === null)
         return "Loading...";
@@ -136,8 +133,7 @@ const CoachDashboard = () => {
 
     return (
         <div className={styles.page}>
-            {pathViewVisible && <InformationPopup children={content} isOpen={togglePathView}/>}
-            {listViewVisible && <ListCalendar children={content} isOpen={toggleListView}/>}
+            {listViewVisible && <ListCalendar path={path} isOpen={toggleListView}/>}
             {showMessenger && <Messenger path={path.pathId} />}
             {ProfileeditorViewVisible && <Profileeditor isOpen={toggleProfileeditorView } user={coach}/>}
             {showActivity && <ActivityDetail isOpen={() => setShowActivity(!showActivity)} user={user} activity={activity}/>}
@@ -219,12 +215,13 @@ const CoachDashboard = () => {
                     <div className={styles.activities}>
                          <div className={styles.activityHeader}>
                             <div className={styles.tabGroup}>
-                                <p>User</p>
+                                <p>Users</p>
+                                <div onClick={toggleListView} data-cy="vector-button" className="right" 
+                                    style={{paddingRight: '5%', paddingTop: '0.5%'}}>
+                                    <img src="/icons/vector.svg" data-cy="vector-image" />
+                                </div>
                             </div>
                             <div className={styles.tabGroup}>
-                                {/* <div onClick={toggleListView}>
-                                    <img src="/icons/vector.svg" />
-                                </div> */}
                                 <div className={styles.space} />
                                 <div className={styles.space} />  
                             </div>
@@ -233,8 +230,7 @@ const CoachDashboard = () => {
                             {users.map((user, index) => (
                                 <div key={index} className={styles.user_list}>
                                 <span key={index} className={styles.user_name}>{user.username}</span>
-                                <span key={index} className={styles.user_progress}>{user.completion}</span>
-                                {/* <span className={styles.user_activity}>{user.currentActivity}</span> */}
+                                <span key={index} className={styles.user_progress}>{user.completion+'%'}</span>
                                 </div>
                             ))}
                         </div>
@@ -252,17 +248,19 @@ const CoachDashboard = () => {
                                         return (
                                             activities && Object.entries(user.activities).map(([activityId, activity], index) => {
                                                 return (
-                                                    activity.completed && <div key={i} className={styles.user_list}>
+                                                    activity.completed && 
+                                                    <div key={i} className={styles.user_list} >
                                                         <span key={i} className={styles.user_signoff_name}>
                                                             {user.username}
                                                         </span>
-                                                        <span key={i} className={styles.user_signoff_activity} onClick={() => toggleActivity(user, activities[index])} >
+                                                        <span key={i} className={styles.user_signoff_activity}
+                                                         onClick={() => toggleActivity(user, activities[index])}>
                                                             {activities[index].activityName}
                                                         </span>
                                                         <span key={i} className={styles.user_signoffcheckbox}>
                                                         <Checkbox
                                                             key={i}
-                                                            checked={activity.signoff}
+                                                            checked = {user.activities[activityId].signoff}
                                                             onChange={() => handleCheckboxChange(user, activityId)}
                                                             color="primary"
                                                         />
@@ -273,12 +271,7 @@ const CoachDashboard = () => {
                                     )
                                     })}
                             </div>
-                            {/* <div className={styles.signoff_container}>
-                                <button className={styles.signoff_button}>Sign-off</button>
-                                <Checkbox
-                                    color="primary"
-                                />
-                            </div> */}
+                            <div style={{ backgroundColor: '#F2F2F2', height: '100%' }}/>
                         </div>
                     </div>
                 </div>
