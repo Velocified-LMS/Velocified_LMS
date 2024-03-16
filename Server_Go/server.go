@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -18,5 +19,5 @@ func main() {
 		fmt.Fprintf(w, "You've requested page /test/%s/%s\n", a, b)
 	})
 
-	http.ListenAndServe(":8080", r)
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
