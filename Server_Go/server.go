@@ -1,23 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
+
+	userRoutes "velocified/lms-backend/routes"
 )
 
 func main() {
 	r := mux.NewRouter()
 
-	r.HandleFunc("/test/{a}/{b}", func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		a := vars["a"]
-		b := vars["b"]
+	userRoutes.RegisterUserRoutes(r.PathPrefix("/user").Subrouter())
 
-		fmt.Fprintf(w, "You've requested page /test/%s/%s\n", a, b)
-	})
-
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":3100", r))
 }
