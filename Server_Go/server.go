@@ -6,13 +6,16 @@ import (
 
 	"github.com/gorilla/mux"
 
-	userRoutes "velocified/lms-backend/routes"
+	"velocified/lms-backend/routes"
 )
 
 func main() {
 	r := mux.NewRouter()
 
-	userRoutes.RegisterUserRoutes(r.PathPrefix("/user").Subrouter())
+	routes.RegisterUserRoutes(r.PathPrefix("/user").Subrouter())
+	routes.RegisterPathRoutes(r.PathPrefix("/path").Subrouter())
+	routes.RegisterMessageRoutes(r.PathPrefix("/message").Subrouter())
+	routes.RegisterCompanyRoutes(r.PathPrefix("/company").Subrouter())
 
 	log.Fatal(http.ListenAndServe(":3100", r))
 }
