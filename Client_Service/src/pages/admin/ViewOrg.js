@@ -11,11 +11,12 @@ const ViewOrg = ({ isOpen, org }) => {
   if (org === undefined)
     return "Loading...";
 
+    // hook uses an array of fields to add to the popup
   const [contactFields, setContactFields] = useState(null); 
 
   const handleAddContact = () => {
     const newField = `Contact ${contactFields.length + 1}`;
-    setContactFields([...contactFields, newField]);
+    setContactFields([...contactFields, newField]); // add to the hook array
   };
 
   const [divisionFields, setDivisionFields] = useState(['Division 1']); 

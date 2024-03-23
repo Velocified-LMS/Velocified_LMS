@@ -12,23 +12,38 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Development in Spring 2024 
+Learning the structure of the project. No documentation so analysis may take a while
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# Structure
+## Back-End
+The backend is a node.js server and the server is held in ../Server/server.js. This file can be ran using 
+```
+node server.js
+```
+The module will start the localhost server and attempt to establish a connection to the Mongoos database. As of March 22nd, 2024, there is no connection.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The server also uses an instance of ```Axios``` which is "promise-based HTTP Client for node.js and the browser".
 
-## Learn More
+## Front-End
+The front end is mostly React. There are 8 main folders that hold components. 
+* admin
+* coach
+* dashboard 
+* forget
+* login
+* manager
+* register
+* validate
 
-To learn more about Next.js, take a look at the following resources:
+### Admin
+This folder has the following exported components: ```AddOrg```, ```ProfileEditor```, ```ViewOrg```, ```VelocifiedAdminDashboard``` (housed in index.js). 
+* AddOrg (named AddOrg.js)
+    * This component creates a Modal window to add an organization with a ***name*** and a ***location***. 
+* ProfileEditor (named Profileeditor.js)
+    * This component uses a table to display information about the current profile that is logged in. There is not much logic that is housed in this module. Purely visual.
+* ViewOrg (named ViewOrg.js)
+    * This component is similar to AddOrg but instead of sending information away to be processed once it has been entered, the information is just displayed
+* VelocifiedAdminDashboard
+    * This component is what will display the different modal windows and handle setting up the dashboard for the user and the rest of the site. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
