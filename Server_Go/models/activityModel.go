@@ -14,7 +14,7 @@ type Activity struct {
 	Day                 uint
 	Star                bool
 	Completed           bool
-	PathId              uint
+	PathID              uint
 	Path                Path
 	Update              string
 }
