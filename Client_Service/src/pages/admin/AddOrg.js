@@ -40,13 +40,16 @@ const AddOrg = ({ isOpen, setCompanies, companies }) => {
   };
 
   return (
+    // Modal is a popup window
     <div className="modal">
         <div className="popupBU">
             <div className="modalContentBU">
             <div className="headerBU">
+              {/* Label for the textfield */}
                 <div className="pathTitle left">
                     Add Organization
                 </div>
+                {/* Button to close the window */}
                 <div onClick={handleClose} className='right'>
                     <img src='/icons/close.svg' style={{height: '30%', cursor:'pointer'}}/>
                 </div> 

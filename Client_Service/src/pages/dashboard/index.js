@@ -83,8 +83,10 @@ const Dashboard = () => {
     const initializeData = async () => {
         let user = await getUserData();
         user = user.data
+        
         setUser(user);
         let path = await getPath(user.path);
+        
         path = path.data
         setPath(path);
         let activities = await getActivities(path._id);

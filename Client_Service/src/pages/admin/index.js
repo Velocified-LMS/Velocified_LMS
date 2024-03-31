@@ -38,6 +38,8 @@ const VelocifiedAdminDashboard = () => {
         day: 'numeric',
         year: 'numeric',
     });
+
+    /* Modal Windows - If the hook is true, then we display them, else, hide */
     const [ProfileeditorViewVisible, setProfileeditorViewVisible] = useState(false);
     const toggleProfileeditorView = (visible) => {
         setProfileeditorViewVisible(visible);
@@ -55,6 +57,7 @@ const VelocifiedAdminDashboard = () => {
         setSelectedOrg(org);
         setViewOrgVisible(!ViewOrgVisible);
     };
+    /* End Modal Windows */
 
     const [companies, setCompanies] = useState(null);
 
@@ -62,7 +65,12 @@ const VelocifiedAdminDashboard = () => {
 
     const [user, setUser] = useState(null);
 
+    // This is ran everytime the DOM is rendered AND updated by React. 
+    // Usually happens asynchronously
+
+    
     useEffect(() => {
+        // Initialize anon function
         const initializeData = async () => {
             const companies = await getCompanies();
             const user = await getUserData();
@@ -71,8 +79,8 @@ const VelocifiedAdminDashboard = () => {
             setTotalSeats(totalSeats);
             setCompanies(companies.data);
         }
-        initializeData();
-    }, [AddOrgVisible]);
+        initializeData(); // Call anon func
+    }, [AddOrgVisible]); // Handle dependency
 
     if(companies === null || user === null) {
         return "Loading...";
