@@ -12,9 +12,10 @@ const getActivity = async (req, res) => {
         res.status(500).json({ message: 'Error fetching Activity', error: err });
     }
 };
-
+ 
 const getActivitiesByPath = async (req, res) => {
     try {
+        console.log("This is the path id being used ---> " + req.query.pathId)
         const activities = await Activity.find({path: req.query.pathId});
         res.json(activities)
     } catch (err) {

@@ -9,8 +9,11 @@ const activityRoutes = require("./routes/ActivityRoutes");
 const companyRoutes = require("./routes/CompanyRoutes");
 
 const app = express();
+// origin is the URL that is sending requests
+// The port should be whatever port your REACT APP is using
+// (origin) React sends to node server (port)
 const corsOptions = {
-  origin: ["http://localhost:3002"],
+  origin: ["http://localhost:" + process.env.LOCALHOST_PORT],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
   credentials: true,
 };

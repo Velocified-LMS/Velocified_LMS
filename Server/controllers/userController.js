@@ -8,6 +8,7 @@ const getUser = async (req, res) => {
     try {
       const user = req.session.user.id;
       const users = await User.findOne({ email: user });
+      console.log("\n\nGetting user: " + res.json(users));
       res.json(users);
     } catch (error) {
       console.error('Error getting user:', error);
@@ -74,8 +75,8 @@ const authorizeLogin = async (req, res) => {
         id: email,
         access: userInfo._doc.access
       };
-      console.log('Login successfull');
-      res.status(200).json({message: "Login successfull", access: userInfo._doc.access});
+      console.log('Login successful');
+      res.status(200).json({message: "Login successful", access: userInfo._doc.access});
     } else {
       res.status(403).json({ error: 'Login Failed' });
     }
@@ -106,6 +107,8 @@ const register = async (req, res) => {
     if(req.body.path) {
       user.path = req.body.path;
     }
+
+    
     const path = await Path.findOne({"pathId": user.path});
     if(!path) {
       return res.status(404).json({message:"path not found"});

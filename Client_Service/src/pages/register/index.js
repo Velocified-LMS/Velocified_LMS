@@ -53,6 +53,7 @@ const Register = () => {
         "pwd": password,
         "path": path
       };
+      console.log(data)
       const response = await registerUser(data);
       redirectToNewPage('validate', router);
     } catch (error) {

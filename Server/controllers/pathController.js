@@ -12,7 +12,7 @@ const getPath = async (req, res) => {
         res.status(500).json({ message: 'Error fetching Path', error: err });
     }
 };
-
+ 
 const getPathsByCompany = async (req, res) => {
     try {
         const paths = await Path.find({company: req.query.companyId})

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-const mongoURI = `mongodb+srv://gaorteg4:ksQJnOyu3KFpggMA@velocified.rkm3pbb.mongodb.net/?retryWrites=true&w=majority&appName=Velocified`;
+const mongoURI = process.env.DATABASE_URL;
 // const mongoURI = process.env.MONGODB_URI
 mongoose
   .connect(mongoURI, {
