@@ -14,7 +14,12 @@ type ActivityErr struct {
 
 func GetActivity(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	activityId := r.URL.Query()["activity"]
+	activityId := r.URL.Query().Get("activity")
+
+	if activityId == "" {
+		w.WriteHeader(500)
+		json.NewEncoder(w).Encode(&ActivityErr{Message: "Error fetching Activity", Error: "Invalid Query"})
+	}
 
 	var activity models.Activity
 
