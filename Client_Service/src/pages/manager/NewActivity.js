@@ -56,6 +56,7 @@ const NewActivity = ({ isOpen, path }) => {
       setErrors(newErrors);
     } else {
       formData.path = path
+      formData.date = new Date()
       const response = await createActivity(formData);
       handleClose();
     }

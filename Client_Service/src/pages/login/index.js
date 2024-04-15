@@ -1,8 +1,8 @@
 "use client";
 import styles from "./login.module.css";
-import Navbar from "@/app/components/navbar";
+import Navbar from "../../app/components/navbar";
 import { useRouter } from "next/navigation";
-import "@/app/globals.css";
+import "../../app/globals.css";
 import { authorizeLogin, getUserData } from "../../services/ApiService";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -32,13 +32,14 @@ const Login = () => {
     const data = {
       email: username,
       pwd: password,
-      // "access": access
+      // access: access
     };
     setErrorMessage("");
     authorizeLogin(data)
       .then((res) => {
         let redirect = "";
-        switch (res.data.access) {
+        // res.data.access
+        switch (res.access) {
           case "user":
             redirect = "dashboard";
             break;
@@ -54,6 +55,7 @@ const Login = () => {
           default:
             redirect = "dashboard";
         }
+        // This is how "localhost:3001/dashboard" gets created
         redirectToNewPage(redirect, router);
       })
       .catch((error) => {

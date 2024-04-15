@@ -5,7 +5,7 @@ const isAuthenticated = require('../Utils/AuthenticationUtil.js');
 
 router.get('/', isAuthenticated, activitiesController.getActivity);
 
-router.get('/path', isAuthenticated, activitiesController.getActivitiesByPath);
+router.get('/path', activitiesController.getActivitiesByPath);
 
 router.post('/create', isAuthenticated, activitiesController.createActivity);
 

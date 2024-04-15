@@ -26,9 +26,9 @@ const VelocifiedAdminDashboard = () => {
             console.error('API request error:', error);
         }
     };
-    useEffect(() => {
-        verifyAccess();
-    }, []);
+    // useEffect(() => {
+    //     verifyAccess();
+    // }, []);
     const language = "English"
     const userName = "User Name"
 
@@ -59,7 +59,8 @@ const VelocifiedAdminDashboard = () => {
     };
     /* End Modal Windows */
 
-    const [companies, setCompanies] = useState(null);
+
+    const [companies, setCompanies] = useState();
 
     const [totalSeats, setTotalSeats] = useState(0);
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./ActivityDetail.css";
 import PathFeedback from './PathFeedback';
 import styles from "./dashboard.module.css"
-import { updateActivity, updateUser } from '@/services/ApiService';
+import { updateActivity, updateUser } from '../../services/ApiService';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 
@@ -11,7 +11,7 @@ const ReactQuill = dynamic(() => import('react-quill'), {
   loading: () => <p>Loading...</p>,
 });
 
-const ActivityDetail = ({ isOpen, activity, user }) => {
+const ActivityDetail = ({ isOpen, activity, user }) => { 
 
     const handleClose = () => {
         isOpen(false);

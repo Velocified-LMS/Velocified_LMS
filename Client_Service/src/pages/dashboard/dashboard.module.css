@@ -1,5 +1,3 @@
-
-
 .page {
     overflow: hidden;
 }
@@ -9,11 +7,9 @@
 
 .dashboardContainer {
     display: flex;
-    width: 90%;
-    background-color: #F2F2F2;
-    height: 90vh;
-    padding-left: 5%;
-    padding-right: 5%;
+    width: 100%;
+    background-color: #ffffff;
+    height: 100vh;
     flex-direction: column;
     font-family: var(--font-sf-pro);
 
@@ -36,7 +32,7 @@
 }
 
 .sidebar {
-    width: 30%;
+    width: 25%;
     margin-top: 10px;
 }
 
@@ -51,19 +47,20 @@
 }
 
 .language {
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
 }
 
 .path {
     font-weight: 600;
 }
 
+/* This contains the progress wheel, "milestones", and messages button */
 .studentActivity {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%
+    height: 100%;
 }
 
 .messages {
@@ -79,7 +76,7 @@
 }
 
 .messageText {
-    color: #FFF;
+    color: #000000;
     align-items: center;
     justify-content: center;
     font-family: var(--font-sf-pro);
@@ -127,8 +124,7 @@
 }
 
 .space {
-    flex: 1; 
-    min-width: 20px;
+    width: 10px;
 }
 
 .activityBody {
@@ -143,7 +139,139 @@
     max-height: 700px;
 }
 
-/* dashboard.module.css */
+.arrow {
+    display: block;
+    background: #ffffff;
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+.milestone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.milestoneIcon {
+    height: 50px;
+    width: 50px;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.headerContainer div {
+    font-family: var(--font-sf-pro);
+    font-weight: 800;
+}
+
+/* Main Grid, separate side bar and activities */
+.pageGrid { 
+    display: grid; 
+    grid-template-columns: 35% 65%; 
+    grid-template-rows: repeat(2, 1fr); 
+    grid-column-gap: 20px;
+    grid-row-gap: 0px; 
+    }
+    .gridSidebar { grid-area: 1 / 1 / 3 / 2; } 
+    .gridActivities { grid-area: 1 / 2 / 3 / 3; } 
+
+/* Sidebar grid, separate user info, progress, milestones, and messages */
+.sidebarGrid { 
+    background: #f2f2f2;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr) 22%; 
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+    padding-left: 20px;
+    padding-top: 20px;
+    }
+    .gridUserInfo { 
+        grid-area: 1 / 1 / 2 / 2; } 
+    .gridProgress { 
+        background-color: #ffffff;
+        margin-right: 20px;
+        padding: 5px 10px 0px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-area: 2 / 1 / 3 / 2; 
+    } 
+        /* container for lables  */
+        .recentProgress{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    .gridMilestones { 
+        background-color: #ffffff;
+        margin-right: 20px;
+        margin-top: 10px;
+        padding: 5px 10px 0px 10px;
+        display: flex;
+        flex-direction: column;
+        grid-area: 3 / 1 / 4 / 2; 
+    } 
+    .gridMessages { 
+        overflow: auto;
+        background-color: #ffffff;
+        margin: 10px 20px 40px 0px;
+        padding: 5px 10px 10px 10px;
+        grid-area: 4 / 1 / 5 / 2; 
+    } 
+
+/* Activities Grid, separates day buttons, list buttons */
+.activitiesGrid { 
+    display: grid; 
+    grid-template-columns: 50% 50%; 
+    grid-template-rows: 30% 70%; 
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+    padding-right: 20px;
+    background: #f2f2f2;
+    margin-top: 100px;
+    }
+    /* Top Row, Left Col */
+    .gridDayButtons { 
+        display: flex;
+        padding-left: 5px;
+        align-items: center;
+        justify-content: left;
+        grid-area: 1 / 1 / 2 / 2; 
+        height: 35%;
+        padding-left: 30px;
+    } 
+    /* Top Row, Right Col */
+    .gridListButtons { 
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: right;
+        grid-area: 1 / 2 / 2 / 2; 
+        height: 35%;
+        padding-right: 30px;
+    } 
+    /* Bottom Row, Span both columns */
+    /* Grid to respond to each activity, adds rows as needed */
+    .gridActivityMain { 
+        /* Set up grid within grid */
+        display: grid;
+        width: 200%;
+        height: 465px;
+        overflow-y: auto; /* Allow for users to scroll throuhg activities*/
+        grid-auto-rows: 1fr;
+        grid-area: 2 / 1 / 2 / 2; 
+    } 
+        .gridSingleActivity {
+        }
+
+
+
 .profileContainer {
     position: relative;
     display: inline-block;

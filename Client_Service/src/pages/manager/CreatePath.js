@@ -21,7 +21,17 @@ const CreatePath = ({ isOpen, company, setPath }) => {
     }
     const response = await createPath(path);
     setPath(response.data)
-    const cmp = await getCompany(company);
+    // const cmp = await getCompany(company);
+    const cmp = {
+      data: {
+        name: "TestOrg",
+        email: "iphantomeckoi@gmail.com",
+        address: "ASU",
+        domain: "gmail.com",
+        seats: 0,
+        __v: 0
+      }
+    }
     if(cmp.data.seats === undefined || cmp.data.seats === null) {
       cmp.data.seats = 0
     }

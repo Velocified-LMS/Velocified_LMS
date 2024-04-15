@@ -1,9 +1,10 @@
 import styles from "./Activity.module.css";
+import gridStyles from "./dashboard.module.css"
 import ActivityDetail from "./ActivityDetail";
 import { useState } from "react";
+ 
 
-
-const Activity = ({ activity, user, change }) => {
+const Activity = ({ activity, user, change, key }) => {
     const [ActivityDetailViewVisible, setActivityDetailViewVisible] = useState(false);
     const toggleActivityDetailView = (visible) => {
         change(visible);
@@ -14,12 +15,19 @@ const Activity = ({ activity, user, change }) => {
     return (
         <div>
             {ActivityDetailViewVisible && <ActivityDetail user={user} activity = {activity} isOpen={toggleActivityDetailView}/>}
-            <div className={styles.activity} onClick={toggleActivityDetailView} >
+            <div 
+                id="main" 
+                className={styles.activity} 
+                onClick={toggleActivityDetailView} 
+                style={{gridRow: `${key+1}/${key+2}`}}>
                 <div className={styles.activityTitle} >
-                    { activity.activityName }
-                    {/* <div style={{width: '3%'}} /> */}
-                    {/* <div className={styles.star} /> */}
+                    { activity.activityName } {key}
+                    <div className={styles.star} />
                 </div>
+                <div className={styles.activityDesciption}>
+                    {activity.activityDescription}
+                </div>
+                
                 {/* <div
                     id="feedback"
                     name="feedback"
@@ -36,7 +44,8 @@ const Activity = ({ activity, user, change }) => {
                     readOnly={true}
                     dangerouslySetInnerHTML={{ __html: activity.activityDescription }}
                 /> */}
-            </div>
+                
+            </div> 
         </div>
     );
 }
