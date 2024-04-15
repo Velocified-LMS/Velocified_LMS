@@ -11,7 +11,7 @@ function MessageList({ messages = [], user }) {
         }
         return(
             <div className={ `${styles.message} ${align}`} key={i}>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex'}}>
                     <div className={styles.message_container}>
                         <div className={styles.sender_icon}>
                             <img src={icon} />

@@ -8,7 +8,7 @@ const cookieJar = new tough.CookieJar();
 
 const instance = axios.create({
   // baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  // baseURL is the base of the server that is handling requests
+  // baseURL is the base of the server that is handling requests 
   baseURL: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
@@ -132,3 +132,4 @@ export const createCompany = async (company) => {
 export const updateCompany = async (activity) => {
   return await instance.post("/company/update", activity);
 };
+ 

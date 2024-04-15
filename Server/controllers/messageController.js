@@ -6,7 +6,8 @@ const axios = require('axios');
 
 const getMessage = async (req, res) => {
     const path = req.query.path;
-    const messages = await Message.find({ path: path });
+    const messages = await Message.find({ "path": path });
+    console.log(messages)
     res.status(200).json(messages);
 }
 

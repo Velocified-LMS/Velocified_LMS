@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 const getPath = async (req, res) => {
     try {
-        const path = await Path.findOne({pathId: req.query.pathId})
+        console.log("path id being passed to getPath: " + req.query.pathId)
+        const path = await Path.findOne({"pathId": req.query.pathId})
+        console.log(path)
         res.json(path)
     } catch (err) {
         console.error('Error fetching Path:', err);
@@ -15,7 +17,7 @@ const getPath = async (req, res) => {
  
 const getPathsByCompany = async (req, res) => {
     try {
-        const paths = await Path.find({company: req.query.companyId})
+        const paths = await Path.find({"company": req.query.companyId})
         res.json(paths)
     } catch (err) {
         console.error('Error fetching Path:', err);
@@ -56,7 +58,7 @@ generateHexcode = async () => {
     do {
         const randomNum = Math.floor(Math.random() * 65536);
         hexCode = randomNum.toString(16).padStart(4, '0');
-        path = await Path.findOne({ id: hexCode });
+        path = await Path.findOne({ "id": hexCode });
     } while (path);
     return hexCode;
 }

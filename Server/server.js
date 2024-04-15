@@ -22,7 +22,12 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.use(
   session({
-    user: "hey",
+    user: {
+      id: "gabriel71401@gmail.com",
+      username: "test",
+      company: "TestOrg",
+      path: "NewTestPath",
+    },
     name: "sid",
     secret: "123",
     resave: false,

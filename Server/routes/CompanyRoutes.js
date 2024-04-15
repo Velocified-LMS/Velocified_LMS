@@ -12,3 +12,4 @@ router.post('/update', isAuthenticated, companyController.updateCompany);
 router.post('/create', isAuthenticated, companyController.createCompany);
 
 module.exports = router;
+ 

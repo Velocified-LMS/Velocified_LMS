@@ -2,7 +2,7 @@ const Path = require('../models/Path');
 const User = require('../models/User');
 const Company = require('../models/Company');
 const mongoose = require('mongoose');
-
+ 
 const updateCompany = async (req, res) => {
     try {
         const company = await Company.findByIdAndUpdate(req.body.id, req.body.update, {new: true});

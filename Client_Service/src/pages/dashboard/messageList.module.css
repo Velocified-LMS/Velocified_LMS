@@ -34,14 +34,22 @@
 
 /* Style the icon */
 .sender_icon {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
-    width: 35px; /* Adjust icon width */
+    width: auto; /* Adjust icon width */
     height: 10px; /* Adjust icon height */
-    top: 15px;
+    position: relative;
+    top: 25px;
+    left: -10px;
     
 }
 
+.message_container {
+    
+}
 
 
 

@@ -5,13 +5,15 @@ const axios = require('axios');
 const Path = require('../models/Path');
 
 const getUser = async (req, res) => {
+  /* This is the function that is handling the /user/info endpoint */
+  /* A JSON object is returned */
     try {
-      const user = req.session.user.id;
-      const users = await User.findOne({ email: user });
-      console.log("\n\nGetting user: " + res.json(users));
-      res.json(users);
+      const user = req.session.user;
+      const returnedUser = await User.findOne({ "email": user.id }); // here, id is an email! Check authorizeLogin
+      console.log(returnedUser);
+      res.json(returnedUser);
     } catch (error) {
-      console.error('Error getting user:', error);
+      console.error('Error getting users:', error);
       res.status(500).json({ error: 'Error getting user' });
     }
 };
@@ -45,7 +47,7 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const id = req.body.email;
-    const response = await User.findOneAndUpdate({ email: id}, req.body, {new: true});
+    const response = await User.findOneAndUpdate({ "email": id}, req.body, {"new": true});
     res.json(response);
   } catch (error) {
     console.error('Error updating user:', error);
@@ -61,6 +63,7 @@ const authorizeLogin = async (req, res) => {
     // const access = req.body.access;
 
     const userInfo = await User.findOne({"email":email});
+    console.log(userInfo);
     if(bcrypt.compareSync(pwd, userInfo._doc.pwd) && userInfo._doc.validated) {
       // if(access === "coach" && userInfo._doc.access === "user") {
       //   return res.status(401).json({ error: 'Not Authorized' });

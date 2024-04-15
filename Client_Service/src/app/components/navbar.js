@@ -4,7 +4,7 @@ import { TextField, InputAdornment } from "@mui/material";
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { Search } from "@mui/icons-material";
-import { logout } from "@/services/ApiService";
+import { logout } from "../../services/ApiService";
 import { useRouter } from 'next/navigation';
 
 const Navbar = (authorized) => {

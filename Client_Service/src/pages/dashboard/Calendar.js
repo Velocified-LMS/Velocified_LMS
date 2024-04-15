@@ -4,7 +4,7 @@ import { Search } from '@mui/icons-material';
 import { TextField, InputAdornment, Checkbox } from "@mui/material";
 import PathOverview from './PathOverview';
 import PathDefinition from './PathDefinition';
-import { getActivities } from '@/services/ApiService';
+import { getActivities } from '../../services/ApiService';
 
 const ListCalendar = ({path, isOpen}) => {
 

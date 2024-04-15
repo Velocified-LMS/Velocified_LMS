@@ -38,7 +38,8 @@ const Donut = ({ percentage }) => {
         cutout: 45,
         legend: {
           display: false,
-        }
+        },
+        aspectRatio: 2
     };
     return (
         <div className={styles.progress}>
