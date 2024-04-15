@@ -1,24 +1,25 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { wrapper } from 'axios-cookiejar-support';
-import tough from 'tough-cookie';
-import { useRouter } from 'next/router';
+import axios from "axios";
+import Cookies from "js-cookie";
+import { wrapper } from "axios-cookiejar-support";
+import tough from "tough-cookie";
+import { useRouter } from "next/router";
 
 const cookieJar = new tough.CookieJar();
 
 const instance = axios.create({
   // baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  baseURL: 'https://velocified.net:3100',
+  // baseURL is the base of the server that is handling requests
+  baseURL: "http://localhost:3000",
   headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
   },
   jar: cookieJar,
-  withCredentials: true
+  withCredentials: true,
 });
 
 export const getUserData = async () => {
-    return await instance.get(`/user/info`);
+  return await instance.get(`/user/info`);
 };
 
 export const getAccess = async (accessLevel) => {
@@ -26,10 +27,10 @@ export const getAccess = async (accessLevel) => {
 };
 
 export const getUser = async (attr) => {
-  let str = '';
-  for(let key in attr) {
+  let str = "";
+  for (let key in attr) {
     console.log(key, attr[key]);
-    str += key + '=' + attr[key] + '&';
+    str += key + "=" + attr[key] + "&";
   }
   str = str.slice(0, -1);
   return await instance.get(`/user/get?${str}`);
@@ -44,24 +45,24 @@ export const updateUser = async (user) => {
 };
 
 export const authorizeLogin = async (data) => {
-  const response = await instance.post('/user/login', data);
+  const response = await instance.post("/user/login", data);
   return response;
 };
 
 export const registerUser = async (user) => {
-  return await instance.post('/user/register', user);
+  return await instance.post("/user/register", user);
 };
 
 export const createUser = async (user) => {
-  return await instance.post('/user/create', user);
+  return await instance.post("/user/create", user);
 };
 
 export const resetUser = async (user) => {
-  return await instance.post('/user/reset', user);
+  return await instance.post("/user/reset", user);
 };
 
 export const validateUser = async (user) => {
-  return await instance.post('/user/validate', user);
+  return await instance.post("/user/validate", user);
 };
 
 export const sendMessage = async (data, path) => {
@@ -85,12 +86,12 @@ export const getPathsByCompany = async (companyId) => {
 };
 
 export const createPath = async (path) => {
-  const response = await instance.post('/path/create', path)
+  const response = await instance.post("/path/create", path);
   return response;
 };
 
 export const updatePath = async (path) => {
-  const response = await instance.post('/path/update', path)
+  const response = await instance.post("/path/update", path);
   return response;
 };
 
@@ -105,12 +106,14 @@ export const getActivities = async (pathId) => {
 };
 
 export const createActivity = async (activity) => {
-  const response = await instance.post('/activity/create', {"activity": activity})
+  const response = await instance.post("/activity/create", {
+    activity: activity,
+  });
   return response;
 };
 
 export const updateActivity = async (activity) => {
-  const response = await instance.post('/activity/update', activity)
+  const response = await instance.post("/activity/update", activity);
   return response;
 };
 
@@ -123,9 +126,9 @@ export const getCompanies = async () => {
 };
 
 export const createCompany = async (company) => {
-  return await instance.post('/company/create', company);
+  return await instance.post("/company/create", company);
 };
 
 export const updateCompany = async (activity) => {
-  return await instance.post('/company/update', activity);
+  return await instance.post("/company/update", activity);
 };

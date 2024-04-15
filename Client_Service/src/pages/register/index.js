@@ -53,6 +53,7 @@ const Register = () => {
         "pwd": password,
         "path": path
       };
+      console.log(data)
       const response = await registerUser(data);
       redirectToNewPage('validate', router);
     } catch (error) {
@@ -64,6 +65,8 @@ const Register = () => {
         setError("Unauthorized Path");
       } else if(error.response.status === 401) {
         setError("Company not registered");
+      } else if (error.response.status === undefined) {
+        setError("Something went wrong, try again");
       }
       console.error(error);
     }
