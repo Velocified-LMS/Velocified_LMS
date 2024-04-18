@@ -6,14 +6,14 @@ import { Search } from "@mui/icons-material";
 import { TextField, InputAdornment, InputLabel } from "@mui/material";
 import Checkbox from '@mui/material/Checkbox';
 
-import '@/app/globals.css'
+import '../../app/globals.css'
 import styles from "./coach.module.css"
-import Navbar from "@/app/components/navbar";
+import Navbar from "../../app/components/navbar";
 import InformationPopup from "./informationPopup";
 import ListCalendar from "../dashboard/Calendar";
 import Messenger from "./messenger";
 import Profileeditor from "./Profileeditor";
-import { getActivities, getAccess, getPath, getUser, getUserData, updateUser } from "@/services/ApiService";
+import { getActivities, getAccess, getPath, getUser, getUserData, updateUser } from "../../services/ApiService";
 import ActivityDetail from "./ActivityDetail";
 import { useRouter } from "next/router";
 
@@ -28,9 +28,9 @@ const CoachDashboard = () => {
             router.back({ query: { accessDenied: true } });
         }
     };
-    // useEffect(() => {
-    //     verifyAccess();
-    // }, []);
+    useEffect(() => {
+        verifyAccess();
+    }, []);
     const language = "English"
     const currentDate = new Date()
     const startDate = currentDate.toLocaleDateString('en-US', {
@@ -40,26 +40,26 @@ const CoachDashboard = () => {
     });
 
     /* DEVELOPMENT */
-    const [path, setPath] = useState(null);
-    const [pathName, setPathName] = useState(process.env.TEST_COACH_PATH);
-    const [paths, setPaths] = useState([{pathName: process.env.TEST_COACH_PATH}]);
-    const [users, setUsers] = useState([{username: process.env.TEST_USER, completion: process.env.TEST_USER_COMPLETION}]);
-    const [user, setUser] = useState();
-    const [activity, setActivity] = useState(null);
-    const [activities, setActivities] = useState(null);
-    const [coach, setCoach] = useState({username: process.env.TEST_COACH_USER});
-    const [selected, setSelected] = useState(-1);
-
-    /* PRODUCTION */
     // const [path, setPath] = useState(null);
-    // const [pathName, setPathName] = useState("Path Name");
-    // const [paths, setPaths] = useState([]);
-    // const [users, setUsers] = useState([]);
-    // const [user, setUser] = useState(null);
+    // const [pathName, setPathName] = useState(process.env.TEST_COACH_PATH);
+    // const [paths, setPaths] = useState([{pathName: process.env.TEST_COACH_PATH}]);
+    // const [users, setUsers] = useState([{username: process.env.TEST_USER, completion: process.env.TEST_USER_COMPLETION}]);
+    // const [user, setUser] = useState();
     // const [activity, setActivity] = useState(null);
     // const [activities, setActivities] = useState(null);
-    // const [coach, setCoach] = useState(null);
+    // const [coach, setCoach] = useState({username: process.env.TEST_COACH_USER});
     // const [selected, setSelected] = useState(-1);
+
+    /* PRODUCTION */
+    const [path, setPath] = useState(null);
+    const [pathName, setPathName] = useState("Path Name");
+    const [paths, setPaths] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState(null);
+    const [activity, setActivity] = useState(null);
+    const [activities, setActivities] = useState(null);
+    const [coach, setCoach] = useState(null);
+    const [selected, setSelected] = useState(-1);
 
     const handleChange = (event) => {
         const selected = event.target.value;
@@ -106,38 +106,38 @@ const CoachDashboard = () => {
         setShowActivity(!showActivity);
     };
 
-    // useEffect(() => {
-    //     const initializeData = async () => {
-    //         const coach = await getUserData();
-    //         setCoach(coach.data);
-    //         const pathIds = coach.data.coach;
-    //         const paths = pathIds.map((pathId) => {
-    //             return getPath(pathId);
-    //         });
-    //         let resolvedPaths = await Promise.all(paths);
-    //         resolvedPaths = resolvedPaths.map((path) => path.data);
-    //         setPaths(resolvedPaths)
-    //     };
-    //     initializeData();
-    // }, []);
+    useEffect(() => {
+        const initializeData = async () => {
+            const coach = await getUserData();
+            setCoach(coach.data);
+            const pathIds = coach.data.coach;
+            const paths = pathIds.map((pathId) => {
+                return getPath(pathId);
+            });
+            let resolvedPaths = await Promise.all(paths);
+            resolvedPaths = resolvedPaths.map((path) => path.data);
+            setPaths(resolvedPaths)
+        };
+        initializeData();
+    }, []);
 
-    // useEffect(() => {
-    //     if(path === null || path === undefined)
-    //         return;
-    //     try {
-    //         setPathName(path.pathName);
-    //         const getUsersAndActivities = async () => {
-    //             const users = await getUser({'path': path.pathId});
-    //             setUsers(users.data);
-    //             const activities = await getActivities(path._id);
-    //             setActivities(activities.data);
-    //         }
-    //         getUsersAndActivities();
-    //     } catch (e) {
-    //         console.log("error");
-    //         return
-    //     }
-    // }, [path, checkedStates]);
+    useEffect(() => {
+        if(path === null || path === undefined)
+            return;
+        try {
+            setPathName(path.pathName);
+            const getUsersAndActivities = async () => {
+                const users = await getUser({'path': path.pathId});
+                setUsers(users.data);
+                const activities = await getActivities(path._id);
+                setActivities(activities.data);
+            }
+            getUsersAndActivities();
+        } catch (e) {
+            console.log("error");
+            return
+        }
+    }, [path, checkedStates]);
 
     if(coach === null)
         return "Loading...";

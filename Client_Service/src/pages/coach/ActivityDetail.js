@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./ActivityDetail.css";
 import styles from "./coach.module.css"
-import { updateActivity, updateUser } from '@/services/ApiService';
+import { updateActivity, updateUser } from '../../services/ApiService';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 

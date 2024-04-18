@@ -12,11 +12,11 @@ import ActivityEdit from "./ActivityEdit";
 import CreatePath from "./CreatePath";
 import AddCoach from "./AddCoach";
 import BlockUser from "./BlockUser";
-import { getUserData, getPathsByCompany, getAccess, updateUser, getActivities } from "@/services/ApiService";
+import { getUserData, getPathsByCompany, getAccess, updateUser, getActivities } from "../../services/ApiService";
 import { useRouter } from "next/router";
-import '@/app/globals.css'
+import '../../app/globals.css'
 import styles from "./learneradmindashboard.module.css"
-import Navbar from "@/app/components/navbar";
+import Navbar from "../../app/components/navbar";
 
 import Profileeditor from "./Profileeditor";
 
@@ -106,7 +106,7 @@ const LearnerAdminDashboard = () => {
         setPath(paths[selected]);
     };
 
-
+ 
     const handleCheckboxChange = (index) => {
         const newCheckedStates = [...checkedStates];
         newCheckedStates[index] = !newCheckedStates[index];

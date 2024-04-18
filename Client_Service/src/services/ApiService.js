@@ -17,7 +17,7 @@ const instance = axios.create({
   jar: cookieJar,
   withCredentials: true,
 });
-
+ 
 export const getUserData = async () => {
   return await instance.get(`/user/info`);
 };

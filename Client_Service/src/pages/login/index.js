@@ -39,7 +39,7 @@ const Login = () => {
       .then((res) => {
         let redirect = "";
         // res.data.access
-        switch (res.access) {
+        switch (res.data.access) {
           case "user":
             redirect = "dashboard";
             break;

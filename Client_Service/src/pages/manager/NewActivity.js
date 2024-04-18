@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./NewActivity.css";
 import { TextField,TextareaAutosize } from '@mui/material';
-import { createActivity } from '@/services/ApiService';
+import { createActivity } from '../../services/ApiService';
 
 const NewActivity = ({ isOpen, path }) => {
 

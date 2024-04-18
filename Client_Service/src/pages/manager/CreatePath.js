@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./CreatePath.css";
 import { TextField } from '@mui/material';
-import { createPath, getCompany, updateCompany } from '@/services/ApiService';
+import { createPath, getCompany, updateCompany } from '../../services/ApiService';
 import { combineEventUis } from '@fullcalendar/core/internal';
 
 const CreatePath = ({ isOpen, company, setPath }) => {

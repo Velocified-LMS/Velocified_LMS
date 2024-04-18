@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./AddCoach.css";
 import { TextField } from '@mui/material';
-import { createUser, getUser, getUserData, updateUser } from '@/services/ApiService';
+import { createUser, getUser, getUserData, updateUser } from '../../services/ApiService';
 
 
 const AddCoach = ({ isOpen, path, user }) => {

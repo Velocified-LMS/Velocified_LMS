@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./Pathview.css";
-import { updatePath } from '@/services/ApiService';
+import { updatePath } from '../../services/ApiService';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 

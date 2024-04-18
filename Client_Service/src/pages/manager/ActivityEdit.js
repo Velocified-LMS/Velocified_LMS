@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./ActivityEdit.css";
 import { TextField,TextareaAutosize } from '@mui/material';
 import { Description } from '@mui/icons-material';
-import { updateActivity } from '@/services/ApiService';
+import { updateActivity } from '../../services/ApiService';
 import dynamic from 'next/dynamic';
 
 const ReactQuill = dynamic(() => import('react-quill'), {
